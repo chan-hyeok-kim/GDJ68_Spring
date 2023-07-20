@@ -53,8 +53,8 @@
 
 		<!-- EL방식 -->
 		<!-- scope명.키값(속성명).get이름 -->
-		<a href="./update.do?bookNum=${dto.bookNum}">수정</a> <a
-			href="./delete.do?bookNum=${dto.bookNum}">삭제</a>
+		<a href="./update?bookNum=${dto.bookNum}">수정</a> <a
+			href="./delete?bookNum=${dto.bookNum}">삭제</a>
 	</section>
 </body>
 </html>

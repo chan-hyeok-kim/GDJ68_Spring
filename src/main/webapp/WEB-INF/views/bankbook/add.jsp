@@ -15,7 +15,7 @@
 	<section class="mt-2">
 	<h1 class="mb-2">Add Page</h1>
 
-	<form action="./add.do" method="post">
+	<form action="./add" method="post">
 			<div class="input-group mb-2">
 				<span class="input-group-text">상품명</span> <input type="text"
 					class="form-control 300px" name="bookName"><br>

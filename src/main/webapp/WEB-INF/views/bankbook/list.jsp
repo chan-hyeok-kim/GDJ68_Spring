@@ -28,7 +28,7 @@
 					<!-- varStatus - 변수의 상태값을 i에 담아라  -->
 					<!-- 필수는 아니지만 여러 부가적인 기능들이 있음  -->
 					<tr>
-						<td><a href="./detail.do?bookNum=${d.bookNum}">${d.bookName}</a></td>
+						<td><a href="./detail?bookNum=${d.bookNum}">${d.bookName}</a></td>
 						<td>${d.bookRate}${i.index}</td>
 					</tr>
 				</c:forEach>
@@ -36,7 +36,7 @@
 
 			</tbody>
 		</table>
-		<br> <a href="./add.do" class="btn btn-info">상품등록</a>
+		<br> <a href="./add" class="btn btn-info">상품등록</a>
 	</section>
 
 	<!-- 파라미터 : 클라이언트에서 서버 쪽으로 보내는 정보 -->	
