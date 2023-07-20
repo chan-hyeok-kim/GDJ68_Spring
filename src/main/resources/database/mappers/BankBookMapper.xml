@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.iu.main.bankBook.BankBookDAO">
+    <insert id="s"></insert>
+    <update id="g"></update>
+    <delete id="b"></delete>
+    
+    <!-- long으로해도되고 dto도됨 -->
+    <select id="getDetail" resultType="com.iu.main.bankBook.BankBookDTO" parameterType="com.iu.main.bankBook.BankBookDTO">
+      SELECT * FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
+      <!-- xml은 $대신에 #씀 -->
+    </select>
+  <!-- sql문  -->
+  <!-- 값이 비어있으면 에러 -->
+  </mapper>
+  

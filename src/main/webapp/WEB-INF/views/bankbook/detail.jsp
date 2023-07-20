@@ -21,7 +21,7 @@
 		<!-- Getter 이름 : 메서드에서 get을 제외하고 첫번째 글자를 소문자로 바꾼 것 -->
 		<!-- Setter 이름 : 메서드에서 set을 제외하고 첫번째 글자를 소문자로 바꾼 것 -->
 		<div class="border border-primary-subtle col-sm-4 p-2 mb-2">
-			<h1>${requestScope.dto.bookName}></h1>
+			<h1>${requestScope.dto.bookName}</h1>
 		</div>
 		<div class="border border-primary-subtle col-sm-4 p-2 mb-2">
 			<h1>${dto.bookRate}</h1>
