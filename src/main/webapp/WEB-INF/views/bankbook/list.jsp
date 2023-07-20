@@ -36,7 +36,7 @@
 
 			</tbody>
 		</table>
-		<br> <a href="./add.do" class="btn btn-info">상품등록</a>
+		<br> <a href="./add" class="btn btn-info">상품등록</a>
 	</section>
 
 	<!-- 파라미터 : 클라이언트에서 서버 쪽으로 보내는 정보 -->	

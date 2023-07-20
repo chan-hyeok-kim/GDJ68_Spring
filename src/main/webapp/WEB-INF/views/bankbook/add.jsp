@@ -15,7 +15,7 @@
 	<section class="mt-2">
 	<h1 class="mb-2">Add Page</h1>
 
-	<form action="./add.do" method="post">
+	<form action="./add" method="post">
 			<div class="input-group mb-2">
 				<span class="input-group-text">상품명</span> <input type="text"
 					class="form-control 300px" name="bookName"><br>
@@ -41,9 +41,25 @@
 					<input type="radio" id="option3"
 						class="form-check-input" name="bookSale" value="0">판매중지</label> <br>
 				</p>
+			<p>
+				<label class="btn btn-outline-primary" for="option4"> <input
+					type="checkbox" class="form-check-input" id="option4" name="sports"
+					checked value="FootBall">축구
+				</label> <br> <label class="btn btn-outline-primary" for="option5">
+					<input type="checkbox" id="option5" class="form-check-input"
+					name="sports" value="Basket">농구
+				</label> <br>
+				<label class="btn btn-outline-primary" for="option6"> <input
+					type="checkbox" class="form-check-input" id="option6" name="sports"
+					checked value="volley">배구
+				</label> <br> <label class="btn btn-outline-primary" for="option7">
+					<input type="checkbox" id="option7" class="form-check-input"
+					name="sports" value="BaseBall">야구
+				</label> <br>
+			</p>
 
 
-				<!--   <p>
+			<!--   <p>
           <select name="bookSale">
                 <option value="1">판매가능</option>
                 <option value="0">판매중지</option>  

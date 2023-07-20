@@ -11,7 +11,7 @@
 <body>
     <c:import url="../temp/header.jsp"></c:import>
      <h1>Update Page</h1>
-     <form action="./update.do" method="post">
+     <form action="./update" method="post">
      <input type="hidden" name="bookNum" value="${dto.bookNum}">
      <!-- disabled, hidden, read only? -->
 		<div class="input-group mb-2">

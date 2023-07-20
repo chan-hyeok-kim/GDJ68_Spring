@@ -14,6 +14,7 @@
 
 	<section>
 		<h1>Detail Page</h1>
+		<h1>${num}</h1>
 
 
 		<h3></h3>
@@ -21,7 +22,7 @@
 		<!-- Getter 이름 : 메서드에서 get을 제외하고 첫번째 글자를 소문자로 바꾼 것 -->
 		<!-- Setter 이름 : 메서드에서 set을 제외하고 첫번째 글자를 소문자로 바꾼 것 -->
 		<div class="border border-primary-subtle col-sm-4 p-2 mb-2">
-			<h1>${requestScope.dto.bookName}></h1>
+			<h1>${requestScope.dto.bookName}</h1>
 		</div>
 		<div class="border border-primary-subtle col-sm-4 p-2 mb-2">
 			<h1>${dto.bookRate}</h1>
@@ -53,8 +54,8 @@
 
 		<!-- EL방식 -->
 		<!-- scope명.키값(속성명).get이름 -->
-		<a href="./update.do?bookNum=${dto.bookNum}">수정</a> <a
-			href="./delete.do?bookNum=${dto.bookNum}">삭제</a>
+		<a href="./update?bookNum=${dto.bookNum}">수정</a> <a
+			href="./delete?bookNum=${dto.bookNum}">삭제</a>
 	</section>
 </body>
 </html>
