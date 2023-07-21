@@ -31,7 +31,8 @@
 			</c:forEach>
 
 		</table>
-
+          
+        <a href="./add" class="btn btn-info">학생 등록</a>
 
 	</section>
 </body>

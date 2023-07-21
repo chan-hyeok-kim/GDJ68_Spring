@@ -4,9 +4,9 @@ public class studentDTO {
 	
 	private Long num;
 	private String name;
-	private String kor;
-	private String eng;
-	private String math;
+	private Integer kor;
+	private Integer eng;
+	private Integer math;
 	private Integer total;
 	private Double avg;
 	
@@ -22,22 +22,23 @@ public class studentDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getKor() {
+	
+	public Integer getKor() {
 		return kor;
 	}
-	public void setKor(String kor) {
+	public void setKor(Integer kor) {
 		this.kor = kor;
 	}
-	public String getEng() {
+	public Integer getEng() {
 		return eng;
 	}
-	public void setEng(String eng) {
+	public void setEng(Integer eng) {
 		this.eng = eng;
 	}
-	public String getMath() {
+	public Integer getMath() {
 		return math;
 	}
-	public void setMath(String math) {
+	public void setMath(Integer math) {
 		this.math = math;
 	}
 	public Integer getTotal() {

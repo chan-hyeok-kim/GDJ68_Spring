@@ -56,19 +56,19 @@ public class BankBookController {
 		return "bankbook/update";
 	}
 	
-	@RequestMapping(value="update", method = RequestMethod.POST)
-	public String setUpdate
-	
-	
-	
-	
-	
-	
-	
-	@RequestMapping("delete")
-	public String getDelete() throws Exception{
-		return "commons/result";
-	}
+//	@RequestMapping(value="update", method = RequestMethod.POST)
+//	public String setUpdate
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	@RequestMapping("delete")
+//	public String getDelete() throws Exception{
+//		return "commons/result";
+//	}
 	//add,update,delete
 	
 	

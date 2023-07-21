@@ -20,8 +20,8 @@
 		<div class="border border-primary-subtle col-sm-4 p-2 mb-2">
 			<h1>${sto.avg}</h1></div>
 
-		<a class="btn btn-info">수정</a> 
-		<a class="btn btn-info">삭제</a>
+		<a class="btn btn-info" href="./update?num=${sto.num}">수정</a> 
+		<a class="btn btn-info" href="./delete?num=${sto.num}">삭제</a>
 
 	</section>
 </body>
