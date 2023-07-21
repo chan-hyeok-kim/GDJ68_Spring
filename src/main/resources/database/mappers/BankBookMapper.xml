@@ -4,13 +4,26 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.main.bankBook.BankBookDAO">
-    <insert id="s"></insert>
-    <update id="g"></update>
+    <insert id="getAdd">
+      INSERT INTO BANKBOOK VALUES #{bookNum},#{bookName},#
+    </insert>
+    
+    <update id="g" parameterType=""></update>
     <delete id="b"></delete>
+    
+    <select id="getList" resultType="com.iu.main.bankBook.BankBookDTO">
+    <!-- resultType은 같은 세터의 이름을 찾아서 가져온다 -->
+    <!-- 그래서 DTO를 넣음 -->
+    <!-- 대신 DAO에서 처리 -->
+      SELECT BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE FROM BANKBOOK ORDER BY BOOKNUM DESC
+    </select>
+    
     
     <!-- long으로해도되고 dto도됨 -->
     <select id="getDetail" resultType="com.iu.main.bankBook.BankBookDTO" parameterType="com.iu.main.bankBook.BankBookDTO">
       SELECT * FROM BANKBOOK WHERE BOOKNUM=#{bookNum}
+      <!-- DTO.bookNum 세터이름 -->
+      <!-- id는 마음대로 지어도 되지만 매퍼 내부에서는 구별이 되어야 함. -->
       <!-- xml은 $대신에 #씀 -->
     </select>
   <!-- sql문  -->

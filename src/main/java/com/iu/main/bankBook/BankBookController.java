@@ -1,9 +1,13 @@
 package com.iu.main.bankBook;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/bankbook/*")
@@ -14,24 +18,31 @@ public class BankBookController {
 	private BankBookService bankBookService;
 
 	@RequestMapping(value="list", method =RequestMethod.GET)
-	public String getList() throws Exception{
-		System.out.println("list");
-		
+	public String getList(Model model) throws Exception{
+		List<BankBookDTO> ar = bankBookService.getList();
+		System.out.println();
+		model.addAttribute("list", ar);
 		return "bankbook/list";
 	}
 	
 	//method는 기본값이 get
 	@RequestMapping("detail")
-	public String getDetail(BankBookDTO bankBookDTO) throws Exception{
+	public ModelAndView getDetail(BankBookDTO bankBookDTO,ModelAndView mv) throws Exception{
  	    bankBookDTO = bankBookService.getDetail(bankBookDTO);
 	    System.out.println(bankBookDTO.getBookName());
-	    return "bankbook/detail";
+	    mv.addObject("dto", bankBookDTO);
+	    mv.setViewName("bankbook/detail");
+	    return mv;
 	}
 	
-	@RequestMapping("add")
-	public String getAdd() throws Exception{
-		return "bankbook/add";
+	@RequestMapping(value="add", method = RequestMethod.POST)
+	public String SetAdd(BankBookDTO bankBookDTO, Model model) throws Exception{
+		bankBookDTO = bankBookService.getAdd(bankBookDTO);
+		model.addAttribute("dto", bankBookDTO);
+		return "redirect";
 	}
+	
+	
 	
 	@RequestMapping("update")
 	public String getUpdate() throws Exception{
