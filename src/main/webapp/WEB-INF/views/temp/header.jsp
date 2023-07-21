@@ -18,9 +18,11 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="/index.do">Home</a></li>
+						aria-current="page" href="/">Home</a></li>
 					<li class="nav-item"><a class="nav-link active"
-						href="/bankbook/list.do">BankProduct</a></li>
+						href="/bankbook/list">BankProduct</a></li>
+						<li class="nav-item"><a class="nav-link active"
+						href="/student/list">학생 목록</a></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle active" href="#" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false"> Dropdown </a>

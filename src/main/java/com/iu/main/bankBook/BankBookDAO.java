@@ -31,7 +31,6 @@ public class BankBookDAO {
 
 	//detail
 	public BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception {
-	 
 	   	return sqlSession.selectOne(NAMESPACE+"getDetail",bankBookDTO);
 //	   	네임스페이스에 가서 getDetail을 실행하고 결과값을 가져와주세요
 //	   	DTO세터이름 컬럼명이 일치하는 애를 찾아서 DTO작성
@@ -39,14 +38,17 @@ public class BankBookDAO {
 	}
 	
 	//add
-	public BankBookDTO getAdd(BankBookDTO bankBookDTO) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getAdd", bankBookDTO);
+	public BankBookDTO setAdd(BankBookDTO bankBookDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"setAdd", bankBookDTO);
 	}
 	
-
-	
+	//update
+	public BankBookDTO setUpdate(BankBookDTO bankBookDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"setUpdate",bankBookDTO);
+	}
 	
 	//update
+	
 	//delete
 	
 	public void dao() {

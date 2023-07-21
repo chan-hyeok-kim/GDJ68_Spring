@@ -4,12 +4,16 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.main.bankBook.BankBookDAO">
-    <insert id="getAdd">
-      INSERT INTO BANKBOOK VALUES #{bookNum},#{bookName},#
-    </insert>
+    <insert id="setAdd" parameterType="com.iu.main.bankBook.BankBookDTO">
+      INSERT INTO BANKBOOK VALUES (BANK_SEQ.NEXTVAL,#{bookName},#{bookRate},#{bookSale},#{bookContents})
+    </insert> 
     
-    <update id="g" parameterType=""></update>
-    <delete id="b"></delete>
+    <update id="setUpdate" parameterType="com.iu.main.bankBook.BankBookDTO">
+      UPDATE FROM BANKBOOK SET #{bookName}=?,#{bookContents},#{bookRate},#{bookSale} WHERE #{bankNum}=? 
+    </update>
+    
+    
+    <delete id=""></delete>
     
     <select id="getList" resultType="com.iu.main.bankBook.BankBookDTO">
     <!-- resultType은 같은 세터의 이름을 찾아서 가져온다 -->

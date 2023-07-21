@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,24 +36,40 @@ public class BankBookController {
 	    return mv;
 	}
 	
-	@RequestMapping(value="add", method = RequestMethod.POST)
-	public String SetAdd(BankBookDTO bankBookDTO, Model model) throws Exception{
-		bankBookDTO = bankBookService.getAdd(bankBookDTO);
-		model.addAttribute("dto", bankBookDTO);
-		return "redirect";
+	@RequestMapping("add")
+	public ModelAndView setAdd(ModelAndView mv) throws Exception {
+		   mv.setViewName("/bankbook/add");
+		   return mv;
 	}
 	
 	
+	@RequestMapping(value="add", method = RequestMethod.POST)
+	public String setAdd(BankBookDTO bankBookDTO, Model model) throws Exception{
+		bankBookDTO = bankBookService.setAdd(bankBookDTO);
+		model.addAttribute("dto", bankBookDTO);
+		return "redirect:./list";
+	}
+
 	
 	@RequestMapping("update")
-	public String getUpdate() throws Exception{
+	public String setUpdate() throws Exception{
 		return "bankbook/update";
 	}
+	
+	@RequestMapping(value="update", method = RequestMethod.POST)
+	public String setUpdate
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("delete")
 	public String getDelete() throws Exception{
 		return "commons/result";
 	}
 	//add,update,delete
+	
 	
 }
