@@ -4,8 +4,8 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.iu.main.bankBook.BankBookDAO">
-    <insert id="getAdd">
-      INSERT INTO BANKBOOK VALUES #{bookNum},#{bookName},#
+    <insert id="setAdd" parameterType="com.iu.main.bankBook.BankBookDTO">
+      INSERT INTO BANKBOOK VALUES (BANK_SEQ.NEXTVAL,#{bookName},#{bookRate},#{bookSale},#{bookContents})
     </insert>
     
     <update id="g" parameterType=""></update>
@@ -17,7 +17,7 @@
     <!-- 대신 DAO에서 처리 -->
       SELECT BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE FROM BANKBOOK ORDER BY BOOKNUM DESC
     </select>
-    
+    <!-- select태그 빼고는 resultType이 int로 정해져있음 (성공여부)-->
     
     <!-- long으로해도되고 dto도됨 -->
     <select id="getDetail" resultType="com.iu.main.bankBook.BankBookDTO" parameterType="com.iu.main.bankBook.BankBookDTO">

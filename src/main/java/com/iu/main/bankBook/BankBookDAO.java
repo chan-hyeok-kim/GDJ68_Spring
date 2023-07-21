@@ -39,11 +39,13 @@ public class BankBookDAO {
 	}
 	
 	//add
-	public BankBookDTO getAdd(BankBookDTO bankBookDTO) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getAdd", bankBookDTO);
-	}
+//	public BankBookDTO setAdd(BankBookDTO bankBookDTO) throws Exception{
+//		return sqlSession.selectOne(NAMESPACE+"setAdd", bankBookDTO);
+//	}
 	
-
+	public int setAdd(BankBookDTO bankBookDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAdd", bankBookDTO);
+	}
 	
 	
 	//update

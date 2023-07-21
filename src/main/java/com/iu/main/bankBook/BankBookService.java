@@ -19,8 +19,10 @@ public class BankBookService {
 		return bankBookDAO.getList();
 	}
 	
-	public BankBookDTO getAdd(BankBookDTO bankBookDTO) throws Exception{
-		return bankBookDAO.getAdd(bankBookDTO);
+	public int setAdd(BankBookDTO bankBookDTO) throws Exception{
+		return bankBookDAO.setAdd(bankBookDTO);
 	}
+	
+	
 
 }

@@ -35,13 +35,34 @@ public class BankBookController {
 	    return mv;
 	}
 	
-	@RequestMapping(value="add", method = RequestMethod.POST)
-	public String SetAdd(BankBookDTO bankBookDTO, Model model) throws Exception{
-		bankBookDTO = bankBookService.getAdd(bankBookDTO);
-		model.addAttribute("dto", bankBookDTO);
-		return "redirect";
-	}
+//	@RequestMapping("add")
+//	public ModelAndView setAdd(ModelAndView mv) throws Exception {
+//		   mv.setViewName("/bankbook/add");
+//		   return mv;
+//	}
 	
+	
+	@RequestMapping("add")
+	public void setAdd() throws Exception {
+		 
+	}
+	//void인 경우 /bankbook/add로감 맵핑해놓은것 때문에 
+//	form으로 이동하는 add
+//	 
+	
+//	@RequestMapping(value="add", method = RequestMethod.POST)
+//	public String setAdd(BankBookDTO bankBookDTO, Model model) throws Exception{
+//		int result= bankBookService.setAdd(bankBookDTO);
+//		model.addAttribute("dto", bankBookDTO);
+//		return "redirect:./list";
+//	}
+	//db insert
+	
+	@RequestMapping(value="add", method = RequestMethod.POST)
+	public String setAdd(BankBookDTO bankBookDTO) throws Exception{
+		int result= bankBookService.setAdd(bankBookDTO);
+		return "redirect:./list";
+	}
 	
 	
 	@RequestMapping("update")
