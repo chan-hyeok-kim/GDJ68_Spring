@@ -47,9 +47,17 @@ public class BankBookDAO {
 		return sqlSession.insert(NAMESPACE+"setAdd", bankBookDTO);
 	}
 	
-	
 	//update
+	public int setUpdate(BankBookDTO bankBookDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setUpdate", bankBookDTO);
+	}
+	
+	
 	//delete
+	public int setDelete(Long num) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setDelete", num);
+	}
+//	예시로 Long넣어봄. DTO가 안전함
 	
 	public void dao() {
 		System.out.println("dao");

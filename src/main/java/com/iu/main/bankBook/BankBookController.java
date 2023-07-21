@@ -7,12 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/bankbook/*")
-//하나만 들어가는 건 value안 써줌
 public class BankBookController {
+	//하나만 들어가는 건 value안 써줌
 	
 	@Autowired
 	private BankBookService bankBookService;
@@ -57,23 +58,35 @@ public class BankBookController {
 //		return "redirect:./list";
 //	}
 	//db insert
-	
 	@RequestMapping(value="add", method = RequestMethod.POST)
 	public String setAdd(BankBookDTO bankBookDTO) throws Exception{
 		int result= bankBookService.setAdd(bankBookDTO);
 		return "redirect:./list";
 	}
 	
-	
-	@RequestMapping("update")
-	public String getUpdate() throws Exception{
-		return "bankbook/update";
+	//수정 form
+	@RequestMapping(value="update", method=RequestMethod.GET)
+	public void setUpdate(BankBookDTO bankBookDTO, Model model) throws Exception{
+		bankBookDTO = bankBookService.getDetail(bankBookDTO);
+		model.addAttribute("dto",bankBookDTO);
 	}
+	
+	//DB update
+	 @RequestMapping(value="update", method=RequestMethod.POST) 
+	 public String setUpdate(BankBookDTO bankBookDTO) throws Exception{
+	     int result = bankBookService.setUpdate(bankBookDTO);
+	     return "redirect:./detail?bookNum="+bankBookDTO.getBookNum(); 
+	 }
+//	 디테일로 갈때 booknum을 보내주기로 했기 때문에
+	
+	
 	
 	@RequestMapping("delete")
-	public String getDelete() throws Exception{
-		return "commons/result";
+	public String setDelete(Long bookNum) throws Exception{
+		int result = bankBookService.setDelete(bookNum);
+		return "redirect:/bankbook/list";
 	}
-	//add,update,delete
+//	DB와 일
+//	@RequestParam(name="booknum") Long num 으로 쓸수도있
 	
 }

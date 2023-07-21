@@ -8,8 +8,16 @@
       INSERT INTO BANKBOOK VALUES (BANK_SEQ.NEXTVAL,#{bookName},#{bookRate},#{bookSale},#{bookContents})
     </insert>
     
-    <update id="g" parameterType=""></update>
-    <delete id="b"></delete>
+    <update id="setUpdate" parameterType="com.iu.main.bankBook.BankBookDTO">
+      UPDATE BANKBOOK SET 
+      BOOKNAME=#{bookName},BOOKRATE=#{bookRate},BOOKSALE=#{bookSale},BOOKCONTENTS=#{bookContents} 
+      WHERE BOOKNUM=#{bookNum}
+    </update>
+    
+    <delete id="setDelete" parameterType="java.lang.Long">
+      DELETE BANKBOOK WHERE BOOKNUM=#{num}
+      <!-- 파라미터 게터 -->
+    </delete>
     
     <select id="getList" resultType="com.iu.main.bankBook.BankBookDTO">
     <!-- resultType은 같은 세터의 이름을 찾아서 가져온다 -->
