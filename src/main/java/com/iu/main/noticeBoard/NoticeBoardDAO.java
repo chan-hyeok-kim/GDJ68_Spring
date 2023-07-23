@@ -9,6 +9,6 @@ public class NoticeBoardDAO {
 
 	@Autowired
 	private SqlSession sqlSession;
-	private 
+	private final String NAMESPACE="com.iu.main.noticeBoard.NoticeBoardDAO.";
    	
 }
