@@ -40,7 +40,7 @@
 			</select> -->	
 		</p>
 		
-		<button type="submit">수정</button>
+		<button type="submit" class="btn btn-info">수정</button>
 		<input type="submit" value="수정">
 		<input type="reset" value="수정">
 		<input type="button" value="수정">
