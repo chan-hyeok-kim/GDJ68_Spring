@@ -10,16 +10,25 @@
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
-	<section>
+	<section class="ms-3">
 		<h1>Detail Page</h1>
 		
-		<div class="border border-primary-subtle col-sm-4 p-2 mb-2">
-			<h1>${sto.name}</h1></div>
-		<div class="border border-primary-subtle col-sm-4 p-2 mb-2">
-			<h1>${sto.total}</h1></div>
-		<div class="border border-primary-subtle col-sm-4 p-2 mb-2">
-			<h1>${sto.avg}</h1></div>
-
+		이름: <div class="border border-primary-subtle col-sm-2 p-2 mb-2">
+			 ${sto.name}</div>
+		학번: <div class="border border-primary-subtle col-sm-2 p-2 mb-2">
+			 ${sto.num}</div>	
+		
+		국어: <div class="border border-primary-subtle col-sm-2 p-2 mb-2">
+			 ${sto.kor}</div>	
+        영어:<div class="border border-primary-subtle col-sm-2 p-2 mb-2">
+			 ${sto.eng}</div>	
+		수학:<div class="border border-primary-subtle col-sm-2 p-2 mb-2">
+			 ${sto.math}</div>			
+		총점:<div class="border border-primary-subtle col-sm-2 p-2 mb-2">
+			 ${sto.total}</div>
+		평균:<div class="border border-primary-subtle col-sm-2 p-2 mb-2">
+			 ${sto.avg}</div>
+       
 		<a class="btn btn-info" href="./update?num=${sto.num}">수정</a> 
 		<a class="btn btn-info" href="./delete?num=${sto.num}">삭제</a>
 

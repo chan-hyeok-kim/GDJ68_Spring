@@ -10,6 +10,7 @@
 </head>
 <body>
     <c:import url="../temp/header.jsp"></c:import>
+    <section>
      <h1>Update Page</h1>
      <form action="./update" method="post">
      <input type="hidden" name="bookNum" value="${dto.bookNum}">
@@ -45,5 +46,6 @@
 		<input type="reset" value="수정">
 		<input type="button" value="수정">
 		</form>
+		</section>
 </body>
 </html>
