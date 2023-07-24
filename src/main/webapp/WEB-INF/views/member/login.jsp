@@ -13,7 +13,7 @@
      <c:import url="../temp/header.jsp"></c:import>
      <section class="ms-3">
                   <h1>로그인 페이지</h1>
-     <form action="./login.do" method="post">
+     <form action="./login" method="post">
      <div class="mb-3">
 				<label for="id" class="form-label">ID
 				</label>

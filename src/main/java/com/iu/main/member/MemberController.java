@@ -4,15 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("member")
+@RequestMapping("/member/*")
 public class MemberController {
     //BankBookController, GET
 	//MemberController, GET
 	//주소 .do 삭제
     // /member/login
 	@RequestMapping("login")
-	public String login() {
-		return "member/login";
+	public void login() {
+		
 	}
 	
 	@RequestMapping("myPage")
