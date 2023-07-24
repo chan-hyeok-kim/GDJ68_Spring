@@ -4,8 +4,11 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Repository;
 
-@Repository
 public class MemberDTO {
+	//접근지정자는 private
+	//변수명 타입은 Table의 컬럼과 동일하게
+	//setter, getter
+	//생성자는 여러개 선언 가능하지만, 기본 생성자는 필수
 	
 	private String id;
 	private String pw;

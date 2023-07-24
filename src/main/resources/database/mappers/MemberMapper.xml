@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.iu.main.member.MemberDAO">
+  <!-- 로그인 -->
+     <select id="getLogin" resultType="MemberDTO" parameterType="MemberDTO">
+         SELECT * FROM MEMBER 
+         WHERE ID=#{id} AND PW=#{pw}
+     </select>
+     <!-- id만 확인한 경우에는 서비스에서 패스워드 확인시킴 -->
+  
+  <!-- 회원가입 -->
+     <insert id="setJoin" parameterType="MemberDTO">
+         INSERT INTO MEMBER
+         VALUES (#{id}, #{pw}, #{name}, #{email} ,#{birth})
+     </insert>
+     
+     <update id="setMemberUpdate" parameterType="MemberDTO">
+         UPDATE MEMBER SET PW=#{pw},NAME=#{name}, 
+         EMAIL=#{email}, BIRTH=#{birth} WHERE ID=#{id}
+     </update>
+   
+  </mapper>

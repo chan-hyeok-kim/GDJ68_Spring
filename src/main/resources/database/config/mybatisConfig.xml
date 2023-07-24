@@ -9,5 +9,6 @@
         <typeAlias type="com.iu.main.bankBook.BankBookDTO" alias="BankBookDTO"/>
                                                <!-- 보통 클래스명을 alias(별칭)으로 둔다-->
         <typeAlias type="java.lang.Long" alias="Long"/>
+        <typeAlias type="com.iu.main.member.MemberDTO" alias="MemberDTO"/>
     </typeAliases>
 </configuration>

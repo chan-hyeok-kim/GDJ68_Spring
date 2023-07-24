@@ -12,23 +12,15 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="ms-3">
-		<form action="./join" method="post">
+		<form action="./memberUpdate" method="post">
 			
-			<h1>회원가입 페이지</h1>
+			<h1>수정 페이지</h1>
             
-			<div class="mb-3">
-				<label for="id" class="form-label">ID
-				</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control"
-						id="id" name="id" placeholder="ID를 입력하세요">
-				</div>
-			</div>
 
 			<div class="mb-3">
 				<label for="pw" class="form-label">Password </label>
 				<div class="col-sm-4">
-					<input type="password" class="form-control" id="pw" name="pw"
+					<input type="password" value="${login.pw}" class="form-control" id="pw" name="pw"
 						placeholder="PW를 입력하세요">
 				</div>
 			</div>
@@ -36,7 +28,7 @@
 			<div class="mb-3">
 				<label for="name" class="form-label">이름 </label>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="name" name="name"
+					<input type="text" value="${login.name}" class="form-control" id="name" name="name"
 						placeholder="이름을 입력하세요">
 				</div>
 			</div>
@@ -47,7 +39,7 @@
 				<label for="exampleFormControlInput1" class="form-label">Email
 					address</label>
 				<div class="col-sm-4">
-					<input type="email" class="form-control"
+					<input type="email" value="${login.email}" class="form-control"
 						id="exampleFormControlInput1" name="email"
 						placeholder="name@example.com">
 				</div>
@@ -57,12 +49,12 @@
 			<div class="mb-3">
 				<label for="birth" class="form-label">생일 </label>
 				<div class="col-sm-4">
-					<input type="date" class="form-control" id="birth" name="birth">
+					<input type="date" value="${login.birth}" class="form-control" id="birth" name="birth">
 				</div>
 			</div>
 
 
-			<button type="submit" class="btn btn-primary">회원가입</button>
+			<button type="submit" class="btn btn-primary">수정</button>
 			<input type="reset" class="btn btn-primary">
 		</form>
 	</section>
