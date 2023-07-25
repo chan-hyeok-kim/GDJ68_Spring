@@ -33,6 +33,8 @@
 						</ul></li>
 					<li class="nav-item"><a class="nav-link disabled">Disabled</a>
 					</li>
+					
+					<li class="nav-item"><a href="/notice/list" class="nav-link active">게시판</a></li>
 				</ul>
 				<nav>
 					<ul class="nav">

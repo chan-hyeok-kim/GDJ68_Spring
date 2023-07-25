@@ -11,10 +11,10 @@
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
-	<section>
+	<section class="container mt-5">
 		<h1 class="mb-2">my page</h1>
 		<h3>
-<table class="table table-bordered border-primary ">
+<table class="table table-bordered border-primary">
   <tr>
     <th>ID</th>
     <th>${login.id}</th>
@@ -23,17 +23,24 @@
     <td>pw</td>
     <td>${login.pw}</td>
   </tr>
+  <tr>
+    <td>이름</td>
+    <td>${login.name}</td>
+  </tr>
+  <tr>
+    <td>이메일</td>
+    <td>${login.email}</td>
+  </tr>
+  <tr>
+    <td>생일</td>
+    <td>${login.birth}</td>
+  </tr>
 </table>
 
 
-			<div class="mb-3">ID: ${login.id}</div>
-			<div class="mb-3">pw: ${login.pw}</div>
-			<div class="mb-3">이름: ${login.name}</div>
-			<div class="mb-3">이메일: ${login.email}</div>
-			<div class="mb-3">생일: ${login.birth}</div>
 
 		</h3>
-		<a href="./memberUpdate?id=${login.id}">수정</a>
+		<a href="./memberUpdate?id=${login.id}" class="btn btn-primary">수정</a>
 	</section>
 </body>
 </html>
