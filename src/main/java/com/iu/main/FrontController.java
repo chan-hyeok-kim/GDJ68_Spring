@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class FrontController {
+	//Add_Mybatis
 
 	
 	//home 메서드명
