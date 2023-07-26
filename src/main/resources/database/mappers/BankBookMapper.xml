@@ -20,11 +20,19 @@
     </delete>
     
     <select id="getList" resultType="BankBookDTO">
+    SELECT BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE
+      FROM (SELECT ROWNUM R, B.* 
+      FROM (SELECT * FROM BANKBOOK
+     WHERE BOOKNUM>0
+     ORDER BY BOOKNUM DESC) B) 
+     WHERE R BETWEEN  AND ;
+    </select>
+    
     <!-- resultType은 같은 세터의 이름을 찾아서 가져온다 -->
     <!-- 그래서 DTO를 넣음 -->
     <!-- 대신 DAO에서 처리 -->
-      SELECT BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE FROM BANKBOOK ORDER BY BOOKNUM DESC
-    </select>
+      
+  
     <!-- select태그 빼고는 resultType이 int로 정해져있음 (성공여부)-->
     
     <!-- long으로해도되고 dto도됨 -->
@@ -35,7 +43,7 @@
       <!-- xml은 $대신에 #씀 -->
     </select>
     
-    
+   
     
   <!-- sql문  -->
   <!-- 값이 비어있으면 에러 -->
