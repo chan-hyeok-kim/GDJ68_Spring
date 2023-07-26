@@ -2,37 +2,51 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="com.iu.main.board.BoardDAO">
-  <select id="getList" resultType="BoardDTO">
-      SELECT BOARDNUM, BOARDNAME, BOARDWRITER, 
-      BOARDDATE, BOARDHIT, BOARDCONTENTS 
-      FROM BOARD ORDER BY BOARDNUM DESC
-  </select>
-  
-  <select id="getDetail" resultType="BoardDTO" parameterType="BoardDTO">
-      SELECT BOARDNUM, BOARDNAME, BOARDWRITER, 
-      BOARDDATE, BOARDHIT, BOARDCONTENTS 
-      FROM BOARD WHERE BOARDNUM=#{boardNum}
-  </select>
-  
-  <insert id="setAdd" parameterType="BoardDTO">
-      INSERT INTO BOARD VALUES 
-      (BOARD_SEQ.NEXTVAL,#{boardWriter},#{boardName},
-      SYSDATE,0,#{boardContents})
-  </insert>
-  
-  <update id="setUpdate" parameterType="BoardDTO">
-      UPDATE BOARD SET BOARDWRITER=#{boardWriter}, BOARDNAME=#{boardName}, BOARDCONTENTS=#{boardContents}
-      WHERE BOARDNUM=#{boardNum}
-  </update>
-  
-  <delete id="setDelete" parameterType="BoardDTO">
-      DELETE BOARD WHERE BOARDNUM=#{boardNum}
-  </delete>
-  
-  <select id="getSearch" resultType="BoardDTO" parameterType="BoardDTO">
-      SELECT * FROM BOARD WHERE BOARDNAME LIKE  '%' || #{boardName} || '%'  ORDER BY BOARDNUM DESC
-  <!-- 3개 이상인 경우 oracle은 concat 중첩사용 -->
-  </select>
-  </mapper>
+
+<mapper namespace="com.iu.main.board.BoardDAO">
+	<select id="getList" resultType="BoardDTO" parameterType="com.iu.main.util.Pager">
+		SELECT BOARDNUM, BOARDNAME, BOARDWRITER,
+		BOARDDATE, BOARDHIT, BOARDCONTENTS
+		FROM (SELECT ROWNUM R, B.*
+		FROM (SELECT * FROM BOARD 
+		WHERE BOARDNUM>0
+		ORDER BY BOARDNUM DESC)B )
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+
+	<select id="getDetail" resultType="BoardDTO"
+		parameterType="BoardDTO">
+		SELECT BOARDNUM, BOARDNAME, BOARDWRITER,
+		BOARDDATE, BOARDHIT, BOARDCONTENTS
+		FROM BOARD WHERE BOARDNUM=#{boardNum}
+	</select>
+
+	<insert id="setAdd" parameterType="BoardDTO">
+		INSERT INTO BOARD VALUES
+		(BOARD_SEQ.NEXTVAL,#{boardWriter},#{boardName},
+		SYSDATE,0,#{boardContents})
+	</insert>
+
+	<update id="setUpdate" parameterType="BoardDTO">
+		UPDATE BOARD SET BOARDWRITER=#{boardWriter}, BOARDNAME=#{boardName},
+		BOARDCONTENTS=#{boardContents}
+		WHERE BOARDNUM=#{boardNum}
+	</update>
+
+	<delete id="setDelete" parameterType="BoardDTO">
+		DELETE BOARD WHERE BOARDNUM=#{boardNum}
+	</delete>
+
+	<select id="getSearch" resultType="BoardDTO"
+		parameterType="BoardDTO">
+		SELECT * FROM BOARD WHERE BOARDNAME LIKE '%' || #{boardName} || '%'
+		ORDER BY BOARDNUM DESC
+		<!-- 3개 이상인 경우 oracle은 concat 중첩사용 -->
+	</select>
+    
+    <select id="getTotal" resultType="Long">
+        SELECT COUNT(BOARDNUM) FROM BOARD
+    </select>
+
+
+</mapper>

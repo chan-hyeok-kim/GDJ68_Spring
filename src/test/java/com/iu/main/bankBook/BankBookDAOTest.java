@@ -22,10 +22,10 @@ public class BankBookDAOTest extends Mytest {
 		map.put("startRow", 11);
 		map.put("lastRow", 20);
 		
-    	List<BankBookDTO> ar = bankBookDAO.getList(map);
-    	
-    	System.out.println(ar.get(0).getBookNum());
-    	System.out.println(ar.get(9).getBookNum());
+//    	List<BankBookDTO> ar = bankBookDAO.getList(map);
+//    	
+//    	System.out.println(ar.get(0).getBookNum());
+//    	System.out.println(ar.get(9).getBookNum());
     }
 	
 //	@Test

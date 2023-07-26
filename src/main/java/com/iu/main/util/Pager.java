@@ -17,7 +17,27 @@ public class Pager {
 	//끝번호
 	private Long lastNum;
 	
+//	이전 블럭 활성화
+	private boolean pre; //false면 1번 블럭, true면 1번 아님
+//	다음 블럭 활성화
+	private boolean next; //false면 마지막 블럭, true면 마지막 블럭 아님
 
+
+	public boolean isPre() {
+		return pre;
+	}
+//  boolean의 getter는 is로 시작하는 메서드
+	public void setPre(boolean pre) {
+		this.pre = pre;
+	}
+
+	public boolean isNext() {
+		return next;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}
 
 	public Long getStartNum() {
 		return startNum;
@@ -52,23 +72,38 @@ public class Pager {
 //      2. 전체 페이지 수로 전체 block 수 구하기
 //    	 한 페이지에 출력할 번호의 갯수
     	long perBlock=10;
-    	long totalblock = this.totalPage/perBlock;
+    	long totalBlock = this.totalPage/perBlock;
     	if(this.totalPage%perBlock!=0) {
-    		totalblock++;
+    		totalBlock++;
     	}
     	
 //    	3. 현재 page번호로 블럭번호 구하기
 //    	현재 블럭 번호
-    	long curblock = this.getPage()/perBlock;
+    	long curBlock = this.getPage()/perBlock;
     	if(this.getPage()%perBlock!=0) {
-    		curblock++;
+    		curBlock++;
     	}
     	
 //    	4. 현재 블럭번호의 시작번호와 끝번호 구하기
 //    	curblock   startNum   lastNum
-    	this.startNum = 1+(curblock-1)*perBlock;
-    	this.lastNum = curblock*perBlock;
+    	this.startNum = 1+(curBlock-1)*perBlock;
+    	this.lastNum = curBlock*perBlock;
     	
+//    	이전 블럭 활성화 여부
+    	if(curBlock>1) {
+    		this.pre=true;
+    	}
+//    	다음 블럭 활성화 여부
+    	if(curBlock<totalBlock) {
+    		this.next=true;
+    	}
+    	
+//    	현재 블럭이 마지막 블럭일때 lastNum을 totalPage숫자로 대입
+//    	if(curBlock==totalBlock) {
+        if(!this.next) {
+           this.lastNum=totalPage;
+    	}
+    		
     	
     } 
     	

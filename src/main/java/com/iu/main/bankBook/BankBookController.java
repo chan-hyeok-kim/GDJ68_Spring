@@ -25,9 +25,6 @@ public class BankBookController {
 		List<BankBookDTO> ar = bankBookService.getList(pager);
 		System.out.println();
 		model.addAttribute("list", ar);
-		if(pager.getStartNum()<0) {
-			pager.setStartNum(1L);
-		}
 		model.addAttribute("pager",pager);
 		return "bankbook/list";
 	}

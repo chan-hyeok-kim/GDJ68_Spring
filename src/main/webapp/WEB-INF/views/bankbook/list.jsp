@@ -37,16 +37,17 @@
 
 
 		<ul class="pagination">
-			<li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}">Previous</a></li>
+			<c:if test="${pager.pre}"><li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}">Previous</a></li>
+				</c:if>
 			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 				<li class="page-item"><a href="./list?page=${i}"
 					class="page-link">${i}</a></li>
 			</c:forEach>
-
+            
+            <!-- ${pager.next?'enable':'disabled'} -->
+            <c:if test="${pager.next}">
 			<li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum+1}">Next</a></li>
-
-
-
+            </c:if>
 
 
 		<p>
