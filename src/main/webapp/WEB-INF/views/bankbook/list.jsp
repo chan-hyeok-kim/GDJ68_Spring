@@ -8,10 +8,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <c:import url="../temp/bootStrap.jsp"></c:import>
+<c:import url="../temp/bootStrap.jsp"></c:import>
 </head>
 <body>
-    <c:import url="../temp/header.jsp"></c:import>
+	<c:import url="../temp/header.jsp"></c:import>
 
 	<section class="container mt-5">
 		<h1 class="mb-4 text-center">BankBook List</h1>
@@ -32,19 +32,34 @@
 						<td>${d.bookRate}${i.index}</td>
 					</tr>
 				</c:forEach>
-
-
 			</tbody>
 		</table>
-		<br> <a href="./add" class="btn btn-info">상품등록</a>
+
+
+		<ul class="pagination">
+			<li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}">Previous</a></li>
+			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+				<li class="page-item"><a href="./list?page=${i}"
+					class="page-link">${i}</a></li>
+			</c:forEach>
+
+			<li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum+1}">Next</a></li>
+
+
+
+
+
+		<p>
+				<a href="./add" class="btn btn-info ms-5">상품등록</a>
+			</p>
 	</section>
 
-	<!-- 파라미터 : 클라이언트에서 서버 쪽으로 보내는 정보 -->	
+	<!-- 파라미터 : 클라이언트에서 서버 쪽으로 보내는 정보 -->
 	<%-- <c:forEach begin="1" end="10" step="2" var="num">
 	    <h1>${num}</h1>
 	</c:forEach> --%>
-	
-	
+
+
 	<!-- 출력할땐 세미콜론 안 붙임 -->
 </body>
 

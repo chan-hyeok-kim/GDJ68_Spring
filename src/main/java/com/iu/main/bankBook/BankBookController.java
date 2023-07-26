@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.main.util.Pager;
+
 @Controller
 @RequestMapping("/bankbook/*")
 public class BankBookController {
@@ -19,12 +21,20 @@ public class BankBookController {
 	private BankBookService bankBookService;
 
 	@RequestMapping(value="list", method =RequestMethod.GET)
-	public String getList(Model model) throws Exception{
-		List<BankBookDTO> ar = bankBookService.getList();
+	public String getList(Model model, Pager pager) throws Exception{
+		List<BankBookDTO> ar = bankBookService.getList(pager);
 		System.out.println();
 		model.addAttribute("list", ar);
+		if(pager.getStartNum()<0) {
+			pager.setStartNum(1L);
+		}
+		model.addAttribute("pager",pager);
 		return "bankbook/list";
 	}
+	
+//	request 
+//	bean
+//  파라미터값과 같은 이름의 매개변수선언
 	
 	//method는 기본값이 get
 	@RequestMapping("detail")
