@@ -2,6 +2,9 @@ package com.iu.main.bankBook;
 
 import java.util.List;
 
+import javax.servlet.jsp.PageContext;
+import javax.servlet.jsp.tagext.PageData;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +27,6 @@ public class BankBookController {
 	public String getList(Model model, Pager pager) throws Exception{
 		List<BankBookDTO> ar = bankBookService.getList(pager);
 		System.out.println();
-		
 		model.addAttribute("list", ar);
 		model.addAttribute("pager",pager);
 		return "bankbook/list";
@@ -40,6 +42,7 @@ public class BankBookController {
 	public ModelAndView getDetail(BankBookDTO bankBookDTO,ModelAndView mv) throws Exception{
  	    bankBookDTO = bankBookService.getDetail(bankBookDTO);
 	    System.out.println(bankBookDTO.getBookName());
+	 
 	    mv.addObject("dto", bankBookDTO);
 	    mv.setViewName("bankbook/detail");
 	    return mv;

@@ -14,6 +14,8 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	
+
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,7 +25,7 @@
 	<!-- 경로 앞뒤에 위의 값들을 붙이란 얘기 -->
 	
 	<context:component-scan base-package="com.iu.main" />
-	
+	<!-- 이 위치의 어노테이션들 가져오란 뜻 -->
 	
 	
 </beans:beans>

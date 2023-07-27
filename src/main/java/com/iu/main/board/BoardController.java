@@ -32,7 +32,11 @@ public class BoardController {
 	
 	@RequestMapping(value="detail", method = RequestMethod.GET)
 	public ModelAndView getDetail(BoardDTO boardDTO, ModelAndView mv) throws Exception{
+	
 		boardDTO = boardService.getDetail(boardDTO);
+		boardDTO.setBoardHit(boardDTO.getBoardHit()+1);
+		int result = boardService.setUpdate(boardDTO);
+		
 		mv.addObject("board", boardDTO);
 		mv.setViewName("board/detail");
 		return mv;

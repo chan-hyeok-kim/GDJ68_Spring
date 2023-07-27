@@ -12,7 +12,7 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="ms-3">
-		<form action="./join" method="post">
+		<form action="./join" method="post" enctype="multipart/form-data">
 			
 			<h1>회원가입 페이지</h1>
             
@@ -58,6 +58,13 @@
 				<label for="birth" class="form-label">생일 </label>
 				<div class="col-sm-4">
 					<input type="date" class="form-control" id="birth" name="birth">
+				</div>
+			</div>
+			
+			<div class="mb-3">
+				<label for="pic" class="form-label">사진첨부</label>
+				<div class="col-sm-4">
+					<input type="file" class="form-control" id="pic" name="pic">
 				</div>
 			</div>
 

@@ -34,6 +34,13 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+<!-- commons-fileupload -->
+<dependency>
+    <groupId>commons-fileupload</groupId>
+    <artifactId>commons-fileupload</artifactId>
+    <version>1.5</version>
+</dependency>
+
 		<!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>

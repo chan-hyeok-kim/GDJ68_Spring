@@ -4,5 +4,13 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+    <bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+			<property name="defaultEncoding" value="UTF-8"></property>
+			<!-- 전체 upload하는 파일의 총 크기 제한 단위 byte -->
+			<property name="maxUploadSize" value="104857600"></property>
+			<!-- upload하는 파일당 크기 제한 단위 byte -->
+			<property name="maxUploadSizePerFile" value="10485760"></property>
+		</bean>
+                           <!-- 밸류값은 바이트타입  -->
+                           <!-- 잘려진 애들(이진 데이터)를 파일로 합침 -->
 </beans>
