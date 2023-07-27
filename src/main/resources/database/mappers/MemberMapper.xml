@@ -13,7 +13,7 @@
   
   <!-- 회원가입 -->
      <insert id="setJoin" parameterType="MemberDTO">
-         INSERT INTO MEMBER
+         INSERT INTO MEMBER (ID, PW, NAME, EMAIL, BIRTH)
          VALUES (#{id}, #{pw}, #{name}, #{email} ,#{birth})
      </insert>
      

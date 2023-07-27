@@ -2,6 +2,27 @@ package com.iu.main.util;
 
 public class Pager {
 
+	//검색
+	private String kind;
+	private String search;
+	
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+	
+	public String getSearch() {
+		if(this.search==null) {
+			this.search = "";
+		}
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 	private Long startRow;
 	private Long lastRow;
 	private Long page;
@@ -88,7 +109,7 @@ public class Pager {
     	
 //    	이전 블럭 활성화 여부
     	if(curBlock>1) {
-    		this.pre=true;
+    		this.pre=true;	
     	}
 //    	다음 블럭 활성화 여부
     	if(curBlock<totalBlock) {
@@ -100,8 +121,7 @@ public class Pager {
         if(!this.next) {
            this.lastNum=totalPage;
     	}
-    		
-    	
+       
     } 
     	
 	public Long getTotalPage() {

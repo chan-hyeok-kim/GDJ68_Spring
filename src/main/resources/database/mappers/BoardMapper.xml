@@ -4,12 +4,29 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.iu.main.board.BoardDAO">
+<sql id="searchSql">
+ WHERE BOARDNUM>0
+		AND 
+		<choose>
+		<when test="kind=='name'">
+		BOARDNAME LIKE '%' || #{search} || '%'
+		</when>
+		<when test="kind=='writer'">
+		BOARDWRITER LIKE '%' || #{search} || '%'
+		</when>
+		<otherwise>
+		BOARDCONTENTS LIKE '%' || #{search} || '%'
+		</otherwise>
+		</choose>
+</sql>
+
 	<select id="getList" resultType="BoardDTO" parameterType="com.iu.main.util.Pager">
 		SELECT BOARDNUM, BOARDNAME, BOARDWRITER,
 		BOARDDATE, BOARDHIT, BOARDCONTENTS
 		FROM (SELECT ROWNUM R, B.*
 		FROM (SELECT * FROM BOARD 
-		WHERE BOARDNUM>0
+		<include refid="searchSql"></include>
+		
 		ORDER BY BOARDNUM DESC)B )
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
@@ -37,15 +54,10 @@
 		DELETE BOARD WHERE BOARDNUM=#{boardNum}
 	</delete>
 
-	<select id="getSearch" resultType="BoardDTO"
-		parameterType="BoardDTO">
-		SELECT * FROM BOARD WHERE BOARDNAME LIKE '%' || #{boardName} || '%'
-		ORDER BY BOARDNUM DESC
-		<!-- 3개 이상인 경우 oracle은 concat 중첩사용 -->
-	</select>
     
     <select id="getTotal" resultType="Long">
         SELECT COUNT(BOARDNUM) FROM BOARD
+       
     </select>
 
 

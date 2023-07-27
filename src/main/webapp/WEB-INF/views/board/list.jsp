@@ -48,32 +48,42 @@
 
 		<nav aria-label="Page navigation example">
 			<ul class="pagination">
-			<c:if test="${pager.startNum eq 1}">
-			<li class="page-item"><a class="page-link" href="./list?page=${pager.startNum}">Previous</a></li>
-			    </c:if>
-			<c:if test="${pager.startNum ne 1}">
-				<li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}">Previous</a></li>
+				<c:if test="${pager.startNum eq 1}">
+					<li class="page-item"><a class="page-link"
+						href="./list?page=${pager.startNum}&kind=${pager.kind}&search=${pager.search}">Previous</a></li>
 				</c:if>
-				
+				<c:if test="${pager.startNum ne 1}">
+					<li class="page-item"><a class="page-link"
+						href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">Previous</a></li>
+				</c:if>
+
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-				<li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
-			   </c:forEach>
-				
-				
-				<li class="page-item ${pager.next?'':'disabled'}"><a class="page-link" href="./list?page=${pager.lastNum+1}">Next</a></li>
-			    
+					<li class="page-item"><a class="page-link"
+						href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+				</c:forEach>
+
+
+				<li class="page-item ${pager.next?'':'disabled'}"><a
+					class="page-link" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
+
 			</ul>
 		</nav>
 
 		<table>
+
 			<tr>
-
-				<td><form action="./search" method="get">
-						<input type="search" name="boardName" placeholder="Search"
-							required></td>
+				<form action="./list" method="get">
+				<td><select class="form-select" name="kind" multiple
+					aria-label="Multiple select example">
+						<option value="name">제목</option>
+						<option value="writer">작성자</option>
+						<option value="contents">내용</option>
+				</select></td>
+				<td><input type="search" name="search" placeholder="Search"
+					></td>
 				<td><input type="submit" value="검색" class="btn btn-dark">
-					</form></td>
-
+				</td>
+				</form>
 			</tr>
 		</table>
 

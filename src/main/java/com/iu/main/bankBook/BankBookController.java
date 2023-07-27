@@ -24,11 +24,13 @@ public class BankBookController {
 	public String getList(Model model, Pager pager) throws Exception{
 		List<BankBookDTO> ar = bankBookService.getList(pager);
 		System.out.println();
+		
 		model.addAttribute("list", ar);
 		model.addAttribute("pager",pager);
 		return "bankbook/list";
 	}
 	
+//	파라미터값 받기
 //	request 
 //	bean
 //  파라미터값과 같은 이름의 매개변수선언

@@ -35,12 +35,9 @@ public class BoardDAO {
 		return sqlSession.delete(NAMESPACE+"setDelete", boardDTO);
 	}
 	
-	public List<BoardDTO> getSearch(BoardDTO boardDTO) throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getSearch", boardDTO);
-	}
 	
-	public Long getTotal() throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getTotal");
+	public Long getTotal(Pager pager) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getTotal", pager);
 	}
 	
 

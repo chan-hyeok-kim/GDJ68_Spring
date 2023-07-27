@@ -71,13 +71,7 @@ public class BoardController {
 		return "redirect:./list";
 	}
 	
-	@RequestMapping("search")
-	public ModelAndView getSearch(BoardDTO boardDTO, ModelAndView mv) throws Exception{
-		List<BoardDTO> ar = boardService.getSearch(boardDTO);
-		mv.addObject("mto",ar);
-		mv.setViewName("board/search");
-	    return mv;
-	}
+	
 	
 	
 	

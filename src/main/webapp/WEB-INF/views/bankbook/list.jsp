@@ -36,23 +36,54 @@
 		</table>
 
 
+
+
+
 		<ul class="pagination">
-			<c:if test="${pager.pre}"><li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}">Previous</a></li>
-				</c:if>
+			<c:if test="${pager.pre}">
+				<li class="page-item"><a class="page-link"
+					href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}">Previous</a></li>
+			</c:if>
 			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-				<li class="page-item"><a href="./list?page=${i}"
+				<li class="page-item"><a href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}"
 					class="page-link">${i}</a></li>
 			</c:forEach>
-            
-            <!-- ${pager.next?'enable':'disabled'} -->
-            <c:if test="${pager.next}">
-			<li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum+1}">Next</a></li>
-            </c:if>
 
-
-		<p>
-				<a href="./add" class="btn btn-info ms-5">상품등록</a>
+			<!-- ${pager.next?'enable':'disabled'} -->
+			<c:if test="${pager.next}">
+				<li class="page-item"><a class="page-link"
+					href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>
+			</c:if>
+			
+			<p class="ms-5">
+			<div class="col-sm-3">
+				<form action="./list" method="get">
+					<select class="form-select" name="kind"
+						aria-label="Default select example">
+						<option value="name">Name</option>
+						<option value="contents">Contents</option>
+					</select>
+			</div>
+			<div class="col-sm-3">
+				<input class="form-control me-2" type="search" name="search"
+					placeholder="Search" aria-label="Search">
+			</div>
+			<div class="col-auto">
+				<button class="btn btn-dark" type="submit">검색</button>
+				</form>
+			</div>
 			</p>
+			
+
+				<p>
+					<a href="./add" class="btn btn-info ms-4">상품등록</a>
+				</p>
+			
+</ul>
+           
+			
+
+			
 	</section>
 
 	<!-- 파라미터 : 클라이언트에서 서버 쪽으로 보내는 정보 -->

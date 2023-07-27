@@ -15,7 +15,7 @@ public class BoardService {
 	
 	public List<BoardDTO> getList(Pager pager) throws Exception{
 		pager.makeRowNum();
-		pager.makePageNum(boardDAO.getTotal());
+		pager.makePageNum(boardDAO.getTotal(pager));
 		
 		return boardDAO.getList(pager);
 	}
@@ -36,8 +36,6 @@ public class BoardService {
 		return boardDAO.setDelete(boardDTO);
 	}
 	
-	public List<BoardDTO> getSearch(BoardDTO boardDTO) throws Exception{
-		return boardDAO.getSearch(boardDTO);
-	}
+	
 
 }

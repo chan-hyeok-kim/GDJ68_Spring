@@ -23,7 +23,7 @@ public class BankBookService {
 //		Map<String,Long> map = new HashMap<String,Integer>();
 //		
 		pager.makeRowNum();
-		Long total = bankBookDAO.getTotal();
+		Long total = bankBookDAO.getTotal(pager);
 		pager.makePageNum(total);
 //		map.put("startRow", startRow);
 //		map.put("lastRow", lastRow);
