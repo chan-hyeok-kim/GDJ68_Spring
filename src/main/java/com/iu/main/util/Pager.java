@@ -59,15 +59,12 @@ public class Pager {
 
 
     //1. 전체 갯수로 전체 페이지 수 구하기
-   
-    
-    
-    
     public void makePageNum(Long total) {
-    	this.totalPage = total/this.getPerPage();
+    	this.totalPage = total/this.getPerPage(); //13
     	if(total%this.getPerPage()!=0) {
         this.totalPage++;
     	}
+    	
 //        this.totalPage = (long) Math.round(total/this.getPerPage());
 //      2. 전체 페이지 수로 전체 block 수 구하기
 //    	 한 페이지에 출력할 번호의 갯수
@@ -121,6 +118,8 @@ public class Pager {
 		this.startRow = 1+(getPage()-1)*getPerPage();
         this.lastRow = getPage()*getPerPage();
 	}
+//	0*null은 exception
+//	위에서 널체크해서 getpage()는 page여도됨
 
 	public Long getStartRow() {
 		return startRow;
