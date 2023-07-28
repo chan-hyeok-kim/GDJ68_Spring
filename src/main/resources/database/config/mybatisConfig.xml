@@ -8,8 +8,11 @@
     <typeAliases>
         <typeAlias type="com.iu.main.bankBook.BankBookDTO" alias="BankBookDTO"/>
                                                <!-- 보통 클래스명을 alias(별칭)으로 둔다-->
+        <typeAlias type="com.iu.main.bankBook.BankBookFileDTO" alias="BankBookFileDTO"/> 
         <typeAlias type="java.lang.Long" alias="Long"/>
         <typeAlias type="com.iu.main.member.MemberDTO" alias="MemberDTO"/>
         <typeAlias type="com.iu.main.board.BoardDTO" alias="BoardDTO"/>
-    </typeAliases>
+        <typeAlias type="com.iu.main.member.MemberFileDTO" alias="MemberFileDTO"/>
+        <typeAlias type="java.util.List" alias="List"/>   
+</typeAliases>
 </configuration>

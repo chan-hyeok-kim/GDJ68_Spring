@@ -69,5 +69,12 @@ public class BankBookDAO {
 	public Long getTotal(Pager pager) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getTotal",pager);
 	}
+	
+	public int setFile(BankBookFileDTO bankBookFileDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setFile", bankBookFileDTO);
+	}
 
+	public long getSequence()throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getSequence");
+	}
 }

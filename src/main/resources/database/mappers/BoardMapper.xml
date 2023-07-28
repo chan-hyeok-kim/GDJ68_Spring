@@ -46,7 +46,7 @@
 
 	<update id="setUpdate" parameterType="BoardDTO">
 		UPDATE BOARD SET BOARDWRITER=#{boardWriter}, BOARDNAME=#{boardName},
-		BOARDCONTENTS=#{boardContents}
+		BOARDCONTENTS=#{boardContents}, BOARDHIT=#{boardHit}
 		WHERE BOARDNUM=#{boardNum}
 	</update>
 

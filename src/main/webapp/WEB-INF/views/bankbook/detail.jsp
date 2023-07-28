@@ -14,7 +14,9 @@
 	<section>
 		<h1>Detail Page</h1>
 		
-
+        <c:forEach items="${dto.fileDTOs}" var="d">
+        <img alt="" src="../resources/upload/bankbook/${d.fileName}">
+      </c:forEach>
 
 		<h3></h3>
 

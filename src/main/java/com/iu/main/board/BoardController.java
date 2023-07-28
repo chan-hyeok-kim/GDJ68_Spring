@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,9 +26,10 @@ public class BoardController {
 	@RequestMapping("list")
 	public String getList(Model model,Pager pager)throws Exception{
 		List<BoardDTO> ar = boardService.getList(pager);
+		
 		model.addAttribute("list", ar);
 		model.addAttribute("pager",pager);
-		return "board/list";
+		return "./board/list";
 	}
 	
 	@RequestMapping(value="detail", method = RequestMethod.GET)

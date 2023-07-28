@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.main.util.FileManager;
+
 @Controller
 @RequestMapping("/member/*") 
 // **은 폴더 포함
@@ -61,6 +63,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String setJoin(MemberDTO memberDTO,MultipartFile pic, HttpSession session) throws Exception {
+		
 		int result = memberService.setJoin(memberDTO, pic, session);
 		System.out.println(pic.getName());
 		System.out.println(pic.getOriginalFilename());

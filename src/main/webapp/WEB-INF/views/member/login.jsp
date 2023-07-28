@@ -19,14 +19,14 @@
 				</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control"
-						id="id" name="id" value="id1" placeholder="ID를 입력하세요">
+						id="id" name="id" value="id123" placeholder="ID를 입력하세요">
 				</div>
 			</div>
 
 			<div class="mb-3">
 				<label for="pw" class="form-label">Password </label>
 				<div class="col-sm-4">
-					<input type="password" value="pw1" class="form-control" id="pw" name="pw"
+					<input type="password" value="123" class="form-control" id="pw" name="pw"
 						placeholder="PW를 입력하세요">
 				</div>
 			</div>

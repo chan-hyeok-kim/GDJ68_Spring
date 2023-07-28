@@ -14,10 +14,10 @@
 	<section class="container mt-5">
 		<h1 class="mb-2">my page</h1>
 		<h3>
-		
-		
-		
-	<!-- 	<div class="container text-center">
+
+
+
+			<!-- 	<div class="container text-center">
   <div class="row">
     <div class="col-6 col-sm-3 border border-info">.col-6 .col-sm-3</div>
     <div class="col-6 col-sm-3 border border-info">.col-6 .col-sm-3</div>
@@ -32,31 +32,34 @@
 
 
 
-<table class="table table-striped table-hover">
-  <tr>
-    <th>ID</th>
-    <th>${login.id}</th>
-  </tr>
-  <tr>
-    <td>pw</td>
-    
-    <td>
-    ${login.pw}
-    </td>
-  </tr>
-  <tr>
-    <td>이름</td>
-    <td>${login.name}</td>
-  </tr>
-  <tr>
-    <td>이메일</td>
-    <td>${login.email}</td>
-  </tr>
-  <tr>
-    <td>생일</td>
-    <td>${login.birth}</td>
-  </tr>
-</table>
+			<table class="table table-striped table-hover">
+				<tr>
+					<td><img alt="" src="../resources/upload/member/${login.memberFileDTO.fileName}"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<th>ID</th>
+					<th>${login.id}</th>
+				</tr>
+				<tr>
+					<td>pw</td>
+
+					<td>${login.pw}</td>
+				</tr>
+				<tr>
+					<td>이름</td>
+					<td>${login.name}</td>
+				</tr>
+				<tr>
+					<td>이메일</td>
+					<td>${login.email}</td>
+				</tr>
+				<tr>
+					<td>생일</td>
+					<td>${login.birth}</td>
+				</tr>
+
+			</table>
 
 
 

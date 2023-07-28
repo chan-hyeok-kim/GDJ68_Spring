@@ -3,6 +3,7 @@ package com.iu.main.file;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
+import java.util.Random;
 
 import org.junit.Test;
 
@@ -10,7 +11,7 @@ import com.iu.main.Mytest;
 
 public class CalendarTest extends Mytest {
 
-	@Test
+//	@Test
 	public void test() {
 		// 1/1000초(밀리세컨즈)
 		Calendar ca = Calendar.getInstance();
@@ -38,6 +39,20 @@ public class CalendarTest extends Mytest {
 		System.out.println(result/1000*60);
 		
 	}
+	
+	@Test
+	public void test2() {
+		Calendar ca = Calendar.getInstance();
+	
+		Random random = new Random(ca.getTimeInMillis());
+		random.nextInt(5);
+		
+//		random(long seed) seed : 매번 다른 값을 준다
+//		getTimeInMillis() : return이 long
+	}
+	
+	
+	
 
 }
 // 객체 하나 만드는 것 singletone

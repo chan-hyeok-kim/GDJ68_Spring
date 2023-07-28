@@ -32,6 +32,7 @@
 					<td class="table-dark">내용</td>
 					<td><textarea rows="20px" class="form-control" cols="50px" name="boardContents">${mto.boardContents}</textarea></td>
 				</tr>
+		          	
 			</tbody>
 		</table>
 		<%-- <form action="./update" method="post">
