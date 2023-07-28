@@ -12,8 +12,6 @@ public class BankBookDTO {
 	private List<BankBookFileDTO> fileDTOs;
 	
 	
-	
-	
 	public List<BankBookFileDTO> getFileDTOs() {
 		return fileDTOs;
 	}
@@ -50,6 +48,7 @@ public class BankBookDTO {
 	public void setBookSale(Integer bookSale) {
 		this.bookSale = bookSale;
 	}
+	
 	
 	
 	
