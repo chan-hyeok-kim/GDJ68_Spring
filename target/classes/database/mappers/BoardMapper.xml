@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.iu.main.board.BoardDAO"> 
+   <select id="getList" resultType="com.iu.main.board.BoardDTO">
+      SELECT BOARDNUM, BOARDWRITER, BOARDNAME, BOARDDATE, BOARDHIT FROM BOARD ORDER BY BOARDNUM DESC
+   </select>
+   
+   <select id="getDetail" resultType="com.iu.main.board.BoardDTO" parameterType="com.iu.main.board.BoardDTO">
+      SELECT * FROM BOARD WHERE BOARDNUM=#{boardnum}
+   </select>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <insert id=""></insert>
+   
+   
+   
+   
+   
+   <delete id="setDelete" parameterType="com.iu.main.board.BoardDTO">
+     DELETE BOARD WHERE BOARDNUM=#{boardnum}
+   </delete> 
+    
+ </mapper>

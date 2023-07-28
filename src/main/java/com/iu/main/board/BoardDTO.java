@@ -1,23 +1,34 @@
-package com.iu.main.noticeBoard;
+package com.iu.main.board;
 
 import java.sql.Date;
 
 import org.springframework.stereotype.Repository;
 
-@Repository
-public class NoticeBoardDTO {
+public class BoardDTO {
 
-	private Long boardNum;
+	private Integer boardNum;
 	private String boardWriter;
 	private String boardName;
 	private Date boardDate;
 	private Integer boardHit;
-	public Long getBoardNum() {
+	private String boardContents;
+	
+	public String getBoardContents() {
+		return boardContents;
+	}
+
+	public void setBoardContents(String boardContents) {
+		this.boardContents = boardContents;
+	}
+	
+	public Integer getBoardNum() {
 		return boardNum;
 	}
-	public void setBoardNum(Long boardNum) {
+
+	public void setBoardNum(Integer boardNum) {
 		this.boardNum = boardNum;
 	}
+
 	public String getBoardWriter() {
 		return boardWriter;
 	}
