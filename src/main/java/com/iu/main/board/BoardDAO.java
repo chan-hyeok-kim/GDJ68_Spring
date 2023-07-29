@@ -40,5 +40,9 @@ public class BoardDAO {
 		return sqlSession.selectOne(NAMESPACE+"getTotal", pager);
 	}
 	
+	public int setFile(BoardFileDTO boardFileDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setFile",boardFileDTO);
+	}
+	
 
 }

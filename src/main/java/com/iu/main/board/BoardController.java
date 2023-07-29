@@ -12,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.main.member.MemberDTO;
 import com.iu.main.util.Pager;
 
 @Controller
@@ -51,8 +53,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String setAdd(BoardDTO boardDTO) throws Exception{
-		int result = boardService.setAdd(boardDTO);
+	public String setAdd(BoardDTO boardDTO, MultipartFile[] bank, HttpSession session) throws Exception{
+		int result = boardService.setAdd(boardDTO, bank, session);
 		return "redirect:./list";
 	}
 //	redirect는 상대, 절대 다됨

@@ -12,6 +12,7 @@
         <typeAlias type="java.lang.Long" alias="Long"/>
         <typeAlias type="com.iu.main.member.MemberDTO" alias="MemberDTO"/>
         <typeAlias type="com.iu.main.board.BoardDTO" alias="BoardDTO"/>
+        <typeAlias type="com.iu.main.board.BoardFileDTO" alias="BoardFileDTO"/>
         <typeAlias type="com.iu.main.member.MemberFileDTO" alias="MemberFileDTO"/>
         <typeAlias type="java.util.List" alias="List"/>   
 </typeAliases>

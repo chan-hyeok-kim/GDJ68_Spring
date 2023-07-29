@@ -1,21 +1,44 @@
 package com.iu.main.board;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.iu.main.member.MemberDTO;
 
 public class BoardDTO {
 	
-	private Integer boardNum;
+	private Long boardNum;
     private String boardWriter;
     private String boardName;
     private Integer boardHit;
     private Date boardDate;
     private String boardContents;
+    private String id;
+	private List<BoardFileDTO> boardFileDTOs;
     
     
-	public Integer getBoardNum() {
+	
+	
+    
+    public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public List<BoardFileDTO> getBoardFileDTOs() {
+		return boardFileDTOs;
+	}
+	public void setBoardFileDTOs(List<BoardFileDTO> boardFileDTOs) {
+		this.boardFileDTOs = boardFileDTOs;
+	}
+	
+    
+	
+	public Long getBoardNum() {
 		return boardNum;
 	}
-	public void setBoardNum(Integer boardNum) {
+	public void setBoardNum(Long boardNum) {
 		this.boardNum = boardNum;
 	}
 	public String getBoardWriter() {

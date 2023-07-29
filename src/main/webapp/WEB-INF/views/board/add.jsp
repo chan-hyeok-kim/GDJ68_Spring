@@ -12,8 +12,9 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="container mt-5">
 		<h1 class="mb-2">NOTICE</h1>
-		<form action="./add" method="post">
-
+		<form action="./add" method="post" enctype="multipart/form-data">
+           
+            
 			<table class="table mb-4text-center">
 				<thead class="table-dark">
 					<th>컬럼</th>
@@ -33,6 +34,25 @@
 						<td>내용</td>
 						<td><textarea name="boardContents" class="form-control"
 								cols="50px"></textarea></td>
+					</tr>
+					<tr>
+					<td>사진첨부</td>
+					<td><div class="input-group">
+                        <input type="file" name="bank" class="form-control" id="bankfile" aria-label="Upload">
+					</div>
+					<div class="input-group">
+                        <input type="file" name="bank" class="form-control" id="bankfile" aria-label="Upload">
+					</div>
+					<div class="input-group">
+                        <input type="file" name="bank" class="form-control" id="bankfile" aria-label="Upload">
+					</div>
+					<div class="input-group">
+                        <input type="file" name="bank" class="form-control" id="bankfile" aria-label="Upload">
+					</div>
+					<div class="input-group">
+                        <input type="file" name="bank" class="form-control" id="bankfile" aria-label="Upload">
+					</div>
+					</td>
 					</tr>
 				</tbody>
 			</table>

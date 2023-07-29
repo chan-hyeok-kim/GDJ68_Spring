@@ -4,61 +4,109 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.iu.main.board.BoardDAO">
-<sql id="searchSql">
- WHERE BOARDNUM>0
-		AND 
+	<sql id="searchSql">
+		WHERE BOARDNUM>0
+		AND
 		<choose>
-		<when test="kind=='name'">
-		BOARDNAME LIKE '%' || #{search} || '%'
-		</when>
-		<when test="kind=='writer'">
-		BOARDWRITER LIKE '%' || #{search} || '%'
-		</when>
-		<otherwise>
-		BOARDCONTENTS LIKE '%' || #{search} || '%'
-		</otherwise>
+			<when test="kind=='name'">
+				BOARDNAME LIKE '%' || #{search} || '%'
+			</when>
+			<when test="kind=='writer'">
+				BOARDWRITER LIKE '%' || #{search} || '%'
+			</when>
+			<otherwise>
+				BOARDCONTENTS LIKE '%' || #{search} || '%'
+			</otherwise>
 		</choose>
-</sql>
+	</sql>
 
-	<select id="getList" resultType="BoardDTO" parameterType="com.iu.main.util.Pager">
+	<select id="getList" resultType="BoardDTO"
+		parameterType="com.iu.main.util.Pager">
 		SELECT BOARDNUM, BOARDNAME, BOARDWRITER,
-		BOARDDATE, BOARDHIT, BOARDCONTENTS
+		BOARDDATE, BOARDHIT,
+		BOARDCONTENTS
 		FROM (SELECT ROWNUM R, B.*
-		FROM (SELECT * FROM BOARD 
+		FROM (SELECT * FROM BOARD
 		<include refid="searchSql"></include>
-		
+
 		ORDER BY BOARDNUM DESC)B )
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 
-	<select id="getDetail" resultType="BoardDTO"
+	<select id="getDetail" resultMap="getDetailResult"
 		parameterType="BoardDTO">
-		SELECT BOARDNUM, BOARDNAME, BOARDWRITER,
-		BOARDDATE, BOARDHIT, BOARDCONTENTS
-		FROM BOARD WHERE BOARDNUM=#{boardNum}
+		SELECT *  
+          FROM BOARD B LEFT OUTER JOIN BOARDFILE BF 
+            ON B.BOARDNUM = BF.BOARDNUM
+         WHERE B.BOARDNUM=#{boardNum}
 	</select>
+	
+	<resultMap type="BoardDTO" id="getDetailResult">
+		<id column="BOARDNUM" property="boardNum" />
+		<result column="ID" property="id" />
+		<result column="BOARDWRITER" property="boardWriter" />
+		<result column="BOARDNAME" property="boardName" />
+		<result column="BOARDDATE" property="boardDate" />
+		<result column="BOARDHIT" property="boardHit" />
+		<result column="BOARDCONTENTS" property="boardContents" />
+		
+		<association property="memberDTO" javaType="MemberDTO">
+		<result column="PW" property="pw"></result>
+		<result column="NAME" property="name"></result>
+		<result column="EMAIL" property="email"></result>
+		<result column="BIRTH" property="birth"></result>
+		</association>
+		
+		<collection javaType="List" property="boardFileDTOs" ofType="BoardFileDTO">
+        <id column="FILENUM" property="fileNum"/>
+        <result column="FILENAME" property="fileName"/>
+        <result column="ORIGINALNAME" property="originalName"/>
+		</collection>
+	</resultMap>
+ 
+	
 
 	<insert id="setAdd" parameterType="BoardDTO">
-		INSERT INTO BOARD VALUES
-		(BOARD_SEQ.NEXTVAL,#{boardWriter},#{boardName},
+		<selectKey keyProperty="boardNum" order="BEFORE"
+			resultType="Long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO BOARD
+		(BOARDNUM, ID, BOARDWRITER, BOARDNAME, BOARDDATE,
+		BOARDHIT, BOARDCONTENTS)
+		 VALUES
+		(#{boardNum}, #{id}, #{boardWriter},#{boardName},
 		SYSDATE,0,#{boardContents})
 	</insert>
 
+	<insert id="setFile" parameterType="BoardFileDTO">
+		INSERT INTO BOARDFILE
+		(FILENUM, BOARDNUM, FILENAME, ORIGINALNAME)
+		VALUES
+		(FILE_SEQ.NEXTVAL,#{boardNum},#{fileName},#{originalName})
+	</insert>
+
+	
+
+
 	<update id="setUpdate" parameterType="BoardDTO">
-		UPDATE BOARD SET BOARDWRITER=#{boardWriter}, BOARDNAME=#{boardName},
+		UPDATE BOARD SET
+		BOARDWRITER=#{boardWriter}, BOARDNAME=#{boardName},
 		BOARDCONTENTS=#{boardContents}, BOARDHIT=#{boardHit}
-		WHERE BOARDNUM=#{boardNum}
+		WHERE
+		BOARDNUM=#{boardNum}
 	</update>
 
 	<delete id="setDelete" parameterType="BoardDTO">
-		DELETE BOARD WHERE BOARDNUM=#{boardNum}
+		DELETE BOARD WHERE
+		BOARDNUM=#{boardNum}
 	</delete>
 
-    
-    <select id="getTotal" resultType="Long">
-        SELECT COUNT(BOARDNUM) FROM BOARD
-       
-    </select>
+
+	<select id="getTotal" resultType="Long">
+		SELECT COUNT(BOARDNUM) FROM BOARD
+
+	</select>
 
 
 </mapper>

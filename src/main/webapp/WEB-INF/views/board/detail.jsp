@@ -29,7 +29,13 @@
 			<tr>
 				<td colspan="4">${board.boardContents}</td>
 			</tr>
-			
+			<tr>
+				<td colspan="4">
+				<c:forEach items="${board.boardFileDTOs}" var="b">
+				    <img alt="" src="/resources/upload/board/${b.fileName}">
+				</c:forEach>
+				</td>
+			</tr>
 
 		</tbody>
 	</table>
