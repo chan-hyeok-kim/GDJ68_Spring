@@ -6,22 +6,7 @@ public class Pager {
 	private String kind;
 	private String search;
 	
-	public String getKind() {
-		return kind;
-	}
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
 	
-	public String getSearch() {
-		if(this.search==null) {
-			this.search = "";
-		}
-		return search;
-	}
-	public void setSearch(String search) {
-		this.search = search;
-	}
 
 	private Long startRow;
 	private Long lastRow;
@@ -44,39 +29,6 @@ public class Pager {
 	private boolean next; //false면 마지막 블럭, true면 마지막 블럭 아님
 
 
-	public boolean isPre() {
-		return pre;
-	}
-//  boolean의 getter는 is로 시작하는 메서드
-	public void setPre(boolean pre) {
-		this.pre = pre;
-	}
-
-	public boolean isNext() {
-		return next;
-	}
-
-	public void setNext(boolean next) {
-		this.next = next;
-	}
-
-	public Long getStartNum() {
-		return startNum;
-	}
-
-	public void setStartNum(Long startNum) {
-		this.startNum = startNum;
-	}
-
-	public Long getLastNum() {
-		return lastNum;
-	}
-
-	public void setLastNum(Long lastNum) {
-		this.lastNum = lastNum;
-	}
-	
-	
 
 
     //1. 전체 갯수로 전체 페이지 수 구하기
@@ -88,11 +40,13 @@ public class Pager {
     	
 //        this.totalPage = (long) Math.round(total/this.getPerPage());
 //      2. 전체 페이지 수로 전체 block 수 구하기
-//    	 한 페이지에 출력할 번호의 갯수
+//    	perBlock 한 페이지에 출력할 번호의 갯수
+//      totalBlock 총 블록
+//    	블록이란? 일정 갯수의 페이지가 출력되는 페이지
     	long perBlock=10;
     	long totalBlock = this.totalPage/perBlock;
     	if(this.totalPage%perBlock!=0) {
-    		totalBlock++;
+    		totalBlock++;  //    	totalBlock =2
     	}
     	
 //    	3. 현재 page번호로 블럭번호 구하기
@@ -178,7 +132,65 @@ public class Pager {
 	public void setPerPage(Long perPage) {
 		this.perPage = perPage;
 	}
+	
+	
+	
 
+	public boolean isPre() {
+		return pre;
+	}
+//  boolean의 getter는 is로 시작하는 메서드
+	public void setPre(boolean pre) {
+		this.pre = pre;
+	}
+
+	public boolean isNext() {
+		return next;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}
+
+	public Long getStartNum() {
+		return startNum;
+	}
+
+	public void setStartNum(Long startNum) {
+		this.startNum = startNum;
+	}
+
+	public Long getLastNum() {
+		return lastNum;
+	}
+
+	public void setLastNum(Long lastNum) {
+		this.lastNum = lastNum;
+	}
+	
+	
+	
+	
+	
+
+	
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+	
+	public String getSearch() {
+		if(this.search==null) {
+			this.search = "";
+		}
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
 }
 
 // 파라미터의 이름과 
