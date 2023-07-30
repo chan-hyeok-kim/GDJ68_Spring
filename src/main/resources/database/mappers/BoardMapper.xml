@@ -50,12 +50,12 @@
 		<result column="BOARDHIT" property="boardHit" />
 		<result column="BOARDCONTENTS" property="boardContents" />
 		
-		<association property="memberDTO" javaType="MemberDTO">
+	<!-- 	<association property="memberDTO" javaType="MemberDTO">
 		<result column="PW" property="pw"></result>
 		<result column="NAME" property="name"></result>
 		<result column="EMAIL" property="email"></result>
 		<result column="BIRTH" property="birth"></result>
-		</association>
+		</association> -->
 		
 		<collection javaType="List" property="boardFileDTOs" ofType="BoardFileDTO">
         <id column="FILENUM" property="fileNum"/>
