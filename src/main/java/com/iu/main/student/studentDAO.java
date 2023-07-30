@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iu.main.bankBook.BankBookDTO;
+import com.iu.main.util.Pager;
 
 @Repository
 public class studentDAO {
@@ -34,6 +35,10 @@ public class studentDAO {
 	 
 	public int setDelete(studentDTO dto) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDelete", dto);
+	}
+	
+	public long getTotal(Pager pager) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getTotal",pager);
 	}
 
 }

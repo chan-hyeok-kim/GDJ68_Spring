@@ -23,5 +23,9 @@
 	<delete id="setDelete" parameterType="com.iu.main.student.studentDTO">
 	     DELETE STUDENT WHERE NUM=#{num}
 	</delete>
+	
+	<select id="getTotal" resultType="Long" parameterType="com.iu.main.util.Pager">
+	     SELECT COUNT(NUM) FROM STUDENT
+	</select>
 
 </mapper>
