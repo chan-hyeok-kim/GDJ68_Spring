@@ -49,7 +49,7 @@
 					class="page-link">${i}</a></li>
 			</c:forEach>
 
-			<!-- ${pager.next?'enable':'disabled'} -->
+			<!-- ${pager.next?'':'disabled'} -->
 			<c:if test="${pager.next}">
 				<li class="page-item"><a class="page-link"
 					href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}">Next</a></li>

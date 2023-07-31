@@ -41,6 +41,7 @@ public class BoardDTO {
 	public void setBoardNum(Long boardNum) {
 		this.boardNum = boardNum;
 	}
+	
 	public String getBoardWriter() {
 		return boardWriter;
 	}

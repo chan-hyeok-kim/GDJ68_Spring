@@ -103,9 +103,8 @@
 	</delete>
 
 
-	<select id="getTotal" resultType="Long">
+	<select id="getTotal" resultType="Long" parameterType="Pager">
 		SELECT COUNT(BOARDNUM) FROM BOARD
-
 	</select>
 
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iu.main.qna.QnaDAO">
+	<sql id="searchSql">
+		WHERE BOARDNUM>0
+		AND
+		<choose>
+			<when test="kind=='name'">
+				BOARDNAME LIKE '%' || #{search} || '%'
+			</when>
+			<when test="kind=='writer'">
+				WRITER LIKE '%' || #{search} || '%'
+			</when>
+			<otherwise>
+				BOARDCONTENTS LIKE '%' || #{search} || '%'
+			</otherwise>
+		</choose>
+	</sql>
+
+
+	<select id="getList" resultType="QnaDTO" parameterType="Pager">
+		SELECT *
+		FROM (SELECT ROWNUM R, Q.*
+		FROM(SELECT * FROM QNABOARD
+
+		<include refid="searchSql"></include>
+
+		ORDER BY BOARDNUM DESC) Q)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+
+	<select id="getTotal" resultType="Long" parameterType="Pager">
+		SELECT COUNT(BOARDNUM) FROM QNABOARD
+
+		<include refid="searchSql"></include>
+
+	</select>
+	
+	<select id="getDetail" resultType="QnaDTO" parameterType="QnaDTO">
+	    SELECT *
+	    FROM QNABOARD
+	    WHERE BOARDNUM = #{boardNum}
+	</select>
+	
+	<insert id="setAdd" parameterType="QnaDTO">
+	    INSERT INTO QNABOARD 
+	    (BOARDNUM, WRITER, BOARDNAME, BOARDCONTENTS) VALUES
+	    (BOARD_SEQ.NEXTVAL, #{writer}, #{boardName}, #{boardContents})
+	</insert>
+	
+
+</mapper>

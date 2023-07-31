@@ -35,6 +35,8 @@
 					</li>
 					
 					<li class="nav-item"><a href="/notice/list" class="nav-link active">게시판</a></li>
+				<li class="nav-item"><a href="/qna/list" class="nav-link active">QnA게시판</a></li>
+				
 				</ul>
 				<nav>
 					<ul class="nav">

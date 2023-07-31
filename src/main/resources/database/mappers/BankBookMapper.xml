@@ -105,7 +105,7 @@
 
 
 	<select id="getTotal" resultType="Long"
-		parameterType="com.iu.main.util.Pager">
+		parameterType="Pager">
 		SELECT COUNT(BOOKNUM) FROM BANKBOOK
 		<include refid="searchSql"></include>
 
