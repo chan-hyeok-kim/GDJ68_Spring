@@ -38,18 +38,27 @@
 		<include refid="searchSql"></include>
 
 	</select>
-	
-	<select id="getDetail" resultType="QnaDTO" parameterType="QnaDTO">
-	    SELECT *
-	    FROM QNABOARD
-	    WHERE BOARDNUM = #{boardNum}
+
+	<select id="getDetail" resultType="QnaDTO"
+		parameterType="QnaDTO">
+		SELECT *
+		FROM QNABOARD
+		WHERE BOARDNUM = #{boardNum}
 	</select>
-	
+
 	<insert id="setAdd" parameterType="QnaDTO">
-	    INSERT INTO QNABOARD 
-	    (BOARDNUM, WRITER, BOARDNAME, BOARDCONTENTS) VALUES
-	    (BOARD_SEQ.NEXTVAL, #{writer}, #{boardName}, #{boardContents})
+		<selectKey resultType="Long" keyProperty="boardNum"
+			order="BEFORE">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNABOARD
+		(BOARDNUM, WRITER, BOARDNAME, BOARDCONTENTS,
+		BOARDDATE, BOARDHIT, REF, STEP,
+		DEPTH) VALUES
+		(BOARD_SEQ.NEXTVAL,
+		#{writer}, #{boardName}, #{boardContents}, 
+		SYSDATE, 0, 0, 0, 0)
 	</insert>
-	
+
 
 </mapper>

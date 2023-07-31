@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.main.board.BoardDTO;
 import com.iu.main.member.MemberDTO;
 import com.iu.main.util.Pager;
 
@@ -27,7 +28,7 @@ public class NoticeController {
 	
 	@RequestMapping("list")
 	public String getList(Model model,Pager pager)throws Exception{
-		List<NoticeDTO> ar = boardService.getList(pager);
+		List<BoardDTO> ar = boardService.getList(pager);
 		
 		model.addAttribute("list", ar);
 		model.addAttribute("pager",pager);
@@ -35,9 +36,9 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="detail", method = RequestMethod.GET)
-	public ModelAndView getDetail(NoticeDTO boardDTO, ModelAndView mv) throws Exception{
+	public ModelAndView getDetail(NoticeDTO noticeDTO, ModelAndView mv) throws Exception{
 	
-		boardDTO = boardService.getDetail(boardDTO);
+		BoardDTO boardDTO = boardService.getDetail(noticeDTO);
 		
 		
 		mv.addObject("board", boardDTO);
@@ -59,8 +60,8 @@ public class NoticeController {
 //	redirect는 상대, 절대 다됨
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView setUpdate(NoticeDTO boardDTO, ModelAndView mv) throws Exception{
-		boardDTO = boardService.getDetail(boardDTO);
+	public ModelAndView setUpdate(NoticeDTO noticeDTO, ModelAndView mv) throws Exception{
+		BoardDTO boardDTO = boardService.getDetail(noticeDTO);
 		mv.addObject("mto", boardDTO);
 		mv.setViewName("board/update");
 		return mv;

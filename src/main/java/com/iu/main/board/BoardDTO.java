@@ -1,6 +1,7 @@
 package com.iu.main.board;
 
 import java.sql.Date;
+import java.util.List;
 
 public class BoardDTO {
 
@@ -10,6 +11,7 @@ public class BoardDTO {
 	private String boardContents;
 	private Date boardDate;
 	private Long boardHit;
+	private List<BoardFileDTO> boardFileDTOs;
 	
 	
 	public Long getBoardNum() {

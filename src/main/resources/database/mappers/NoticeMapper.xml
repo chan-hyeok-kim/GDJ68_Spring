@@ -41,15 +41,6 @@
          WHERE B.BOARDNUM=#{boardNum}
 	</select>
 	
-<!-- 	<resultMap type="NoticeDTO" id="getSelectResult">
-	   <id column="BOARDNUM" property="num" />
-	   <result column="BOARDNAME" property="subject" />
-	   <result column="writer" property="subject" />
-	   <result 
-	</resultMap>
-
- -->
-
 	
 	<resultMap type="NoticeDTO" id="getDetailResult">
 		<id column="BOARDNUM" property="boardNum" />
@@ -116,5 +107,9 @@
 		SELECT COUNT(BOARDNUM) FROM BOARD
 	</select>
 
+    <update id="setHitUpdate" parameterType="NoticeDTO">
+       UPDATE BOARD SET BOARDHIT=#{boardHit} WHERE
+       BOARDNUM=#{boardNum}
+    </update>
 
 </mapper>
