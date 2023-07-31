@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.iu.main.board.BoardDAO">
+<mapper namespace="com.iu.main.board.notice.NoticeDAO">
 	<sql id="searchSql">
 		WHERE BOARDNUM>0
 		AND
@@ -12,7 +12,7 @@
 				BOARDNAME LIKE '%' || #{search} || '%'
 			</when>
 			<when test="kind=='writer'">
-				BOARDWRITER LIKE '%' || #{search} || '%'
+				WRITER LIKE '%' || #{search} || '%'
 			</when>
 			<otherwise>
 				BOARDCONTENTS LIKE '%' || #{search} || '%'
@@ -20,9 +20,9 @@
 		</choose>
 	</sql>
 
-	<select id="getList" resultType="BoardDTO"
+	<select id="getList" resultType="NoticeDTO"
 		parameterType="com.iu.main.util.Pager">
-		SELECT BOARDNUM, BOARDNAME, BOARDWRITER,
+		SELECT BOARDNUM, BOARDNAME, WRITER,
 		BOARDDATE, BOARDHIT,
 		BOARDCONTENTS
 		FROM (SELECT ROWNUM R, B.*
@@ -34,17 +34,26 @@
 	</select>
 
 	<select id="getDetail" resultMap="getDetailResult"
-		parameterType="BoardDTO">
+		parameterType="NoticeDTO">
 		SELECT *  
           FROM BOARD B LEFT OUTER JOIN BOARDFILE BF 
             ON B.BOARDNUM = BF.BOARDNUM
          WHERE B.BOARDNUM=#{boardNum}
 	</select>
 	
-	<resultMap type="BoardDTO" id="getDetailResult">
+<!-- 	<resultMap type="NoticeDTO" id="getSelectResult">
+	   <id column="BOARDNUM" property="num" />
+	   <result column="BOARDNAME" property="subject" />
+	   <result column="writer" property="subject" />
+	   <result 
+	</resultMap>
+
+ -->
+
+	
+	<resultMap type="NoticeDTO" id="getDetailResult">
 		<id column="BOARDNUM" property="boardNum" />
-		<result column="ID" property="id" />
-		<result column="BOARDWRITER" property="boardWriter" />
+		<result column="WRITER" property="writer" />
 		<result column="BOARDNAME" property="boardName" />
 		<result column="BOARDDATE" property="boardDate" />
 		<result column="BOARDHIT" property="boardHit" />
@@ -57,7 +66,7 @@
 		<result column="BIRTH" property="birth"></result>
 		</association> -->
 		
-		<collection javaType="List" property="boardFileDTOs" ofType="BoardFileDTO">
+		<collection javaType="List" property="noticeFileDTOs" ofType="NoticeFileDTO">
         <id column="FILENUM" property="fileNum"/>
         <result column="FILENAME" property="fileName"/>
         <result column="ORIGINALNAME" property="originalName"/>
@@ -66,20 +75,20 @@
  
 	
 
-	<insert id="setAdd" parameterType="BoardDTO">
+	<insert id="setAdd" parameterType="NoticeDTO">
 		<selectKey keyProperty="boardNum" order="BEFORE"
 			resultType="Long">
 			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO BOARD
-		(BOARDNUM, ID, BOARDWRITER, BOARDNAME, BOARDDATE,
+		(BOARDNUM, WRITER, BOARDNAME, BOARDDATE,
 		BOARDHIT, BOARDCONTENTS)
 		 VALUES
-		(#{boardNum}, #{id}, #{boardWriter},#{boardName},
+		(#{boardNum}, #{writer},#{boardName},
 		SYSDATE,0,#{boardContents})
 	</insert>
 
-	<insert id="setFile" parameterType="BoardFileDTO">
+	<insert id="setFile" parameterType="NoticeFileDTO">
 		INSERT INTO BOARDFILE
 		(FILENUM, BOARDNUM, FILENAME, ORIGINALNAME)
 		VALUES
@@ -89,15 +98,15 @@
 	
 
 
-	<update id="setUpdate" parameterType="BoardDTO">
+	<update id="setUpdate" parameterType="NoticeDTO">
 		UPDATE BOARD SET
-		BOARDWRITER=#{boardWriter}, BOARDNAME=#{boardName},
+		WRITER=#{writer}, BOARDNAME=#{boardName},
 		BOARDCONTENTS=#{boardContents}, BOARDHIT=#{boardHit}
 		WHERE
 		BOARDNUM=#{boardNum}
 	</update>
 
-	<delete id="setDelete" parameterType="BoardDTO">
+	<delete id="setDelete" parameterType="NoticeDTO">
 		DELETE BOARD WHERE
 		BOARDNUM=#{boardNum}
 	</delete>

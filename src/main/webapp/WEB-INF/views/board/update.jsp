@@ -26,7 +26,7 @@
 				<tr>
 					<td class="table-dark">작성자</td>
 					<td><input type="text" class="form-control" name="boardWriter"
-						value="${mto.boardWriter}"></td>
+						value="${mto.writer}"></td>
 				</tr>
 				<tr>
 					<td class="table-dark">내용</td>

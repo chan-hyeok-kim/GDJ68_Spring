@@ -23,7 +23,7 @@
 				<tbody class="table-dark">
 					<tr>
 						<td>작성자</td>
-						<td><input type="text" name="boardWriter"
+						<td><input type="text" name="writer"
 							class="form-control"></td>
 					</tr>
 					<tr>

@@ -8,16 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.iu.main.Mytest;
 import com.iu.main.bankBook.BankBookDAO;
 import com.iu.main.bankBook.BankBookDTO;
-import com.iu.main.board.BoardDAO;
-import com.iu.main.board.BoardDTO;
+import com.iu.main.board.notice.NoticeDAO;
+import com.iu.main.board.notice.NoticeDTO;
 
 public class BoardDAOTest extends Mytest{
 
 	@Autowired
-    private BoardDAO boardDAO;
+    private NoticeDAO boardDAO;
 	
 	@Autowired
-	private BoardDTO boardDTO;
+	private NoticeDTO boardDTO;
 	
 //	@Test
 	public void boardTest() throws Exception{

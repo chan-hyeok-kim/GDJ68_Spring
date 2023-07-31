@@ -1,8 +1,8 @@
-package com.iu.main.board;
+package com.iu.main.board.notice;
 
 import com.iu.main.file.FileDTO;
 
-public class BoardFileDTO extends FileDTO{
+public class NoticeFileDTO extends FileDTO{
 
 	private Long boardNum;
 

@@ -1,4 +1,4 @@
-package com.iu.main.qna;
+package com.iu.main.board.qna;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class QnaDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.iu.main.qna.QnaDAO.";
+	private final String NAMESPACE = "com.iu.main.board.qna.QnaDAO.";
 	
 	public List<QnaDTO> getList(Pager pager) throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getList", pager);

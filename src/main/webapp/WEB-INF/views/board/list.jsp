@@ -28,7 +28,7 @@
 						<td>${n.boardNum}</td>
 						<td><a href="./detail?boardNum=${n.boardNum}">${n.boardName}</a></td>
 
-						<td>${n.boardWriter}</td>
+						<td>${n.writer}</td>
 						
 						<td>${n.boardDate}</td>
 						<td>${n.boardHit}</td>

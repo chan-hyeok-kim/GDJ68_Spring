@@ -22,7 +22,7 @@
 		<tbody>
 			<tr>
 				<td>${board.boardName}</td>
-				<td>${board.boardWriter}</td>
+				<td>${board.writer}</td>
 				<td>${board.boardDate}</td>
 				<td>${board.boardHit}</td>
 			</tr>
@@ -31,7 +31,7 @@
 			</tr>
 			<tr>
 				<td colspan="4">
-				<c:forEach items="${board.boardFileDTOs}" var="b">
+				<c:forEach items="${board.noticeFileDTOs}" var="b">
 				    <img alt="" src="/resources/upload/board/${b.fileName}">
 				</c:forEach>
 				</td>

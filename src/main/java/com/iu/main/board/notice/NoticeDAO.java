@@ -1,4 +1,4 @@
-package com.iu.main.board;
+package com.iu.main.board.notice;
 
 import java.util.List;
 
@@ -9,29 +9,29 @@ import org.springframework.stereotype.Repository;
 import com.iu.main.util.Pager;
 
 @Repository
-public class BoardDAO {
+public class NoticeDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE="com.iu.main.board.BoardDAO.";
+	private final String NAMESPACE="com.iu.main.board.notice.NoticeDAO.";
 	
-	public List<BoardDTO> getList(Pager pager) throws Exception{
+	public List<NoticeDTO> getList(Pager pager) throws Exception{
 	     return sqlSession.selectList(NAMESPACE+"getList",pager);	
 	}
 	
-	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception{
+	public NoticeDTO getDetail(NoticeDTO boardDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getDetail", boardDTO);
 	}
 	
-	public int setAdd(BoardDTO boardDTO) throws Exception{
+	public int setAdd(NoticeDTO boardDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setAdd", boardDTO);
 	}
 	
-	public int setUpdate(BoardDTO boardDTO) throws Exception{
+	public int setUpdate(NoticeDTO boardDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"setUpdate", boardDTO);
 	}
 	
-	public int setDelete(BoardDTO boardDTO) throws Exception{
+	public int setDelete(NoticeDTO boardDTO) throws Exception{
 		return sqlSession.delete(NAMESPACE+"setDelete", boardDTO);
 	}
 	
@@ -40,7 +40,7 @@ public class BoardDAO {
 		return sqlSession.selectOne(NAMESPACE+"getTotal", pager);
 	}
 	
-	public int setFile(BoardFileDTO boardFileDTO) throws Exception{
+	public int setFile(NoticeFileDTO boardFileDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setFile",boardFileDTO);
 	}
 	

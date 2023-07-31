@@ -1,4 +1,4 @@
-package com.iu.main.board;
+package com.iu.main.board.notice;
 
 import java.util.List;
 
@@ -20,14 +20,14 @@ import com.iu.main.util.Pager;
 
 @Controller
 @RequestMapping("/notice/*")
-public class BoardController {
+public class NoticeController {
 	
 	@Autowired
-	private BoardService boardService;
+	private NoticeService boardService;
 	
 	@RequestMapping("list")
 	public String getList(Model model,Pager pager)throws Exception{
-		List<BoardDTO> ar = boardService.getList(pager);
+		List<NoticeDTO> ar = boardService.getList(pager);
 		
 		model.addAttribute("list", ar);
 		model.addAttribute("pager",pager);
@@ -35,11 +35,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="detail", method = RequestMethod.GET)
-	public ModelAndView getDetail(BoardDTO boardDTO, ModelAndView mv) throws Exception{
+	public ModelAndView getDetail(NoticeDTO boardDTO, ModelAndView mv) throws Exception{
 	
 		boardDTO = boardService.getDetail(boardDTO);
-		boardDTO.setBoardHit(boardDTO.getBoardHit()+1);
-		int result = boardService.setUpdate(boardDTO);
+		
 		
 		mv.addObject("board", boardDTO);
 		mv.setViewName("board/detail");
@@ -53,14 +52,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String setAdd(BoardDTO boardDTO, MultipartFile[] bank, HttpSession session) throws Exception{
+	public String setAdd(NoticeDTO boardDTO, MultipartFile[] bank, HttpSession session) throws Exception{
 		int result = boardService.setAdd(boardDTO, bank, session);
 		return "redirect:./list";
 	}
 //	redirect는 상대, 절대 다됨
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView setUpdate(BoardDTO boardDTO, ModelAndView mv) throws Exception{
+	public ModelAndView setUpdate(NoticeDTO boardDTO, ModelAndView mv) throws Exception{
 		boardDTO = boardService.getDetail(boardDTO);
 		mv.addObject("mto", boardDTO);
 		mv.setViewName("board/update");
@@ -68,13 +67,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String setUpdate(BoardDTO boardDTO) throws Exception{
+	public String setUpdate(NoticeDTO boardDTO) throws Exception{
 		int result = boardService.setUpdate(boardDTO);
 		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	public String setDelete(BoardDTO boardDTO) throws Exception{
+	public String setDelete(NoticeDTO boardDTO) throws Exception{
 		int result= boardService.setDelete(boardDTO);
 		return "redirect:./list";
 	}

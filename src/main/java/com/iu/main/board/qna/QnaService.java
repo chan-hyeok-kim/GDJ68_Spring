@@ -1,4 +1,4 @@
-package com.iu.main.qna;
+package com.iu.main.board.qna;
 
 import java.util.List;
 
