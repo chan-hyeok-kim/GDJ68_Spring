@@ -17,6 +17,7 @@
         <typeAlias type="java.util.List" alias="List"/>   
        
         <typeAlias type="com.iu.main.board.qna.QnaDTO" alias="QnaDTO"/>
+        <typeAlias type="com.iu.main.board.qna.QnaFileDTO" alias="QnaFileDTO"/>
         <typeAlias type="com.iu.main.util.Pager" alias="Pager"/>
 </typeAliases>
 </configuration>

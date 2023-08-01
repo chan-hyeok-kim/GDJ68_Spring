@@ -90,5 +90,10 @@
 	    DELETE QNABOARD
 	    WHERE BOARDNUM=#{boardNum}
 	</delete>
+	
+	<insert id="setFile" parameterType="QnaFileDTO">
+	    INSERT INTO QNAFILE(FILENUM, BOARDNUM, FILENAME, ORIGINALNAME)
+	    VALUES (FILE_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{originalName})
+	</insert>
 
 </mapper>

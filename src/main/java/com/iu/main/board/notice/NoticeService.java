@@ -35,27 +35,30 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
-		 boardDTO = boardDAO.getDetail(boardDTO);
-		 int result = boardDAO.setHitUpdate(boardDTO);
-		 return boardDTO;
+		boardDTO = boardDAO.getDetail(boardDTO);
+		int result = boardDAO.setHitUpdate(boardDTO);
+		return boardDTO;
 	}
 
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
+		MemberDTO sessionMember = (MemberDTO) session.getAttribute("login");
+		boardDTO.setWriter(sessionMember.getId());
 		String path = "/resources/upload/board/";
-
+		int result = boardDAO.setAdd(boardDTO);
 		for (MultipartFile file : files) {
 			if (!file.isEmpty()) {
 				NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
 				String fileName = fileManager.fileSave(path, file, session);
-                noticeFileDTO.getBoardNum();
-                noticeFileDTO.getBoardNum();
-                noticeFileDTO.getBoardNum();
+				noticeFileDTO.setBoardNum(boardDTO.getBoardNum());
+				noticeFileDTO.setFileName(fileName);
+				noticeFileDTO.setOriginalName(file.getOriginalFilename());
+				result = boardDAO.setFile(noticeFileDTO);
 			}
 
 		}
 
-		return 0;
+		return result;
 	}
 
 	@Override
@@ -65,11 +68,11 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO,HttpSession session) throws Exception {
-		
-		  MemberDTO sessionMember = (MemberDTO)session.getAttribute("login");
-		  boardDTO.setWriter(sessionMember.getId());
-		 
+	public int setUpdate(BoardDTO boardDTO, HttpSession session) throws Exception {
+
+		MemberDTO sessionMember = (MemberDTO) session.getAttribute("login");
+		boardDTO.setWriter(sessionMember.getId());
+
 		return boardDAO.setUpdate(boardDTO);
 	}
 

@@ -43,16 +43,13 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="detail", method = RequestMethod.GET)
-	public ModelAndView getDetail(NoticeDTO noticeDTO, ModelAndView mv) throws Exception{
+	public String getDetail(NoticeDTO noticeDTO, Model model) throws Exception{
 	
 		BoardDTO boardDTO = boardService.getDetail(noticeDTO);
-		
-		
-		mv.addObject("bto", boardDTO);
-		mv.setViewName("board/detail?boardNum="+boardDTO.getBoardName());
-		return mv;
-	}
+		model.addAttribute("bto", boardDTO);
+		return "board/detail";
 	
+	}
 	
 	@RequestMapping(value = "add", method=RequestMethod.GET)
 	public String setAdd() throws Exception{
