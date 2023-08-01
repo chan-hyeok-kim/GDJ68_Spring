@@ -15,22 +15,25 @@
 		<table class="table mb-4text-center">
 			<thead>
 			<form action="./update" method="post">
-			<input type="hidden" name="boardNum" value="${mto.boardNum}">
+			<input type="hidden" name="boardNum" value="${bto.boardNum}">
+			<input type="hidden" name="boardHit" value="${bto.boardHit}">
 				<th class="table-dark">제목</th>
 				<th><div class="col-xs-3">
-				<input type="text" class="form-control" name="boardName" value="${mto.boardName}" required>
+				<input type="text" class="form-control" name="boardName" value="${bto.boardName}" required>
 				</div>
 				</th>
 			</thead>
 			<tbody>
-				<tr>
-					<td class="table-dark">작성자</td>
-					<td><input type="text" class="form-control" name="boardWriter"
-						value="${mto.writer}"></td>
-				</tr>
+			<%-- 	<tr> 
+				<td class="table-dark">작성자
+				<th><div class="col-xs-3">
+				<input type="text" class="form-control" name="writer" value="${bto.writer}" required>
+				</div>
+				</td>
+				</tr> --%>
 				<tr>
 					<td class="table-dark">내용</td>
-					<td><textarea rows="20px" class="form-control" cols="50px" name="boardContents">${mto.boardContents}</textarea></td>
+					<td><textarea rows="20px" class="form-control" cols="50px" name="boardContents">${bto.boardContents}</textarea></td>
 				</tr>
 		          	
 			</tbody>

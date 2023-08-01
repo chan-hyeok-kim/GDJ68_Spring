@@ -35,8 +35,9 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
-	//	int result = boardDAO.setHitUpdate(boardDTO);
-		return boardDAO.getDetail(boardDTO);
+		 boardDTO = boardDAO.getDetail(boardDTO);
+		 int result = boardDAO.setHitUpdate(boardDTO);
+		 return boardDTO;
 	}
 
 	@Override
@@ -64,7 +65,11 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
+	public int setUpdate(BoardDTO boardDTO,HttpSession session) throws Exception {
+		
+		  MemberDTO sessionMember = (MemberDTO)session.getAttribute("login");
+		  boardDTO.setWriter(sessionMember.getId());
+		 
 		return boardDAO.setUpdate(boardDTO);
 	}
 

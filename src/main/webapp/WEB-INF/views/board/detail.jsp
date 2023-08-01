@@ -11,7 +11,7 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="container mt-5">
-	<p class="text-center"><h1 class="ms-2">NOTICE</h1></p>
+	<p class="text-center"><h1 class="ms-2">${board}</h1></p>
 	<table class="table mb-4text-center">
 		<thead class="table-dark">
 			<th style="width:70%">SUBJECT</th>
@@ -21,28 +21,34 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>${board.boardName}</td>
-				<td>${board.writer}</td>
-				<td>${board.boardDate}</td>
-				<td>${board.boardHit}</td>
+				<td>${bto.boardName}</td>
+				<td>${bto.writer}</td>
+				<td>${bto.boardDate}</td>
+				<td>${bto.boardHit}</td>
 			</tr>
 			<tr>
-				<td colspan="4">${board.boardContents}</td>
+				<td colspan="4">${bto.boardContents}</td>
 			</tr>
 			<tr>
 				<td colspan="4">
-				<c:forEach items="${board.noticeFileDTOs}" var="b">
+				 <c:forEach items="${bto.boardFileDTOs}" var="b">
 				    <img alt="" src="/resources/upload/board/${b.fileName}">
-				</c:forEach>
+				</c:forEach> --
 				</td>
 			</tr>
 
 		</tbody>
 	</table>
-
 <a href="./list" class="btn btn-dark">List</a>
-<a href="./update?boardNum=${board.boardNum}" class="btn btn-dark">수정</a>
-<a href="./delete?boardNum=${board.boardNum}" class="btn btn-dark">삭제</a>
+<a href="./update?boardNum=${bto.boardNum}" class="btn btn-dark">수정</a>
+
+<a href="./delete?boardNum=${bto.boardNum}" class="btn btn-dark">삭제</a>
+
+<c:if test="${board ne 'NOTICE'}">
+<a href="./reply?boardNum=${bto.boardNum}" class="btn btn-dark">답글 등록</a>
+
+</c:if> 
+
 </section>	
 
 </body>

@@ -57,7 +57,7 @@
 		<result column="BIRTH" property="birth"></result>
 		</association> -->
 		
-		<collection javaType="List" property="noticeFileDTOs" ofType="NoticeFileDTO">
+		<collection javaType="List" property="boardFileDTOs" ofType="NoticeFileDTO">
         <id column="FILENUM" property="fileNum"/>
         <result column="FILENAME" property="fileName"/>
         <result column="ORIGINALNAME" property="originalName"/>
@@ -92,7 +92,7 @@
 	<update id="setUpdate" parameterType="NoticeDTO">
 		UPDATE BOARD SET
 		WRITER=#{writer}, BOARDNAME=#{boardName},
-		BOARDCONTENTS=#{boardContents}, BOARDHIT=#{boardHit}
+		BOARDCONTENTS=#{boardContents}, BOARDHIT=SYSDATE
 		WHERE
 		BOARDNUM=#{boardNum}
 	</update>
@@ -108,7 +108,7 @@
 	</select>
 
     <update id="setHitUpdate" parameterType="NoticeDTO">
-       UPDATE BOARD SET BOARDHIT=#{boardHit} WHERE
+       UPDATE BOARD SET BOARDHIT=#{boardHit}+1 WHERE
        BOARDNUM=#{boardNum}
     </update>
 

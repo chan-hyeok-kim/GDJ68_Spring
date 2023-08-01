@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,6 +27,11 @@ public class NoticeController {
 	
 	@Autowired
 	private NoticeService boardService;
+	
+	@ModelAttribute("board")
+	public String getBoardName() {
+		return "NOTICE";
+	}
 	
 	@RequestMapping("list")
 	public String getList(Model model,Pager pager)throws Exception{
@@ -41,8 +48,8 @@ public class NoticeController {
 		BoardDTO boardDTO = boardService.getDetail(noticeDTO);
 		
 		
-		mv.addObject("board", boardDTO);
-		mv.setViewName("board/detail");
+		mv.addObject("bto", boardDTO);
+		mv.setViewName("board/detail?boardNum="+boardDTO.getBoardName());
 		return mv;
 	}
 	
@@ -53,7 +60,7 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String setAdd(NoticeDTO boardDTO, MultipartFile[] bank, HttpSession session) throws Exception{
+	public String setAdd(BoardDTO boardDTO, MultipartFile[] bank, HttpSession session) throws Exception{
 		int result = boardService.setAdd(boardDTO, bank, session);
 		return "redirect:./list";
 	}
@@ -62,14 +69,14 @@ public class NoticeController {
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public ModelAndView setUpdate(NoticeDTO noticeDTO, ModelAndView mv) throws Exception{
 		BoardDTO boardDTO = boardService.getDetail(noticeDTO);
-		mv.addObject("mto", boardDTO);
+		mv.addObject("bto", boardDTO);
 		mv.setViewName("board/update");
 		return mv;
 	}
 	
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String setUpdate(NoticeDTO boardDTO) throws Exception{
-		int result = boardService.setUpdate(boardDTO);
+	public String setUpdate(NoticeDTO boardDTO, HttpSession session) throws Exception{
+		int result = boardService.setUpdate(boardDTO, session);
 		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
 	}
 	

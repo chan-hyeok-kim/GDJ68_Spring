@@ -12,7 +12,7 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="container mt-5">
-		<h1 class="mb-2">NOTICE</h1>
+		<h1 class="mb-2">${board}</h1>
 
 		<table class="table mb-4text-center">
 			<thead class="table-dark">
@@ -25,9 +25,17 @@
 			<tbody>
 				<c:forEach items="${list}" var="n">
 					<tr>
+					
 						<td>${n.boardNum}</td>
-						<td><a href="./detail?boardNum=${n.boardNum}">${n.boardName}</a></td>
-
+						
+						<td>
+						<c:catch>
+						<!-- jsp에서 예외처리 -->
+						<c:forEach begin="1" end="${n.depth}">--</c:forEach>
+						</c:catch>
+						
+						<a href="./detail?boardNum=${n.boardNum}">${n.boardName}</a></td>
+                         
 						<td>${n.writer}</td>
 						
 						<td>${n.boardDate}</td>

@@ -14,6 +14,13 @@ public class BoardDTO {
 	private List<BoardFileDTO> boardFileDTOs;
 	
 	
+	
+	public List<BoardFileDTO> getBoardFileDTOs() {
+		return boardFileDTOs;
+	}
+	public void setBoardFileDTOs(List<BoardFileDTO> boardFileDTOs) {
+		this.boardFileDTOs = boardFileDTOs;
+	}
 	public Long getBoardNum() {
 		return boardNum;
 	}

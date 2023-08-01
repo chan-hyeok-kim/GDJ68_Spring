@@ -28,7 +28,7 @@
 
 		<include refid="searchSql"></include>
 
-		ORDER BY BOARDNUM DESC) Q)
+		ORDER BY REF DESC, STEP ASC) Q)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 
@@ -49,16 +49,46 @@
 	<insert id="setAdd" parameterType="QnaDTO">
 		<selectKey resultType="Long" keyProperty="boardNum"
 			order="BEFORE">
-			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+			SELECT QNA_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO QNABOARD
 		(BOARDNUM, WRITER, BOARDNAME, BOARDCONTENTS,
 		BOARDDATE, BOARDHIT, REF, STEP,
 		DEPTH) VALUES
-		(BOARD_SEQ.NEXTVAL,
+		(#{boardNum},
 		#{writer}, #{boardName}, #{boardContents}, 
-		SYSDATE, 0, 0, 0, 0)
+		SYSDATE, 0, #{boardNum}, 0, 0)
 	</insert>
+	
 
+    <!-- 답글 추가 -->
+	<insert id="setReplyAdd" parameterType="QnaDTO">
+	<selectKey resultType="Long" keyProperty="boardNum"
+			order="BEFORE">
+			SELECT QNA_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+	    INSERT INTO QNABOARD (BOARDNUM, WRITER, BOARDNAME, 
+	    BOARDCONTENTS, BOARDDATE, BOARDHIT, REF, STEP, DEPTH)
+	    VALUES (#{boardNum}, #{writer}, #{boardName}, 
+	    #{boardContents},SYSDATE, 0, #{ref}, #{step}, #{depth})
+	</insert>
+	
+	<!-- 답글이 추가되기 전 -->
+	<update id="setStepUpdate" parameterType="QnaDTO">
+	    UPDATE QNABOARD 
+	    SET STEP=STEP+1
+	    WHERE REF=#{ref} AND STEP>#{step}
+	</update>
+	
+	<update id="setUpdate" parameterType="QnaDTO">
+	    UPDATE QNABOARD
+	    SET WRITER=#{writer}, BOARDHIT=#{boardHit}, BOARDNAME=#{boardName}, BOARDCONTENTS=#{boardContents}
+	    WHERE BOARDNUM=#{boardNum}
+	</update>
+	
+	<delete id="setDelete" parameterType="QnaDTO">
+	    DELETE QNABOARD
+	    WHERE BOARDNUM=#{boardNum}
+	</delete>
 
 </mapper>

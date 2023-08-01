@@ -11,21 +11,17 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="container mt-5">
-		<h1 class="mb-2">NOTICE</h1>
+		<h1 class="mb-2">${board}</h1>
 		<form action="./add" method="post" enctype="multipart/form-data">
            
             
 			<table class="table mb-4text-center">
 				<thead class="table-dark">
 					<th>컬럼</th>
-					<th>게시글 등록</th>
+					<th>글 등록</th>
 				</thead>
 				<tbody class="table-dark">
-					<tr>
-						<td>작성자</td>
-						<td><input type="text" name="writer"
-							class="form-control"></td>
-					</tr>
+					
 					<tr>
 						<td>제목</td>
 						<td><input type="text" name="boardName" class="form-control" required></td>

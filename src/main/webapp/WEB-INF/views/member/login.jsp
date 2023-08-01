@@ -19,7 +19,7 @@
 				</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control"
-						id="id" name="id" value="id123" placeholder="ID를 입력하세요">
+						id="id" name="id" value="id677" placeholder="ID를 입력하세요">
 				</div>
 			</div>
 

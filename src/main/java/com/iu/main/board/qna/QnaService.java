@@ -1,5 +1,6 @@
 package com.iu.main.board.qna;
 
+import java.security.cert.PolicyQualifierInfo;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.main.board.BoardDTO;
 import com.iu.main.board.BoardService;
+import com.iu.main.member.MemberDTO;
 import com.iu.main.util.Pager;
 
 @Service
@@ -18,7 +20,17 @@ public class QnaService implements BoardService{
 	@Autowired
 	private QnaDAO qnaDAO;
 
- 
+    
+	@Override
+	public int setUpdate(BoardDTO boardDTO, HttpSession session) throws Exception {
+		
+		
+		 MemberDTO sessionMember = (MemberDTO)session.getAttribute("login");
+		 boardDTO.setWriter(sessionMember.getId());
+		 
+		return qnaDAO.setUpdate(boardDTO);
+	}
+	
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -37,19 +49,38 @@ public class QnaService implements BoardService{
 	@Override
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		// TODO Auto-generated method stub
+		MemberDTO sessionMember = (MemberDTO) session.getAttribute("login");
+		boardDTO.setWriter(sessionMember.getId());  
 		return qnaDAO.setAdd(boardDTO);
 	}
-
-	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public int setReplyAdd(QnaDTO qnaDTO,MultipartFile[] files, HttpSession session) throws Exception{
+		BoardDTO parentDTO = new BoardDTO();
+		parentDTO.setBoardNum(qnaDTO.getBoardNum());
+		
+		parentDTO = qnaDAO.getDetail(parentDTO);
+		QnaDTO p = (QnaDTO)parentDTO;
+		qnaDTO.setRef(p.getRef());
+		qnaDTO.setStep(p.getStep()+1);
+		qnaDTO.setDepth(p.getStep()+1);
+		
+		MemberDTO sessionMember = (MemberDTO) session.getAttribute("login");
+		qnaDTO.setWriter(sessionMember.getId());
+		
+		int result = qnaDAO.setStepUpdate(p);
+		result = qnaDAO.setReplyAdd(qnaDTO);
+		
+		
+		return result;
 	}
+	
+
+	
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return qnaDAO.setDelete(boardDTO);
 	}
 	
 	
