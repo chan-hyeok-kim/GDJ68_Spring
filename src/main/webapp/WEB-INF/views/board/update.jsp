@@ -35,7 +35,16 @@
 					<td class="table-dark">내용</td>
 					<td><textarea rows="20px" class="form-control" cols="50px" name="boardContents">${bto.boardContents}</textarea></td>
 				</tr>
-		          	
+				<tr>
+				<td></td>
+				<td>
+				<c:forEach items="${bto.boardFileDTOs}" var="b">
+		          	<div class="input-group">
+                      <input type="file" name="files" class="form-control" value="${b.originalName}" id="bankfile" aria-label="Upload">
+					</td>
+					</div>
+					</c:forEach>
+					</tr>
 			</tbody>
 		</table>
 		<%-- <form action="./update" method="post">

@@ -58,11 +58,13 @@ public class QnaService implements BoardService {
 		for (MultipartFile file : files) {
 			if (!file.isEmpty()) {
 				QnaFileDTO qnaFileDTO = new QnaFileDTO();
-				String fileName = fileManager.fileSave(path, file, session);
-				qnaFileDTO.setBoardNum(boardDTO.getBoardNum());
-				qnaFileDTO.setFileName(fileName);
-				qnaFileDTO.setOriginalName(file.getOriginalFilename());
-			    result = qnaDAO.setFile(qnaFileDTO);	
+				
+				 String fileName = fileManager.fileSave(path, file, session);
+				 qnaFileDTO.setBoardNum(boardDTO.getBoardNum());
+				 qnaFileDTO.setFileName(fileName);
+				 qnaFileDTO.setOriginalName(file.getOriginalFilename()); result =
+				 qnaDAO.setFile(qnaFileDTO);
+				 
 			}
 		}
 
