@@ -58,7 +58,7 @@ if(count>5){
     
   
     let s = document.createElement("span");
-    let t = document.createTextNode("x");
+    let t = document.createTextNode("삭제");
     f1 = document.createAttribute("class");
     f1.value = "df";
     s.setAttributeNode(f1);
