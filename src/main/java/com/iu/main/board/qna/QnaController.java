@@ -96,7 +96,7 @@ public class QnaController {
 	}
 	
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String setDelete(QnaDTO qnaDTO)throws Exception{
 		qnaService.setDelete(qnaDTO);
 		return "redirect:./list";

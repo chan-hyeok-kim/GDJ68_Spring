@@ -39,15 +39,23 @@
 
 		</tbody>
 	</table>
-<a href="./list" class="btn btn-dark">List</a>
-<a href="./update?boardNum=${bto.boardNum}" class="btn btn-dark">수정</a>
 
-<a href="./delete?boardNum=${bto.boardNum}" class="btn btn-dark">삭제</a>
+	<form id="frm">
+	<input type="hidden" name="boardNum" value="${bto.boardNum}">
+</form>
+	<a href="./list" class="btn btn-dark">List</a>
+<!-- <a href="./update?boardNum=${bto.boardNum}" class="btn btn-dark">수정</a> -->
+
 
 <c:if test="${board ne 'NOTICE'}">
-<a href="./reply?boardNum=${bto.boardNum}" class="btn btn-dark">답글 등록</a>
-
+<!-- <a href="./reply?boardNum=${bto.boardNum}" class="btn btn-dark">답글 등록</a> -->
+<button id="reply" class="btn btn-dark c1" data-url="reply">답글 등록</button>
 </c:if> 
+<button id="update" class="btn btn-dark c1" data-url="update">수정</button>
+<button data-url="delete" class="btn btn-dark c1" id="del" data-delete-name="boardNum" data-delete-num="${bto.boardNum}">삭제</button>
+
+<script src="../resources/js/delete.js"></script>
+
 
 </section>	
 

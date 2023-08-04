@@ -79,7 +79,7 @@ public class QnaService implements BoardService {
 		QnaDTO p = (QnaDTO) parentDTO;
 		qnaDTO.setRef(p.getRef());
 		qnaDTO.setStep(p.getStep() + 1);
-		qnaDTO.setDepth(p.getStep() + 1);
+		qnaDTO.setDepth(p.getDepth() + 1);
 
 		MemberDTO sessionMember = (MemberDTO) session.getAttribute("login");
 		qnaDTO.setWriter(sessionMember.getId());

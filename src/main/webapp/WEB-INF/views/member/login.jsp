@@ -15,11 +15,11 @@
                   <h1>로그인 페이지</h1>
      <form action="./login" method="post">
      <div class="mb-3">
-				<label for="id" class="form-label">ID
+				<label for="id" class="form-label" id="id">ID
 				</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control"
-						id="id" name="id" value="id677" placeholder="ID를 입력하세요">
+						 name="id" value="id677" placeholder="ID를 입력하세요">
 				</div>
 			</div>
 
@@ -30,7 +30,16 @@
 						placeholder="PW를 입력하세요">
 				</div>
 			</div>
+			<div class="mb-3">
+				<label for="pw2" class="form-label">Password확인 </label>
+				<div class="col-sm-4">
+					<input type="password" value="123" class="form-control" id="pw2" name="pw2"
+						placeholder="PW를 입력하세요">
+				</div>
+			</div>
+
      
+    
 			
 			<p>
 			<button type="submit" class="btn btn-primary">로그인</button>

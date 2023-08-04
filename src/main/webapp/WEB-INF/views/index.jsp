@@ -51,7 +51,7 @@
 		<h1>로그인 상태</h1>
 	</c:if>
 
-  <img alt="" src="/resources/upload/member/fnc2.jpg">
+  <img alt="" src="/resources/images/fnc2.jpg">
 
 </body>
 </html>

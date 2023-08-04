@@ -8,13 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <c:if test="${result gt 0}">
-        <h1>성공</h1>
-    </c:if>
-    <c:if test="${result le 0}">
-        <h1>실패</h1> 
-    </c:if>
-    <a href="/">Home</a>
-
+    <script>
+  
+    alert("${message}");
+    location.href="${url}";
+    
+    </script>
+<!-- ./안치면 현재위치 -->
 </body>
 </html>

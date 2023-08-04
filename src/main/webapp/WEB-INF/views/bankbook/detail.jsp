@@ -57,6 +57,15 @@
 		<!-- scope명.키값(속성명).get이름 -->
 		<a href="./update?bookNum=${dto.bookNum}">수정</a> <a
 			href="./delete?bookNum=${dto.bookNum}">삭제</a>
+		<button id="update">수정</button>
+		
+		<button id="del" data-delete-num="${dto.bookNum}" data-delete-name="bookNum">삭제
+		</button>
+	
+
+<script src="../resources/js/delete.js"></script>
+
+
 	</section>
 </body>
 </html>

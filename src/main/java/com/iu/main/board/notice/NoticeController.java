@@ -24,69 +24,79 @@ import com.iu.main.util.Pager;
 @Controller
 @RequestMapping("/notice/*")
 public class NoticeController {
-	
+
 	@Autowired
 	private NoticeService boardService;
-	
+
 	@ModelAttribute("board")
 	public String getBoardName() {
 		return "NOTICE";
 	}
-	
+
 	@RequestMapping("list")
-	public String getList(Model model,Pager pager)throws Exception{
+	public String getList(Model model, Pager pager) throws Exception {
 		List<BoardDTO> ar = boardService.getList(pager);
-		
+
 		model.addAttribute("list", ar);
-		model.addAttribute("pager",pager);
+		model.addAttribute("pager", pager);
 		return "./board/list";
 	}
-	
-	@RequestMapping(value="detail", method = RequestMethod.GET)
-	public String getDetail(NoticeDTO noticeDTO, Model model) throws Exception{
-	
+
+	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	public String getDetail(NoticeDTO noticeDTO, Model model) throws Exception {
+
 		BoardDTO boardDTO = boardService.getDetail(noticeDTO);
-		model.addAttribute("bto", boardDTO);
-		return "board/detail";
-	
+		if (boardDTO==null) {
+			model.addAttribute("message", "글이 없다");
+			model.addAttribute("url","list");
+			
+			return "commons/result";
+		} else {
+			model.addAttribute("bto", boardDTO);
+			return "board/detail";
+			
+		}
+
 	}
-	
-	@RequestMapping(value = "add", method=RequestMethod.GET)
-	public String setAdd() throws Exception{
+
+	@RequestMapping(value = "add", method = RequestMethod.GET)
+	public String setAdd() throws Exception {
 		return "board/add";
 	}
-	
-	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception{
+
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session, Model model) throws Exception {
 		int result = boardService.setAdd(boardDTO, files, session);
-		return "redirect:./list";
+
+		String message = "등록 실패";
+		if (result > 0) {
+			message = "등록 성공";
+		}
+
+		model.addAttribute("message", message);
+		model.addAttribute("url", "list");
+		return "commons/result";
 	}
 //	redirect는 상대, 절대 다됨
-	
+
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView setUpdate(NoticeDTO noticeDTO, ModelAndView mv) throws Exception{
+	public ModelAndView setUpdate(NoticeDTO noticeDTO, ModelAndView mv) throws Exception {
 		BoardDTO boardDTO = boardService.getDetail(noticeDTO);
 		mv.addObject("bto", boardDTO);
 		mv.setViewName("board/update");
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String setUpdate(NoticeDTO boardDTO, HttpSession session) throws Exception{
+	public String setUpdate(NoticeDTO boardDTO, HttpSession session) throws Exception {
 		int result = boardService.setUpdate(boardDTO, session);
-		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
+		return "redirect:./detail?boardNum=" + boardDTO.getBoardNum();
 	}
-	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	public String setDelete(NoticeDTO boardDTO) throws Exception{
-		int result= boardService.setDelete(boardDTO);
+
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	public String setDelete(NoticeDTO boardDTO) throws Exception {
+		int result = boardService.setDelete(boardDTO);
 		return "redirect:./list";
 	}
-	
-	
-	
-	
-	
-	
 
 }

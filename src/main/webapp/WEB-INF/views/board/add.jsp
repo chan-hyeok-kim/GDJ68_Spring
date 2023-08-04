@@ -12,7 +12,7 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="container mt-5">
 		<h1 class="mb-2">${board}</h1>
-		<form action="./add" method="post" enctype="multipart/form-data">
+		<form action="./add" method="post" enctype="multipart/form-data" id="frm">
            
             
 			<table class="table mb-4text-center">
@@ -24,63 +24,46 @@
 					
 					<tr>
 						<td>제목</td>
-						<td><input type="text" name="boardName" class="form-control" required></td>
+						<td><input type="text" name="boardName" class="form-control" id="name"></td>
 					</tr>
 					<tr>
 						<td>내용</td>
 						<td><textarea name="boardContents" class="form-control"
-								cols="50px"></textarea></td>
+								cols="50px" id="contents"></textarea></td>
 					</tr>
 					<tr>
-					<td>사진첨부</td>
-					<td><div class="input-group">
-                        <input type="file" name="files" class="form-control" id="bankfile" aria-label="Upload">
-					</div>
-					<div class="input-group">
-                        <input type="file" name="files" class="form-control" id="bankfile" aria-label="Upload">
-					</div>
-					<div class="input-group">
-                        <input type="file" name="files" class="form-control" id="bankfile" aria-label="Upload">
-					</div>
-					<div class="input-group">
-                        <input type="file" name="files" class="form-control" id="bankfile" aria-label="Upload">
-					</div>
-					<div class="input-group">
-                        <input type="file" name="files" class="form-control" id="bankfile" aria-label="Upload">
-					</div>
+					<td>사진첨부</td><td>
+<div id="fileList">
+				<button type="button" id="btn1" class="btn btn-dark">File추가</button>
+				</div>	
+<script src="../resources/js/file.js"></script>
+					
 					</td>
+					
 					</tr>
 				</tbody>
 			</table>
+			
 
 
-			<!-- 
-<div class="input-group mb-2">
-<span class="input-group-text">작성자</span>
-<input type="text" name="boardWriter" class="form-control">
-</div>	
 
-<div class="input-group mb-2">
-<span class="input-group-text">제목</span>
-<input type="text" name="boardName" class="form-control">
-</div>	
+			<button type="button" class="btn btn-dark" id="btn">등록</button>
+<script>
+	const btn = document.getElementById("btn");
+	const name = document.getElementById("name");
+	const frm = document.getElementById("frm");
 
-<div class="input-group mb-2">			
-<span class="input-group-text">내용</span>
-<textarea name="boardContents" class="form-control" cols="50px">
-</textarea>
-</div>
-
-<div class="input-group mb-2">
-<span class="input-group-text">날짜</span>
-<input type="date" name="boardDate" class="form-control" value="2023-07-25">
-
-</div>
-
- -->
-
-			<button type="submit" class="btn btn-dark">등록</button>
-
+    btn.addEventListener("click",function(){
+		console.log(name.value=="");
+		console.log(name.value.length==0);
+		if(name.value==""){
+			alert("제목은 필수입니다");
+			name.focus();
+		}else{
+			frm.submit();
+		}
+	});
+</script>
 		</form>
 	</section>
 
