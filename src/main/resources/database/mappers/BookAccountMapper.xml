@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iu.main.bookAccount.BookAccountDAO">
+
+	<select id="getList" resultType="BookAccountDTO"
+		parameterMap="getListResult">
+		SELECT * 
+FROM(SELECT ROWNUM R, B.*
+FROM(SELECT * FROM BOOKACCOUNT BA LEFT OUTER JOIN MEMBER M
+		ON BA.ID = M.ID
+		WHERE BA.ID = #{id} 
+		AND BOOKNUM>0 
+		ORDER BY BOOKNUM DESC) B)
+		WHERE R BETWEEN #{startRow} AND #{lastRow};
+	</select>
+	
+	<parameterMap type="BookAccountDTO" id="getListResult">
+	
+	</parameterMap>
+
+	<select id="getDetail" resultType="BookAccountDTO"
+		parameterType="BookAccountDTO">
+		SELECT * FROM BOOKACCOUNT
+		WHERE ACCOUNTNUM=#{accountNum};
+	</select>
+	
+	<insert id="setAdd" parameterType="BookAccountDTO">
+	   INSERT INTO BOOKACCOUNT (ACCOUNTNUM, ID, BOOKNUM,ACCOUNT, ACCOUNTPW, ACCOUNTBALANCE)
+	   VALUES (#{accountNum}, #{id}, #{bookNum}, #{account}, #{accountPw}, #{accountBalance})
+	   WHERE 
+	</insert>
+	
+	<update id="setUpdate" parameterType="BookAccountDTO">
+	   UPDATE BOOKACCOUNT SET ACCOUNTPW = #{accountPw}, ACCOUNTBALANCE = #{accountBalance}
+	   WHERE ACCOUNTNUM = #{ACCOUNTNUM}
+    </update>
+
+</mapper>

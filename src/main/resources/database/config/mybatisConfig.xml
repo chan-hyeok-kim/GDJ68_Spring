@@ -20,5 +20,6 @@
         <typeAlias type="com.iu.main.board.qna.QnaFileDTO" alias="QnaFileDTO"/>
         <typeAlias type="com.iu.main.board.BoardFileDTO" alias="BoardFileDTO"/>
         <typeAlias type="com.iu.main.util.Pager" alias="Pager"/>
+        <typeAlias type="com.iu.main.bookAccount.BookAccountDTO" alias="BookAccountDTO"/>
 </typeAliases>
 </configuration>
