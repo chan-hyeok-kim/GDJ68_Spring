@@ -45,6 +45,8 @@
 		FROM QNABOARD
 		WHERE BOARDNUM = #{boardNum}
 	</select>
+	
+	
 
 	<insert id="setAdd" parameterType="QnaDTO">
 		<selectKey resultType="Long" keyProperty="boardNum"
