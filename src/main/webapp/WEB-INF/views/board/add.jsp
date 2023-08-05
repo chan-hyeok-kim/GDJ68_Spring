@@ -34,19 +34,19 @@
 					<tr>
 					<td>사진첨부</td>
 					<td><div class="input-group">
-                        <input type="file" name="bank" class="form-control" id="bankfile" aria-label="Upload">
+                        <input type="file" name="files" class="form-control" id="bankfile" aria-label="Upload">
 					</div>
 					<div class="input-group">
-                        <input type="file" name="bank" class="form-control" id="bankfile" aria-label="Upload">
+                        <input type="file" name="files" class="form-control" id="bankfile" aria-label="Upload">
 					</div>
 					<div class="input-group">
-                        <input type="file" name="bank" class="form-control" id="bankfile" aria-label="Upload">
+                        <input type="file" name="files" class="form-control" id="bankfile" aria-label="Upload">
 					</div>
 					<div class="input-group">
-                        <input type="file" name="bank" class="form-control" id="bankfile" aria-label="Upload">
+                        <input type="file" name="files" class="form-control" id="bankfile" aria-label="Upload">
 					</div>
 					<div class="input-group">
-                        <input type="file" name="bank" class="form-control" id="bankfile" aria-label="Upload">
+                        <input type="file" name="files" class="form-control" id="bankfile" aria-label="Upload">
 					</div>
 					</td>
 					</tr>

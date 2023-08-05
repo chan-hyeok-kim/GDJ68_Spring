@@ -29,7 +29,8 @@
 		<include refid="searchSql"></include>
 
 		ORDER BY REF DESC, STEP ASC) Q)
-		WHERE R BETWEEN #{startRow} AND #{lastRow}
+		WHERE R BETWEEN #{startRow} AND
+		#{lastRow}
 	</select>
 
 	<select id="getTotal" resultType="Long" parameterType="Pager">
@@ -39,14 +40,33 @@
 
 	</select>
 
-	<select id="getDetail" resultType="QnaDTO"
+	<select id="getDetail" resultMap="getDetailResult"
 		parameterType="QnaDTO">
 		SELECT *
-		FROM QNABOARD
-		WHERE BOARDNUM = #{boardNum}
+		FROM QNABOARD QB LEFT OUTER JOIN QNAFILE QF
+		ON
+		QB.BOARDNUM = QF.BOARDNUM
+		WHERE QB.BOARDNUM= #{boardNum}
 	</select>
 	
 	
+
+	<resultMap type="QnaDTO" id="getDetailResult">
+		<id column="BOARDNUM" property="boardNum" />
+		<result column="WRITER" property="writer"/>
+		<result column="BOARDNAME" property="boardName"/>
+		<result column="BOARDCONTENTS" property="boardContents"/>
+		<result column="BOARDDATE" property="boardDate"/>
+		<result column="BOARDHIT" property="boardHit"/>
+        
+        <collection property="boardFileDTOs" javaType="List" ofType="QnaFileDTO">
+	    <id column="FILENUM" property="fileNum"/>
+	    <result column="FILENAME" property="fileName"/>
+	    <result column="ORIGINALNAME" property="originalName"/>
+	    </collection>
+	</resultMap>
+      
+
 
 	<insert id="setAdd" parameterType="QnaDTO">
 		<selectKey resultType="Long" keyProperty="boardNum"
@@ -58,44 +78,53 @@
 		BOARDDATE, BOARDHIT, REF, STEP,
 		DEPTH) VALUES
 		(#{boardNum},
-		#{writer}, #{boardName}, #{boardContents}, 
+		#{writer},
+		#{boardName}, #{boardContents},
 		SYSDATE, 0, #{boardNum}, 0, 0)
 	</insert>
-	
 
-    <!-- 답글 추가 -->
+
+	<!-- 답글 추가 -->
 	<insert id="setReplyAdd" parameterType="QnaDTO">
-	<selectKey resultType="Long" keyProperty="boardNum"
+		<selectKey resultType="Long" keyProperty="boardNum"
 			order="BEFORE">
 			SELECT QNA_SEQ.NEXTVAL FROM DUAL
 		</selectKey>
-	    INSERT INTO QNABOARD (BOARDNUM, WRITER, BOARDNAME, 
-	    BOARDCONTENTS, BOARDDATE, BOARDHIT, REF, STEP, DEPTH)
-	    VALUES (#{boardNum}, #{writer}, #{boardName}, 
-	    #{boardContents},SYSDATE, 0, #{ref}, #{step}, #{depth})
+		INSERT INTO QNABOARD (BOARDNUM, WRITER, BOARDNAME,
+		BOARDCONTENTS,
+		BOARDDATE, BOARDHIT, REF, STEP, DEPTH)
+		VALUES (#{boardNum}, #{writer},
+		#{boardName},
+		#{boardContents},SYSDATE, 0, #{ref}, #{step}, #{depth})
 	</insert>
-	
+
 	<!-- 답글이 추가되기 전 -->
 	<update id="setStepUpdate" parameterType="QnaDTO">
-	    UPDATE QNABOARD 
-	    SET STEP=STEP+1
-	    WHERE REF=#{ref} AND STEP>#{step}
+		UPDATE QNABOARD
+		SET
+		STEP=STEP+1
+		WHERE REF=#{ref} AND STEP>#{step}
 	</update>
-	
+
 	<update id="setUpdate" parameterType="QnaDTO">
-	    UPDATE QNABOARD
-	    SET WRITER=#{writer}, BOARDHIT=#{boardHit}, BOARDNAME=#{boardName}, BOARDCONTENTS=#{boardContents}
-	    WHERE BOARDNUM=#{boardNum}
+		UPDATE QNABOARD
+		SET
+		WRITER=#{writer}, BOARDHIT=#{boardHit}, BOARDNAME=#{boardName},
+		BOARDCONTENTS=#{boardContents}
+		WHERE BOARDNUM=#{boardNum}
 	</update>
-	
+
 	<delete id="setDelete" parameterType="QnaDTO">
-	    DELETE QNABOARD
-	    WHERE BOARDNUM=#{boardNum}
+		DELETE QNABOARD
+		WHERE
+		BOARDNUM=#{boardNum}
 	</delete>
-	
-	<insert id="setFile" parameterType="QnaFileDTO">
-	    INSERT INTO QNAFILE(FILENUM, BOARDNUM, FILENAME, ORIGINALNAME)
-	    VALUES (FILE_SEQ.NEXTVAL, #{boardNum}, #{fileName}, #{originalName})
+
+	<insert id="setFile" parameterType="BoardFileDTO">
+		INSERT INTO QNAFILE(FILENUM,
+		BOARDNUM, FILENAME, ORIGINALNAME)
+		VALUES (FILE_SEQ.NEXTVAL,
+		#{boardNum}, #{fileName}, #{originalName})
 	</insert>
 
 </mapper>

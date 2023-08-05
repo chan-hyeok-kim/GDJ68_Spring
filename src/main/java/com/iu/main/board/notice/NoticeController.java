@@ -57,8 +57,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="add",method = RequestMethod.POST)
-	public String setAdd(BoardDTO boardDTO, MultipartFile[] bank, HttpSession session) throws Exception{
-		int result = boardService.setAdd(boardDTO, bank, session);
+	public String setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception{
+		int result = boardService.setAdd(boardDTO, files, session);
 		return "redirect:./list";
 	}
 //	redirect는 상대, 절대 다됨
