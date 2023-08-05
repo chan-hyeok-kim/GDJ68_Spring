@@ -28,6 +28,7 @@ public class Pager {
 //	다음 블럭 활성화
 	private boolean next; //false면 마지막 블럭, true면 마지막 블럭 아님
 
+	private String id;
 
 
 
