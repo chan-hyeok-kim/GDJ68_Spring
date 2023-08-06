@@ -30,12 +30,12 @@ FROM(SELECT * FROM BOOKACCOUNT BA LEFT OUTER JOIN MEMBER M
 	<insert id="setAdd" parameterType="BookAccountDTO">
 	   INSERT INTO BOOKACCOUNT (ACCOUNTNUM, ID, BOOKNUM,ACCOUNT, ACCOUNTPW, ACCOUNTBALANCE)
 	   VALUES (#{accountNum}, #{id}, #{bookNum}, #{account}, #{accountPw}, #{accountBalance})
-	   WHERE 
+	   WHERE ACCOUNT
 	</insert>
 	
 	<update id="setUpdate" parameterType="BookAccountDTO">
 	   UPDATE BOOKACCOUNT SET ACCOUNTPW = #{accountPw}, ACCOUNTBALANCE = #{accountBalance}
 	   WHERE ACCOUNTNUM = #{ACCOUNTNUM}
     </update>
-
+ACCOUNT_SEQ;
 </mapper>
