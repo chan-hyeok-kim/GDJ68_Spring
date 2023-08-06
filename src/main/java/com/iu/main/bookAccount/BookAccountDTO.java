@@ -13,8 +13,6 @@ public class BookAccountDTO {
 	private Long accountPw;
 	private Long accountBalance;
 	private Date accountDate;
-	private Pager pager;
-	
 	
 	
 	public Date getAccountDate() {

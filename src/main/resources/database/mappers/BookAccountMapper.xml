@@ -6,7 +6,7 @@
 <mapper namespace="com.iu.main.bookAccount.BookAccountDAO">
 
 	<select id="getList" resultType="BookAccountDTO"
-		parameterMap="getListResult">
+		parameterType="Pager">
 		SELECT * 
 FROM(SELECT ROWNUM R, B.*
 FROM(SELECT * FROM BOOKACCOUNT BA LEFT OUTER JOIN MEMBER M
@@ -17,9 +17,7 @@ FROM(SELECT * FROM BOOKACCOUNT BA LEFT OUTER JOIN MEMBER M
 		WHERE R BETWEEN #{startRow} AND #{lastRow};
 	</select>
 	
-	<parameterMap type="BookAccountDTO" id="getListResult">
-	
-	</parameterMap>
+
 
 	<select id="getDetail" resultType="BookAccountDTO"
 		parameterType="BookAccountDTO">
@@ -30,12 +28,19 @@ FROM(SELECT * FROM BOOKACCOUNT BA LEFT OUTER JOIN MEMBER M
 	<insert id="setAdd" parameterType="BookAccountDTO">
 	   INSERT INTO BOOKACCOUNT (ACCOUNTNUM, ID, BOOKNUM,ACCOUNT, ACCOUNTPW, ACCOUNTBALANCE)
 	   VALUES (#{accountNum}, #{id}, #{bookNum}, #{account}, #{accountPw}, #{accountBalance})
-	   WHERE ACCOUNT
+	   WHERE ACCOUNTNUM = #{accountNum}
 	</insert>
 	
 	<update id="setUpdate" parameterType="BookAccountDTO">
 	   UPDATE BOOKACCOUNT SET ACCOUNTPW = #{accountPw}, ACCOUNTBALANCE = #{accountBalance}
-	   WHERE ACCOUNTNUM = #{ACCOUNTNUM}
+	   WHERE ACCOUNTNUM = #{accountNum}
     </update>
-ACCOUNT_SEQ;
+    
+    <delete id="setDelete" parameterType="BookAccountDTO">
+       DELETE BOOKACCOUNT 
+        WHERE ACCOUNTNUM = #{accountNum}
+    </delete>
+
 </mapper>
+
+
