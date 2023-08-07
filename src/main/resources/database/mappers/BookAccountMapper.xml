@@ -6,17 +6,15 @@
 <mapper namespace="com.iu.main.bookAccount.BookAccountDAO">
 
 	<select id="getList" resultType="BookAccountDTO"
-		parameterType="Pager">
-		SELECT * 
-FROM(SELECT ROWNUM R, B.*
-FROM(SELECT * FROM BOOKACCOUNT BA LEFT OUTER JOIN MEMBER M
-		ON BA.ID = M.ID
-		WHERE BA.ID = #{id} 
-		AND BOOKNUM>0 
-		ORDER BY BOOKNUM DESC) B)
-		WHERE R BETWEEN #{startRow} AND #{lastRow};
+		parameterType="Map">
+		SELECT *
+		FROM(SELECT ROWNUM R, A.*
+		FROM(SELECT * FROM BOOKACCOUNT
+		WHERE ID = #{member.id}
+		AND ACCOUNTNUM>0
+		ORDER BY ACCOUNTNUM DESC) A)
+		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
 	</select>
-	
 
 
 	<select id="getDetail" resultType="BookAccountDTO"
@@ -24,22 +22,29 @@ FROM(SELECT * FROM BOOKACCOUNT BA LEFT OUTER JOIN MEMBER M
 		SELECT * FROM BOOKACCOUNT
 		WHERE ACCOUNTNUM=#{accountNum};
 	</select>
-	
+
 	<insert id="setAdd" parameterType="BookAccountDTO">
-	   INSERT INTO BOOKACCOUNT (ACCOUNTNUM, ID, BOOKNUM,ACCOUNT, ACCOUNTPW, ACCOUNTBALANCE)
-	   VALUES (#{accountNum}, #{id}, #{bookNum}, #{account}, #{accountPw}, #{accountBalance})
-	   WHERE ACCOUNTNUM = #{accountNum}
+		INSERT INTO BOOKACCOUNT (ACCOUNTNUM, ID, BOOKNUM, ACCOUNT, ACCOUNTPASSWORD,
+		ACCOUNTBALANCE, ACCOUNTDATE)
+		VALUES (ACCOUNT_SEQ.NEXTVAL, #{id}, #{bookNum}, #{account},
+		#{accountPassword}, #{accountBalance}, SYSDATE)
 	</insert>
-	
+
 	<update id="setUpdate" parameterType="BookAccountDTO">
-	   UPDATE BOOKACCOUNT SET ACCOUNTPW = #{accountPw}, ACCOUNTBALANCE = #{accountBalance}
-	   WHERE ACCOUNTNUM = #{accountNum}
-    </update>
-    
-    <delete id="setDelete" parameterType="BookAccountDTO">
-       DELETE BOOKACCOUNT 
-        WHERE ACCOUNTNUM = #{accountNum}
-    </delete>
+		UPDATE BOOKACCOUNT SET ACCOUNTPASSWORD = #{accountPassword}, ACCOUNTBALANCE
+		= #{accountBalance}
+		WHERE ACCOUNTNUM = #{accountNum}
+	</update>
+
+	<delete id="setDelete" parameterType="BookAccountDTO">
+		DELETE BOOKACCOUNT
+		WHERE ACCOUNTNUM = #{accountNum}
+	</delete>
+
+	<select id="getTotal" resultType="Long">
+		SELECT COUNT(ACCOUNTNUM)
+		FROM BOOKACCOUNT
+	</select>
 
 </mapper>
 

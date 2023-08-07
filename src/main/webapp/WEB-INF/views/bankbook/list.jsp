@@ -85,7 +85,8 @@
 
 			
 	</section>
-
+	
+	
 	<!-- 파라미터 : 클라이언트에서 서버 쪽으로 보내는 정보 -->
 	<%-- <c:forEach begin="1" end="10" step="2" var="num">
 	    <h1>${num}</h1>
@@ -93,6 +94,12 @@
 
 
 	<!-- 출력할땐 세미콜론 안 붙임 -->
+	
+	<button id="list">GetList</button>
+	
+
+    <script src="../resources/js/bookList.js"></script>
+
 </body>
 
 <!-- 문자열을 자르는걸 파싱이라 하고, 파싱된걸 '토큰'이라 함-->

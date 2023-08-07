@@ -8,9 +8,9 @@ public class BookAccountDTO {
 
 	private Long accountNum;
 	private String id;
-	private String bookNum;
-	private String account;
-	private Long accountPw;
+	private Long bookNum;
+	private Long account;
+	private String accountPassword;
 	private Long accountBalance;
 	private Date accountDate;
 	
@@ -33,26 +33,36 @@ public class BookAccountDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getBookNum() {
+	
+	
+	
+	
+	public Long getBookNum() {
 		return bookNum;
 	}
-	public void setBookNum(String bookNum) {
+	public void setBookNum(Long bookNum) {
 		this.bookNum = bookNum;
 	}
-	public String getAccount() {
+	public Long getAccount() {
 		return account;
 	}
-	public void setAccount(String account) {
+	public void setAccount(Long account) {
 		this.account = account;
 	}
-	public Long getAccountPw() {
-		return accountPw;
+	
+	public String getAccountPassword() {
+		return accountPassword;
 	}
-	public void setAccountPw(Long accountPw) {
-		this.accountPw = accountPw;
+	public void setAccountPassword(String accountPassword) {
+		this.accountPassword = accountPassword;
 	}
+	
 	public Long getAccountBalance() {
-		return accountBalance;
+		if(this.accountBalance==null) {
+		   accountBalance = 0L;
+		}
+			return accountBalance;
+		
 	}
 	public void setAccountBalance(Long accountBalance) {
 		this.accountBalance = accountBalance;
