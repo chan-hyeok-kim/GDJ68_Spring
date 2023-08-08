@@ -32,7 +32,7 @@
 			<tr>
 				<td colspan="4">
 				 <c:forEach items="${bto.boardFileDTOs}" var="b">
-				    <img alt="" src="/resources/upload/board/${b.fileName}">
+				    <img alt="" src="/resources/upload/notice/${b.fileName}">
 				</c:forEach> 
 				</td>
 			</tr>

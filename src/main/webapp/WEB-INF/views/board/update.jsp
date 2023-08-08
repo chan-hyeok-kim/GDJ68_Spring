@@ -12,11 +12,12 @@
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="container mt-5">
 		<h1 class="mb-2">NOTICE</h1>
+		<form action="./update" method="post" enctype="multipart/form-data">
 		<table class="table mb-4text-center">
 			<thead>
-			<form action="./update" method="post">
+			
 			<input type="hidden" name="boardNum" value="${bto.boardNum}">
-			<input type="hidden" name="boardHit" value="${bto.boardHit}">
+			
 				<th class="table-dark">제목</th>
 				<th><div class="col-xs-3">
 				<input type="text" class="form-control" name="boardName" value="${bto.boardName}" required>
@@ -38,15 +39,27 @@
 				<tr>
 				<td></td>
 				<td>
-				<c:forEach items="${bto.boardFileDTOs}" var="b">
-		          	<div class="input-group">
-                      <input type="file" name="files" class="form-control" value="${b.originalName}" id="bankfile" aria-label="Upload">
-					</td>
-					</div>
+
+					<div id="fileList">
+					<button type="button" id="btn1" class="btn btn-dark">File추가</button>
+					
+				<div>
+					<c:forEach items="${bto.boardFileDTOs}" var="b">
+					<div class="alert alert-warning" role="alert">
+						${b.originalName}
+					</div><span class="deletes" data-delete-num="${b.fileNum}">X</span> 
+				</div>
+			</div>
 					</c:forEach>
+				</td>
 					</tr>
-			</tbody>
-		</table>
+	
+				</tbody>
+				
+			</table>
+			<button type="submit" class="btn btn-dark">수정</button>
+		</form>
+
 		<%-- <form action="./update" method="post">
 			<input type="hidden" name="boardNum" value="${mto.boardNum}">
 			<input type="text" name="boardWriter" value="${mto.boardWriter}">
@@ -54,8 +67,10 @@
 			<textarea name="boardContents">${mto.boardContents}</textarea>
  --%>
 
-			<button type="submit" class="btn btn-dark">수정</button>
-		</form>
+			
 	</section>
+<script src="/resources/js/file.js"></script>
+
+
 </body>
 </html>

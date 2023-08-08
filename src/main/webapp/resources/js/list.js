@@ -21,6 +21,8 @@ const page = document.getElementById("page");
 for(m of move){
     m.addEventListener("click", function(){
       page.value = this.getAttribute("data-num");
+      
+    
       frm.submit();
     })
 }

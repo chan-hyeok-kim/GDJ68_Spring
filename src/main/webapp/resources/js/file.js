@@ -3,11 +3,49 @@
 </div> */}
 
 const btn1 = document.getElementById("btn1");
-let count = 0;
-let idx = 0;
 
+let max = 5;
+let count = 0;
+
+
+let idx = 0;
 const fileList = document.getElementById("fileList");
+const deletes = document.getElementsByClassName("deletes");
+
+if(deletes != null){
+    count= deletes.length;
+   
+}
+
+for(d of deletes){
+    d.addEventListener("click", function(){
+    
+      
+      let num = this.getAttribute("data-delete-num");
+     
+      let check = confirm("삭제시 복구 불가")
+      if(check){
+        fetch("./fileDelete?fileNum="+num, {method:"get"})
+        .then((result)=>{return result.text()})
+        .then((r)=>{
+            if(r.trim()=='1'){
+                this.previousSibling.remove();
+                this.remove();
+                count--;
+            }});
         
+
+// post로 해야될때가 있음. 주소창이용해서 삭제할수도있으므로
+// get이면 지우려고하는애가 작성자가맞는지 체크해야함        
+      }
+    
+    })
+}
+
+
+
+
+
 fileList.addEventListener("click",function(event){
     let cl = event.target.classList;
     if(event.target.classList.contains("df")){
@@ -19,12 +57,13 @@ fileList.addEventListener("click",function(event){
     
 })
 
-btn1.addEventListener("click", function(){
-    count++;
-if(count>5){
+  btn1.addEventListener("click", function(){
+    
+  if(count>=max){
     alert("최대 업로드 수는 5개입니다");
-}else{
-
+    return;
+  }
+    count++;
    
     let d2 = document.createElement("div");
     let a = document.createAttribute("class");
@@ -41,7 +80,11 @@ if(count>5){
     f2.setAttributeNode(f1);
     
     f1 = document.createAttribute("name");
-    f1.value = "files";
+    f1.value = "photos";
+    f2.setAttributeNode(f1);
+
+    f1 = document.createAttribute("id")
+    f1.value="photos";
     f2.setAttributeNode(f1);
 
     f1 = document.createAttribute("class");
@@ -71,6 +114,8 @@ if(count>5){
     d2.appendChild(s);
     
     idx++;
-}
+
 })
+
+
 

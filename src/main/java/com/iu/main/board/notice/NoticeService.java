@@ -21,7 +21,7 @@ import oracle.net.aso.m;
 public class NoticeService implements BoardService {
 
 	@Autowired
-	private NoticeDAO boardDAO;
+	private NoticeDAO noticeDAO;
 
 	@Autowired
 	private FileManager fileManager;
@@ -29,14 +29,14 @@ public class NoticeService implements BoardService {
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		pager.makeRowNum();
-		pager.makePageNum(boardDAO.getTotal(pager));
-		return boardDAO.getList(pager);
+		pager.makePageNum(noticeDAO.getTotal(pager));
+		return noticeDAO.getList(pager);
 	}
 
 	@Override
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception {
-		boardDTO = boardDAO.getDetail(boardDTO);
-		int result = boardDAO.setHitUpdate(boardDTO);
+		boardDTO = noticeDAO.getDetail(boardDTO);
+		int result = noticeDAO.setHitUpdate(boardDTO);
 		return boardDTO;
 	}
 
@@ -44,8 +44,9 @@ public class NoticeService implements BoardService {
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
 		MemberDTO sessionMember = (MemberDTO) session.getAttribute("login");
 		boardDTO.setWriter(sessionMember.getId());
-		String path = "/resources/upload/board/";
-		int result = boardDAO.setAdd(boardDTO);
+		String path = "/resources/upload/notice/";
+		int result = noticeDAO.setAdd(boardDTO);
+
 		for (MultipartFile file : files) {
 			if (!file.isEmpty()) {
 				NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
@@ -53,7 +54,7 @@ public class NoticeService implements BoardService {
 				noticeFileDTO.setBoardNum(boardDTO.getBoardNum());
 				noticeFileDTO.setFileName(fileName);
 				noticeFileDTO.setOriginalName(file.getOriginalFilename());
-				result = boardDAO.setFile(noticeFileDTO);
+				result = noticeDAO.setFile(noticeFileDTO);
 			}
 
 		}
@@ -63,19 +64,62 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
-		return boardDAO.setDelete(boardDTO);
+		return noticeDAO.setDelete(boardDTO);
 
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO, HttpSession session) throws Exception {
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
 
 		MemberDTO sessionMember = (MemberDTO) session.getAttribute("login");
 		boardDTO.setWriter(sessionMember.getId());
+        
+		String path = "/resources/upload/notice/";
+		int result = noticeDAO.setUpdate(boardDTO);
+		
+		
+		for (MultipartFile file : files) {
+			if (!file.isEmpty()) {
+				NoticeFileDTO noticeFileDTO = new NoticeFileDTO();
+				String fileName = fileManager.fileSave(path, file, session);
+				noticeFileDTO.setBoardNum(boardDTO.getBoardNum());
+				noticeFileDTO.setFileName(fileName);
+				noticeFileDTO.setOriginalName(file.getOriginalFilename());
+				result = noticeDAO.setFile(noticeFileDTO);
+			}
 
-		return boardDAO.setUpdate(boardDTO);
+		}
+
+		return result;
+
+		}
+	
+	
+
+	public int setFileDelete(NoticeFileDTO noticeFileDTO, HttpSession session) throws Exception{
+		   noticeFileDTO = noticeDAO.getFileDetail(noticeFileDTO);
+//		   조회하는 이유: 파일명을 알아야 지우니깐
+		   
+		   boolean flag = fileManager.fileDelete(noticeFileDTO, "/resources/upload/notice/", session);
+		   if(flag) {
+		
+		   return noticeDAO.setFileDelete(noticeFileDTO);
+		   }
+		   return 0;
 	}
-
+	
+		/*
+		 * for (MultipartFile photo : photos) { String fileName =
+		 * fileManager.fileSave(path, photo, session);
+		  
+		  
+		  }
+		
+//		파일네임은 받아온것에서
+//		오리지널 네임은 멀티파트에서
+// 여기서 삭제하면되겠네 파일
+		
+	
 	/*
 	 * public List<BoardDTO> getList(Pager pager) throws Exception{
 	 * pager.makeRowNum(); pager.makePageNum(boardDAO.getTotal(pager));

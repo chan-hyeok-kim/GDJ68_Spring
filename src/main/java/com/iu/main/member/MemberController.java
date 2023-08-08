@@ -6,6 +6,7 @@ import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -94,6 +95,22 @@ public class MemberController {
 			session.setAttribute("login", memberDTO);
 		}
 		return "redirect:./myPage";
+	}
+	
+	@GetMapping("idCheck")
+	public String getIdCheck(MemberDTO memberDTO, Model model) throws Exception{
+		   memberDTO = memberService.getIdCheck(memberDTO);
+		   
+		   int result = 0;
+		   
+		   if(memberDTO==null) {
+			   result = 1;
+		   }
+		   
+		   
+		   model.addAttribute("result",result);
+		   return "commons/ajaxResult";
+			    
 	}
 	
 }

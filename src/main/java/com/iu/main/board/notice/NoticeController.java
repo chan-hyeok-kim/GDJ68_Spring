@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.main.board.BoardDTO;
+import com.iu.main.board.BoardFileDTO;
 import com.iu.main.member.MemberDTO;
 import com.iu.main.util.Pager;
 
@@ -26,7 +28,7 @@ import com.iu.main.util.Pager;
 public class NoticeController {
 
 	@Autowired
-	private NoticeService boardService;
+	private NoticeService noticeService;
 
 	@ModelAttribute("board")
 	public String getBoardName() {
@@ -35,7 +37,7 @@ public class NoticeController {
 
 	@RequestMapping("list")
 	public String getList(Model model, Pager pager) throws Exception {
-		List<BoardDTO> ar = boardService.getList(pager);
+		List<BoardDTO> ar = noticeService.getList(pager);
 
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
@@ -45,7 +47,7 @@ public class NoticeController {
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
 	public String getDetail(NoticeDTO noticeDTO, Model model) throws Exception {
 
-		BoardDTO boardDTO = boardService.getDetail(noticeDTO);
+		BoardDTO boardDTO = noticeService.getDetail(noticeDTO);
 		if (boardDTO==null) {
 			model.addAttribute("message", "글이 없다");
 			model.addAttribute("url","list");
@@ -65,8 +67,8 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session, Model model) throws Exception {
-		int result = boardService.setAdd(boardDTO, files, session);
+	public String setAdd(BoardDTO boardDTO, MultipartFile[] photos, HttpSession session, Model model) throws Exception {
+		int result = noticeService.setAdd(boardDTO, photos, session);
 
 		String message = "등록 실패";
 		if (result > 0) {
@@ -80,23 +82,33 @@ public class NoticeController {
 //	redirect는 상대, 절대 다됨
 
 	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView setUpdate(NoticeDTO noticeDTO, ModelAndView mv) throws Exception {
-		BoardDTO boardDTO = boardService.getDetail(noticeDTO);
+	public ModelAndView setUpdate(NoticeDTO noticeDTO,ModelAndView mv) throws Exception {
+		BoardDTO boardDTO = noticeService.getDetail(noticeDTO);
 		mv.addObject("bto", boardDTO);
 		mv.setViewName("board/update");
 		return mv;
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String setUpdate(NoticeDTO boardDTO, HttpSession session) throws Exception {
-		int result = boardService.setUpdate(boardDTO, session);
+	public String setUpdate(BoardDTO boardDTO, MultipartFile[] photos, HttpSession session) throws Exception {
+		System.out.println(photos.length);
+		int result = noticeService.setUpdate(boardDTO, photos, session);
 		return "redirect:./detail?boardNum=" + boardDTO.getBoardNum();
 	}
 
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String setDelete(NoticeDTO boardDTO) throws Exception {
-		int result = boardService.setDelete(boardDTO);
+		int result = noticeService.setDelete(boardDTO);
 		return "redirect:./list";
+	}
+	
+	@GetMapping("fileDelete")
+	public String setFileDelete(NoticeFileDTO noticeFileDTO, Model model, HttpSession session) throws Exception{
+		   int result = noticeService.setFileDelete(noticeFileDTO,session);
+		   model.addAttribute("result",result);
+		   
+		   return "commons/ajaxResult";
+		   
 	}
 
 }

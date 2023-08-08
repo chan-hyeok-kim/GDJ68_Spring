@@ -35,7 +35,7 @@
 
 					<table class="table table-striped table-hover">
 						<tr>
-							<td><img alt="" src="../resources/upload/member/${login.memberFileDTO.fileName}"></td>
+							<!-- <td><img alt="" src="../resources/upload/member/${login.memberFileDTO.fileName}"></td> -->
 							<td></td>
 						</tr>
 						<tr>
@@ -78,16 +78,19 @@
 				const productList = document.getElementById("productList");
 				
 				getList(1);
-
-				let pagei = document.getElementsByClassName("pagei");
-
+			
 				productList.addEventListener("click", function (event) {
 					if (event.target.classList.contains("move")) {
-						alert("list");
+						
+						let page = event.target.getAttribute("data-num");
+						console.log("before");
+						getList(page);	
+						
 					}
 
 				})
-
+				
+				
 
 				function getList(page) {
 					fetch("../bookAccount/list?page=" + page, {
@@ -95,8 +98,10 @@
 					})
 						.then((response) => { return response.text() })
 						.then((r) => {
+							console.log("ajax 실행");
 							productList.innerHTML = r;
-							console.log(r);
+							console.log("after");
+							
 						});
 					;
 

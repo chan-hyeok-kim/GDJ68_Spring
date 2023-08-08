@@ -27,7 +27,7 @@
 			
 			<h1>회원가입 페이지</h1>
             
-			<div class="mb-3">
+			<div class="mb-3" id="idList">
 				<label for="id" class="form-label">ID
 				</label>
 				<div class="col-sm-4">

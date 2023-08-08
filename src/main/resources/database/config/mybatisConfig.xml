@@ -21,6 +21,7 @@
         <typeAlias type="com.iu.main.board.BoardFileDTO" alias="BoardFileDTO"/>
         <typeAlias type="com.iu.main.util.Pager" alias="Pager"/>
         <typeAlias type="com.iu.main.bookAccount.BookAccountDTO" alias="BookAccountDTO"/>
+        <typeAlias type="com.iu.main.bankBook.bankBookQna.BookQnaDTO" alias="BookQnaDTO"/>
         <typeAlias type="java.util.Map" alias="Map"/>
 
 </typeAliases>

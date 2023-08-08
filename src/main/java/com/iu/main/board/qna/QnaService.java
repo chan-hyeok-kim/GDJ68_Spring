@@ -25,7 +25,7 @@ public class QnaService implements BoardService {
 	private FileManager fileManager;
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO, HttpSession session) throws Exception {
+	public int setUpdate(BoardDTO boardDTO, MultipartFile[] photos, HttpSession session) throws Exception {
 
 		MemberDTO sessionMember = (MemberDTO) session.getAttribute("login");
 		boardDTO.setWriter(sessionMember.getId());

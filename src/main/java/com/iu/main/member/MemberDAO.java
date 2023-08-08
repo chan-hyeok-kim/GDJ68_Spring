@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.iu.main.bookAccount.BookAccountDTO;
+
 @Repository
 public class MemberDAO {
 	
@@ -31,8 +33,9 @@ public class MemberDAO {
 		return sqlSession.insert(NAMESPACE+"setFileJoin",memberFileDTO);
 	}
 	
-	
-	
+	public MemberDTO getIdCheck(MemberDTO memberDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getIdCheck", memberDTO);
+	}
 	
 	
 	

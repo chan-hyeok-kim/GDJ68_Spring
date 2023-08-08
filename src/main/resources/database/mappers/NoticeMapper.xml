@@ -92,7 +92,7 @@
 	<update id="setUpdate" parameterType="NoticeDTO">
 		UPDATE BOARD SET
 		WRITER=#{writer}, BOARDNAME=#{boardName},
-		BOARDCONTENTS=#{boardContents}, BOARDHIT=SYSDATE
+		BOARDCONTENTS=#{boardContents}
 		WHERE
 		BOARDNUM=#{boardNum}
 	</update>
@@ -112,4 +112,16 @@
        BOARDNUM=#{boardNum}
     </update>
 
+ 
+    
+    <delete id="setFileDelete" parameterType="NoticeFileDTO">
+       DELETE BOARDFILE
+       WHERE FILENUM=#{fileNum}
+    </delete>
+
+    <select id="getFileDetail" parameterType="NoticeFileDTO" resultType="NoticeFileDTO">
+       SELECT FILENUM, FILENAME
+         FROM BOARDFILE
+        WHERE FILENUM=#{fileNum}
+    </select>
 </mapper>

@@ -45,6 +45,7 @@
 		SELECT COUNT(ACCOUNTNUM)
 		FROM BOOKACCOUNT
 	</select>
+	
 
 </mapper>
 

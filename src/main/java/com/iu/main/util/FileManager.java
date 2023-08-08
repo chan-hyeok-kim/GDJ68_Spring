@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.main.file.FileDTO;
+
 @Component
 public class FileManager {
 	
@@ -33,6 +35,19 @@ public class FileManager {
 	    
 	    return uId;
 	   
+	}
+	
+	public boolean fileDelete(FileDTO fileDTO, String path, HttpSession session) {
+		//1. 어디 폴더의 실제경로
+		
+	    path =  session.getServletContext().getRealPath(path);
+	    System.out.println(path);
+	    
+	    File file = new File(path, fileDTO.getFileName());
+	    
+	    return file.delete(); 
+	    
+	    
 	}
 	
 	

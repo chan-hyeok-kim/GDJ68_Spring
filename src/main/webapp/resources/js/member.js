@@ -19,24 +19,48 @@ const msg5 = document.getElementById("msg5");
 const msg6 = document.getElementById("msg6");
 
 //Check결과
-let checkResult = [false, false, false, false, false,false];
+let checkResult = [false, false, false, false, false,false,false];
 
+const idList = document.getElementById("idList");
 
 idtest.addEventListener("blur",function(){
-   if(idtest.value.length==0){
-     msg1.innerText="id를 반드시 입력해주세요";
-     msg1.className="f";
-     checkResult[0]=false;
-   }else if (idtest.value.length>10){
-     msg1.innerText="id가 너무 깁니다";
-     msg1.className="f";
-     checkResult[0]=false;
-   }else{
-     msg1.innerText="id가 양호합니다";
-     msg1.className="s";
-     checkResult[0]=true;
-   }
-} )
+
+   
+
+   fetch("/member/idCheck?id=" + idtest.value, {
+       method: "get"
+   }) 
+        .then((response)=>{ return response.text()})
+        .then((r)=>{
+          if(r.trim()=='1'){
+            alert("중복이 아닙니다");
+            if(idtest.value.length==0){
+              msg1.innerText="id를 반드시 입력해주세요";
+              msg1.className="f";
+              checkResult[0]=false;
+              checkResult[6]=false;
+            }else if (idtest.value.length>10){
+              msg1.innerText="id가 너무 깁니다";
+              msg1.className="f";
+              checkResult[0]=false;
+              checkResult[6]=false;
+            }else{
+              msg1.innerText="id가 양호합니다";
+              msg1.className="s";
+              checkResult[0]=true;
+              checkResult[6]=true;
+            }
+          }else{
+            msg1.innerHTML="이미 사용중인 ID입니다";
+            msg1.className="f"
+            checkResult[0]=false;
+            checkResult[6]=false;
+          }
+      } )
+});
+
+
+
 
 pw.addEventListener("blur",function(){
    if(pw.value==''){
@@ -122,7 +146,7 @@ btn.addEventListener("click",function(){
         alert("필수 항목은 입력해주세요")
         // 반복문 쓰면 포커스 가능
     }else{
-      btn.type="submit";
-      frm.submit;
+        
+       frm.submit();
     }
   })

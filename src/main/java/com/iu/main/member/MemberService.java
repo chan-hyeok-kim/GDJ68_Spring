@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.main.bookAccount.BookAccountDTO;
 import com.iu.main.util.FileManager;
 
 @Service
@@ -87,4 +88,7 @@ public class MemberService {
 		return memberDAO.setMemberUpdate(memberDTO);
 	}
 
+	public MemberDTO getIdCheck(MemberDTO memberDTO) throws Exception{
+		return memberDAO.getIdCheck(memberDTO);
+	}
 }
