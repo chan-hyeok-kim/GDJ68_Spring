@@ -4,6 +4,25 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.iu.main.bankBook.BankBookDAO">
+
+<!-- comment  -->
+    <select id="getCommentList" resultType="BookQnaDTO"
+		parameterType="Map">
+		SELECT *
+		FROM(SELECT ROWNUM R, A.*
+		FROM(SELECT * FROM BOOKQNA
+		WHERE BOOKNUM=${comment.bookNum}
+		AND BOARDNUM>0
+		ORDER BY BOARDNUM DESC) A)
+		WHERE R BETWEEN #{pager.startRow} AND #{pager.lastRow}
+	</select>
+     
+     <select id="getCommentTotal" resultType="Long" parameterType="BookQnaDTO">
+		SELECT COUNT(BOARDNUM)
+		FROM BOOKQNA
+		WHERE BOOKNUM=#{bookNum}
+	</select>
+
 	<sql id="searchSql">
 		WHERE BOOKNUM>0
 		AND

@@ -96,85 +96,168 @@
 						</div>
 					</div>
 
+					<!-- 댓글 -->
+					<div>
+						<form id="frm">
+							<input type="hidden" name="boardNum" value="${bto.boardNum}">
+						</form>
+						<div class="col-sm-4">
+							<textarea class="form-control" id="comment" name="accountPassword"></textarea>
+							
+								<button id="reply" class="btn btn-dark c1" data-url="reply">답글 등록</button>
+				</div>
 
+						<div>
+							<table id="commentList">
+								
+							</table>
+
+						</div>
+						
+					</div>
+
+
+			
+				
 					<script src="../resources/js/delete.js"></script>
 					<script>
-						const add = document.getElementById("add");
-						add.addEventListener("click", function () {
-							let bookNum = add.getAttribute("data-add-num");
-							let pw = document.getElementById("pw").value;
-							ajax2(bookNum, pw);
+						getCommentList($('#add').attr("data-add-num"),1)
+						 
+						function getCommentList(bookNum,page){
+							$.ajax({
+								type: "get",
+								url: "./commentList",
+								data:{
+									bookNum:bookNum,
+									page:page
+								},
+								success:function(result){
+									$('#commentList').append(result);
+								},
+								error:function(){
+									alert("관리자에게 문의하세요")
+								}
+							})
+						}
+					</script>
+					<script>
+						// const add = document.getElementById("add");
+						// add.addEventListener("click", function () {
+						// 	let bookNum = add.getAttribute("data-add-num");
+						// 	let pw = document.getElementById("pw").value;
+						// 	ajax2(bookNum, pw);
 
-						});
+						// });
+						
+						$('#add').click(function(){
+							let bookNum = $(this).attr("data-add-num");
+							let pw = $('#pw').val();
+							ajax2(bookNum, pw)
+
+							
+						})
+
+
+
+
 
 						function ajax2(bookNum, pw) {
-							fetch("../bookAccount/add", {
-								method: "post",
-								body: "bookNum="+bookNum+"&accountPassword="+pw
-									
-									// 왼쪽은 멤버변수, 오른쪽은 매개변수
-							    ,
-								headers: {
-									'content-type': "application/x-www-form-urlencoded"
+							$.ajax({
+								type: "post",
+								url: "../bookAccount/add",
+								data:{
+									bookNum:bookNum,
+									accountPassword:pw
+								},
+								success:function(r){
+									if(r.trim()>0){
+										alert("가입 성공")
+									}else{
+										alert("가입 실패")
+									}
+
+								},
+								error: function(){
+									alert("관리자에게 문의")
 								}
 
-
+								
+							
 							})
-								.then((response) => {
-									return response.text();
-
-								})
-								.then((r)=>{
-									if(r>0){
-										alert("가입 완료");
-									}else{
-										alert("가입 실패");
-									}
-								  document.getElementById("close").click;
-     
-								  location.href="/";
-								})
-								;
+							
+								
 
 						}
 
 
 
-						function ajax1(bookNum, pw) {
-
-							//1.
-							let xhttp = new XMLHttpRequest();
-
-							//2.요청 정보
-							xhttp.open("post", "../bookAccount/add");
-
-							//요청 header 정보. enctype 디폴트는 원래 이거임
-							xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-							//요청 발생(post일 경우 파라미터 작성 key=value&key2=value)
-							xhttp.send("bookNum=" + bookNum + "&accountPassword=" + pw);
-
-							//응답 처리
-							xhttp.onreadystatechange = function () {
-								if (this.readyState == 4 && this.status == 200) {
-									let r = this.responseText.trim();
-									console.log(r);
-
-									document.getElementById("close").click;
-
-									if (r > 0) {
-
-										alert("가입 성공");
-									} else {
-										alert("가입 실패");
-									}
+							// fetch("../bookAccount/add", {
+							// 	method: "post",
+							// 	body: "bookNum="+bookNum+"&accountPassword="+pw
+									
+							// 		// 왼쪽은 멤버변수, 오른쪽은 매개변수
+							//     ,
+							// 	headers: {
+							// 		'content-type': "application/x-www-form-urlencoded"
+							// 	}
 
 
-									location.href = "/";
+							// })
+							// 	.then((response) => {
+							// 		return response.text();
 
-								}
-							}
-						};
+							// 	})
+							// 	.then((r)=>{
+							// 		if(r>0){
+							// 			alert("가입 완료");
+							// 		}else{
+							// 			alert("가입 실패");
+							// 		}
+							// 	  document.getElementById("close").click;
+     
+							// 	  location.href="/";
+							// 	})
+							// 	;
+
+						
+
+
+
+						// function ajax1(bookNum, pw) {
+
+						// 	//1.
+						// 	let xhttp = new XMLHttpRequest();
+
+						// 	//2.요청 정보
+						// 	xhttp.open("post", "../bookAccount/add");
+
+						// 	//요청 header 정보. enctype 디폴트는 원래 이거임
+						// 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+						// 	//요청 발생(post일 경우 파라미터 작성 key=value&key2=value)
+						// 	xhttp.send("bookNum=" + bookNum + "&accountPassword=" + pw);
+
+						// 	//응답 처리
+						// 	xhttp.onreadystatechange = function () {
+						// 		if (this.readyState == 4 && this.status == 200) {
+						// 			let r = this.responseText.trim();
+						// 			console.log(r);
+
+						// 			document.getElementById("close").click;
+
+						// 			if (r > 0) {
+
+						// 				alert("가입 성공");
+						// 			} else {
+						// 				alert("가입 실패");
+						// 			}
+
+
+						// 			location.href = "/";
+
+						// 		}
+						// 	}
+						// };
 
 
 					</script>

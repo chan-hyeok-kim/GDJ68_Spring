@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.main.bankBook.bankBookQna.BookQnaDTO;
 import com.iu.main.util.Pager;
 
 @Repository //해당 클래스의 객체를 생성하세요
@@ -76,5 +77,14 @@ public class BankBookDAO {
 
 	public long getSequence()throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getSequence");
+	}
+	
+	public List<BookQnaDTO> getCommentList(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getCommentList", map);
+		
+	}
+	
+	public long getCommentTotal(BookQnaDTO bookQnaDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCommentTotal",bookQnaDTO);
 	}
 }

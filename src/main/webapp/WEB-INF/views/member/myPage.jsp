@@ -8,6 +8,8 @@
 			<title>Insert title here</title>
 
 			<c:import url="../temp/bootStrap.jsp"></c:import>
+			 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
 		</head>
 
 		<body>
@@ -75,37 +77,65 @@
 			</section>
 
 			<script>
-				const productList = document.getElementById("productList");
+				// const productList = document.getElementById("productList");
 				
-				getList(1);
+				 getList(1);
 			
-				productList.addEventListener("click", function (event) {
-					if (event.target.classList.contains("move")) {
+				// productList.addEventListener("click", function (event) {
+				// 	if (event.target.classList.contains("move")) {
 						
-						let page = event.target.getAttribute("data-num");
-						console.log("before");
-						getList(page);	
+				// 		let page = event.target.getAttribute("data-num");
+				// 		console.log("before");
+				// 		getList(page);	
 						
-					}
+				// 	}
 
-				})
+				// })
 				
+               $('#productList').on("click",".move",function(){
+				
+				   let page = $(this).attr("data-num");
+				   console.log(page);
+				   getList(page);
+			   })
+
+			   
+			   
+
+
 				
 
-				function getList(page) {
-					fetch("../bookAccount/list?page=" + page, {
-						method: "get"
-					})
-						.then((response) => { return response.text() })
-						.then((r) => {
-							console.log("ajax 실행");
-							productList.innerHTML = r;
-							console.log("after");
+				 function getList(page) {
+					$.ajax({
+						type: "GET",
+						url: "../bookAccount/list",
+						data:{
+							page: page
+
+						},
+						success:function(result){
 							
-						});
-					;
+                              $('#productList').html(result.trim());
+						},
+						error: function(){
+							alert("목록을 가져오지 못했습니다");
+						}
+					})
 
-				}
+
+				// 	fetch("../bookAccount/list?page=" + page, {
+				// 		method: "get"
+				// 	})
+				// 		.then((response) => { return response.text() })
+				// 		.then((r) => {
+				// 			console.log("ajax 실행");
+				// 			productList.innerHTML = r;
+				// 			console.log("after");
+							
+				// 		});
+				 	// ;
+
+				 }
 
 
 

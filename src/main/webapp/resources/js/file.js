@@ -33,89 +33,132 @@ for(d of deletes){
                 this.remove();
                 count--;
             }});
-        
-
+          }
+    
+        })
+    }
 // post로 해야될때가 있음. 주소창이용해서 삭제할수도있으므로
 // get이면 지우려고하는애가 작성자가맞는지 체크해야함        
-      }
-    
-    })
-}
+  
 
 
 
 
+// $('#fileList').on("click",".df",function(){
+//   let deleteId= $(this).attr("data-id");
+//   $("#"+deleteId).remove();
+//   count--;
+// })
 
-fileList.addEventListener("click",function(event){
-    let cl = event.target.classList;
-    if(event.target.classList.contains("df")){
-        let deleteId = event.target.getAttribute("data-id");
-        document.getElementById(deleteId).remove();
-        count--;
-        
-       }
-    
+
+
+$('#fileList').on("click",".df",function(){
+  $(this).parent().remove();
+  count--;
 })
 
-  btn1.addEventListener("click", function(){
+
+// fileList.addEventListener("click",function(event){
+//     let cl = event.target.classList;
+//     if(event.target.classList.contains("df")){
+//         let deleteId = event.target.getAttribute("data-id");
+//         document.getElementById(deleteId).remove();
+//         count--;
+        
+//        }
     
-  if(count>=max){
-    alert("최대 업로드 수는 5개입니다");
-    return;
-  }
+// })
+
+
+
+//jquery
+
+
+let r = '<div class="input-group" id="file'+idx+'">'
+r = r+'<input type="file" aria-lable="upload" name="photos" id="photos" class="form-control">';
+r = r+'<span class="df" data-id="file'+idx+'">삭제</span>'
+r = r+'</div>'
+
+$("#btn1").click(function(){
+    
+    if(count>=5){
+        alert("5개까지입니다");
+        return;
+    }
     count++;
+    $('#fileList').append(r); 
+    idx++;
+    
+  })
+
+
+
+//   btn1.addEventListener("click", function(){
+    
+//   if(count>=max){
+//     alert("최대 업로드 수는 5개입니다");
+//     return;
+//   }
+//     count++;
    
-    let d2 = document.createElement("div");
-    let a = document.createAttribute("class");
-    a.value= "input-group";
-    d2.setAttributeNode(a);
+//     let d2 = document.createElement("div");
+//     let a = document.createAttribute("class");
+//     a.value= "input-group";
+//     d2.setAttributeNode(a);
 
-    a = document.createAttribute("id");
-    a.value = "file"+idx;
-    d2.setAttributeNode(a);
+//     a = document.createAttribute("id");
+//     a.value = "file"+idx;
+//     d2.setAttributeNode(a);
 
-    let f2 = document.createElement("input");
-    let f1 = document.createAttribute("type");
-    f1.value = "file";
-    f2.setAttributeNode(f1);
+//     let f2 = document.createElement("input");
+//     let f1 = document.createAttribute("type");
+//     f1.value = "file";
+//     f2.setAttributeNode(f1);
     
-    f1 = document.createAttribute("name");
-    f1.value = "photos";
-    f2.setAttributeNode(f1);
+//     f1 = document.createAttribute("name");
+//     f1.value = "photos";
+//     f2.setAttributeNode(f1);
 
-    f1 = document.createAttribute("id")
-    f1.value="photos";
-    f2.setAttributeNode(f1);
+//     f1 = document.createAttribute("id")
+//     f1.value="photos";
+//     f2.setAttributeNode(f1);
 
-    f1 = document.createAttribute("class");
-    f1.value = "form-control";
-    f2.setAttributeNode(f1);
+//     f1 = document.createAttribute("class");
+//     f1.value = "form-control";
+//     f2.setAttributeNode(f1);
 
-    f1 = document.createAttribute("aria-lable");
-    f1.value = "upload";
-    f2.setAttributeNode(f1);
+//     f1 = document.createAttribute("aria-lable");
+//     f1.value = "upload";
+//     f2.setAttributeNode(f1);
     
-    d2.appendChild(f2);
-    btn1.after(d2);
+//     d2.appendChild(f2);
+//     btn1.after(d2);
 
     
   
-    let s = document.createElement("span");
-    let t = document.createTextNode("삭제");
-    f1 = document.createAttribute("class");
-    f1.value = "df";
-    s.setAttributeNode(f1);
+//     let s = document.createElement("span");
+//     let t = document.createTextNode("삭제");
+//     f1 = document.createAttribute("class");
+//     f1.value = "df";
+//     s.setAttributeNode(f1);
 
-    f1 = document.createAttribute("data-id");
-    f1.value="file"+idx;
-    s.setAttributeNode(f1);
+//     f1 = document.createAttribute("data-id");
+//     f1.value="file"+idx;
+//     s.setAttributeNode(f1);
     
-    s.appendChild(t);
-    d2.appendChild(s);
+//     s.appendChild(t);
+//     d2.appendChild(s);
     
-    idx++;
+//     idx++;
 
-})
+// })
+
+
+
+
+
+
+
 
 
 

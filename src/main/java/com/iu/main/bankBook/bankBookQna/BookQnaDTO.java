@@ -8,9 +8,10 @@ public class BookQnaDTO{
 
 	private Long boardNum;
 	private String writer;
+	private Long bookNum;	
 	private String boardContents;
 	private Date boardDate;
-	private Long bookNum;
+	
 	
 	private Long ref;
 	private Long step;

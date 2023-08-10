@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
 
 
@@ -51,7 +52,7 @@
 
 				
 				<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-					<li class="page-item pagei"><a class="page-link move"
+					<li class="page-item"><a class="page-link move"
 						href="#" data-num="${i}">${i}</a></li>
 				</c:forEach>
 
@@ -64,5 +65,3 @@
 
 
 	</section>
-<script src="/resources/js/list.js">
-</script>	

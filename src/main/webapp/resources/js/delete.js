@@ -15,7 +15,7 @@ c.addEventListener("click",function(){
 	   }
 		frm.method = "post";
 	}
-	frm.action = url;
+	frm.action=url; 
 	frm.submit();	
 })
 }
