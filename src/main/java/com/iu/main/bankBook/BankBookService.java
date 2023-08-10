@@ -23,6 +23,7 @@ public class BankBookService {
 	@Autowired
 	private FileManager fileManager;
 
+//	comment
 	public List<BookQnaDTO> getCommentList( Pager pager, BookQnaDTO bookQnaDTO) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		pager.makeRowNum();
@@ -34,6 +35,11 @@ public class BankBookService {
 		return bankBookDAO.getCommentList(map);
 	}
 	
+	public int setCommentAdd(BookQnaDTO bookQnaDTO) throws Exception{
+		return bankBookDAO.setCommentAdd(bookQnaDTO);
+	}
+	
+//	bankbook
 	
 	public BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception {
 		return bankBookDAO.getDetail(bankBookDTO);

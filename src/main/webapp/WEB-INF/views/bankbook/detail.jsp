@@ -98,15 +98,16 @@
 
 					<!-- 댓글 -->
 					<div>
-						<form id="frm">
-							<input type="hidden" name="boardNum" value="${bto.boardNum}">
-						</form>
+						<form id="frm" method="post">
+							<input type="hidden" name="bookNum" value="${dto.bookNum}">
+						
 						<div class="col-sm-4">
-							<textarea class="form-control" id="comment" name="accountPassword"></textarea>
+							<textarea class="form-control" id="comment" name="boardContents"></textarea>
 							
-								<button id="reply" class="btn btn-dark c1" data-url="reply">답글 등록</button>
+								<button id="reply" class="btn btn-dark c1" data-url="commentAdd">답글 등록</button>
+				
 				</div>
-
+</form>
 						<div>
 							<table id="commentList">
 								

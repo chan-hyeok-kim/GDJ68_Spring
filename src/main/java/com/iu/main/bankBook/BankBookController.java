@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.main.bankBook.bankBookQna.BookQnaDTO;
+import com.iu.main.member.MemberDTO;
 import com.iu.main.util.Pager;
 
 @Controller
@@ -33,6 +35,20 @@ public class BankBookController {
 		List<BookQnaDTO> ar = bankBookService.getCommentList(pager, bookQnaDTO);
 		model.addAttribute("commentList",ar);
 	
+	}
+	
+//	@GetMapping("commentAdd")
+//	public void setCommentAdd() throws Exception{
+//		
+//	}
+	
+	@PostMapping("commentAdd")
+    public String setCommentAdd(BookQnaDTO bookQnaDTO,HttpSession session) throws Exception{
+	    MemberDTO memberDTO = (MemberDTO)session.getAttribute("login");
+	    bookQnaDTO.setWriter(memberDTO.getId());
+	    
+		int result = bankBookService.setCommentAdd(bookQnaDTO);
+	    return "redirect:./detail?bookNum="+bookQnaDTO.getBookNum();
 	}
 	
 	

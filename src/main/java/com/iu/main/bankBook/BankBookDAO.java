@@ -79,6 +79,7 @@ public class BankBookDAO {
 		return sqlSession.selectOne(NAMESPACE+"getSequence");
 	}
 	
+//	comment
 	public List<BookQnaDTO> getCommentList(Map<String, Object> map) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getCommentList", map);
 		
@@ -86,5 +87,9 @@ public class BankBookDAO {
 	
 	public long getCommentTotal(BookQnaDTO bookQnaDTO) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getCommentTotal",bookQnaDTO);
+	}
+	
+	public int setCommentAdd(BookQnaDTO bookQnaDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setCommentAdd", bookQnaDTO);
 	}
 }

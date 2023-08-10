@@ -23,6 +23,12 @@
 		WHERE BOOKNUM=#{bookNum}
 	</select>
 
+    <insert id="setCommentAdd" parameterType="BookQnaDTO">
+        INSERT INTO BOOKQNA (BOARDNUM, WRITER, BOOKNUM, BOARDCONTENTS, BOARDDATE)
+        VALUES (QNA_SEQ.NEXTVAL, #{writer}, #{bookNum}, #{boardContents}, SYSDATE)
+    </insert>
+
+<!-- BANKBOOK  -->
 	<sql id="searchSql">
 		WHERE BOOKNUM>0
 		AND
@@ -45,7 +51,8 @@
 	    <selectKey keyProperty="bookNum" resultType="Long" order="BEFORE">
 	    SELECT BANK_SEQ.NEXTVAL FROM DUAL
 	    </selectKey>
-		INSERT INTO BANKBOOK VALUES
+		INSERT INTO BANKBOOK 
+		(BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE, BOOKCONTENTS) VALUES 
 		(#{bookNum},#{bookName},#{bookRate},#{bookSale},#{bookContents})
 	</insert>
 
