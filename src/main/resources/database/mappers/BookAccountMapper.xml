@@ -41,7 +41,7 @@
 		WHERE ACCOUNTNUM = #{accountNum}
 	</delete>
 
-	<select id="getTotal" resultType="Long">
+	<select id="getTotal" resultType="Long" parameterType="Pager">
 		SELECT COUNT(ACCOUNTNUM)
 		FROM BOOKACCOUNT
 	</select>

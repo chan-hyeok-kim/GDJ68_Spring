@@ -40,7 +40,7 @@ public class BookAccountDAO {
 		return sqlSession.delete(NAMESPACE+"setDelete", bookAccountDTO);
 	}
 	
-	public Long getTotal() throws Exception{
+	public Long getTotal(Pager pager) throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getTotal");
 	}
 	

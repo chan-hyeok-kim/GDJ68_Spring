@@ -32,23 +32,24 @@ public class BankBookController {
 //	Comment
 	@GetMapping("commentList")
 	public void getCommentList(BookQnaDTO bookQnaDTO, Pager pager,Model model) throws Exception{
+		pager.setPerPage(2L);
 		List<BookQnaDTO> ar = bankBookService.getCommentList(pager, bookQnaDTO);
 		model.addAttribute("commentList",ar);
-	
+	    model.addAttribute("pager", pager);
 	}
 	
-//	@GetMapping("commentAdd")
-//	public void setCommentAdd() throws Exception{
-//		
-//	}
+
 	
 	@PostMapping("commentAdd")
-    public String setCommentAdd(BookQnaDTO bookQnaDTO,HttpSession session) throws Exception{
+    public String setCommentAdd(BookQnaDTO bookQnaDTO,HttpSession session,Model model) throws Exception{
 	    MemberDTO memberDTO = (MemberDTO)session.getAttribute("login");
 	    bookQnaDTO.setWriter(memberDTO.getId());
 	    
 		int result = bankBookService.setCommentAdd(bookQnaDTO);
-	    return "redirect:./detail?bookNum="+bookQnaDTO.getBookNum();
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
+//	    return "redirect:./detail?bookNum="+bookQnaDTO.getBookNum();
 	}
 	
 	

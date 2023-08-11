@@ -62,6 +62,6 @@
 
 			</ul>
 		</nav>
-
+<script src="/resources/js/list.js"></script>
 
 	</section>

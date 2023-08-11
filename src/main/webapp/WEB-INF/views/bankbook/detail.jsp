@@ -98,20 +98,22 @@
 
 					<!-- 댓글 -->
 					<div>
-						<form id="frm" method="post">
-							<input type="hidden" name="bookNum" value="${dto.bookNum}">
-						
+					
 						<div class="col-sm-4">
 							<textarea class="form-control" id="comment" name="boardContents"></textarea>
 							
-								<button id="reply" class="btn btn-dark c1" data-url="commentAdd">답글 등록</button>
+								<button id="commentAdd" class="btn btn-dark" data-url="commentAdd">답글 등록</button>
 				
 				</div>
-</form>
+
 						<div>
 							<table id="commentList">
 								
 							</table>
+
+							<div id="more">
+							
+							</div>
 
 						</div>
 						
@@ -122,8 +124,42 @@
 				
 					<script src="../resources/js/delete.js"></script>
 					<script>
-						getCommentList($('#add').attr("data-add-num"),1)
+						let bn=$('#add').attr("data-add-num");
+						let pageNum=1
+
+						getCommentList(bn,pageNum)
 						 
+						$('#commentAdd').click(function(){
+							let contents = $('#comment').val();
+							$.ajax({
+								type:'post',
+								url:'commentAdd',
+								data:{
+									bookNum:bn,
+									boardContents:contents
+								},
+								success:function(r){
+									if(r.trim()>0){
+									   console.log("댓글 등록 완료");
+									   $('#commentList').empty();
+									   $('#comment').val('');
+									    pageNum=1;
+									//    여기서 pageNum초기화를 안하면 
+									//    더보기를 진행했을때 바뀐 페이지(pageNum)가 그대로남게됨
+									   getCommentList(bn,1);
+									//    pageNum은무조건 1번보내야함
+									
+									}
+
+								},
+
+							})
+						})
+
+						$("#more").on("click", "#moreButton", function(){
+							getCommentList(bn, ++pageNum);
+						})
+
 						function getCommentList(bookNum,page){
 							$.ajax({
 								type: "get",
@@ -134,12 +170,26 @@
 								},
 								success:function(result){
 									$('#commentList').append(result);
+									let total = $('#getTotalPage').attr("data-total");
+									if(pageNum>total){
+										--pageNum;
+										alert("마지막 페이지입니다")
+										return;
+									}
+									let button = '<button id="moreButton">더보기('+pageNum+'/'+total+')</button>'
+									$('#more').html(button);
+
 								},
 								error:function(){
 									alert("관리자에게 문의하세요")
 								}
 							})
 						}
+		// 더보기버튼에 대한 3가지 
+// 코멘트리스트 jsp에 만들것인가 
+// ajax후에 만들것인가
+// 미리 만들어져있을것인가
+
 					</script>
 					<script>
 						// const add = document.getElementById("add");
@@ -150,6 +200,10 @@
 
 						// });
 						
+						
+
+						
+						
 						$('#add').click(function(){
 							let bookNum = $(this).attr("data-add-num");
 							let pw = $('#pw').val();
@@ -157,9 +211,6 @@
 
 							
 						})
-
-
-
 
 
 						function ajax2(bookNum, pw) {

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iu.main.bankBook.BankBookFileDTO;
 import com.iu.main.board.BoardDTO;
 import com.iu.main.board.BoardService;
+import com.iu.main.file.FileDTO;
 import com.iu.main.member.MemberDTO;
 import com.iu.main.util.FileManager;
 import com.iu.main.util.Pager;
@@ -26,6 +27,23 @@ public class NoticeService implements BoardService {
 	@Autowired
 	private FileManager fileManager;
 
+	public String setContentsImg(MultipartFile file, HttpSession session) throws Exception{
+	     String path ="/resources/upload/notice/";
+	     String fileName = fileManager.fileSave(path, file, session);
+	     
+	     return path+fileName;
+	}
+	
+    public boolean setContentsImgDelete(String path,HttpSession session)throws Exception{
+    	String fileName = path.substring(path.lastIndexOf("/")+1);
+    	path = path.substring(0,path.lastIndexOf("/")+1);
+		
+		FileDTO fileDTO = new FileDTO();
+		fileDTO.setFileName(fileName);
+		
+    	return fileManager.fileDelete(fileDTO, path, session);
+	}
+	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		pager.makeRowNum();

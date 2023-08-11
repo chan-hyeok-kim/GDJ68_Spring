@@ -22,6 +22,22 @@ public class BankBookDAO {
 //	sqlsession이 담고 있는 정보
 //	db연결, 매퍼들의 위치
 	
+//	comment
+	public List<BookQnaDTO> getCommentList(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getCommentList", map);
+		
+	}
+	
+	public long getCommentTotal(BookQnaDTO bookQnaDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCommentTotal",bookQnaDTO);
+	}
+	
+	public int setCommentAdd(BookQnaDTO bookQnaDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setCommentAdd", bookQnaDTO);
+	}
+	
+	
+//	bankbook
 	private final String NAMESPACE = "com.iu.main.bankBook.BankBookDAO.";
 	//뒤에 . 추가
 	//이 네임스페이스의 쿼리/메서드(id)를 실행하려고 .넣는것
@@ -79,17 +95,5 @@ public class BankBookDAO {
 		return sqlSession.selectOne(NAMESPACE+"getSequence");
 	}
 	
-//	comment
-	public List<BookQnaDTO> getCommentList(Map<String, Object> map) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getCommentList", map);
-		
-	}
-	
-	public long getCommentTotal(BookQnaDTO bookQnaDTO) throws Exception{
-		return sqlSession.selectOne(NAMESPACE+"getCommentTotal",bookQnaDTO);
-	}
-	
-	public int setCommentAdd(BookQnaDTO bookQnaDTO) throws Exception{
-		return sqlSession.insert(NAMESPACE+"setCommentAdd", bookQnaDTO);
-	}
+
 }

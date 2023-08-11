@@ -24,7 +24,7 @@ public class BankBookService {
 	private FileManager fileManager;
 
 //	comment
-	public List<BookQnaDTO> getCommentList( Pager pager, BookQnaDTO bookQnaDTO) throws Exception {
+	public List<BookQnaDTO> getCommentList(Pager pager, BookQnaDTO bookQnaDTO) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		pager.makeRowNum();
 		pager.makePageNum(bankBookDAO.getCommentTotal(bookQnaDTO));

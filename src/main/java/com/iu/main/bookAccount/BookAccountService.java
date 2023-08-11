@@ -22,7 +22,7 @@ public class BookAccountService {
 	public List<BookAccountDTO> getList(MemberDTO memberDTO,Pager pager) throws Exception{
 		pager.setPerPage(3L);
 		pager.makeRowNum();
-		pager.makePageNum(bookAccountDAO.getTotal());
+		pager.makePageNum(bookAccountDAO.getTotal(pager));
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("member", memberDTO);

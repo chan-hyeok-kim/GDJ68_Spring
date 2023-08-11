@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../temp/bootStrap.jsp"></c:import>
+ <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
@@ -34,7 +37,7 @@
 				</tr> --%>
 				<tr>
 					<td class="table-dark">내용</td>
-					<td><textarea rows="20px" class="form-control" cols="50px" name="boardContents">${bto.boardContents}</textarea></td>
+					<td><textarea rows="20px" class="form-control" cols="50px" id="contents" name="boardContents">${bto.boardContents}</textarea></td>
 				</tr>
 				<tr>
 				<td></td>
@@ -70,7 +73,12 @@
 			
 	</section>
 <script src="/resources/js/file.js"></script>
+<script>
+   //$('#contents').summernote('code',"기존내용");
+   //'code'가 val()값을 담고있다보면됨
+   $('#contents').summernote();
 
+</script>
 
 </body>
 </html>
