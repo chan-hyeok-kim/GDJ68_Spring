@@ -91,7 +91,7 @@
 
 	<update id="setUpdate" parameterType="NoticeDTO">
 		UPDATE BOARD SET
-		WRITER=#{writer}, BOARDNAME=#{boardName},
+	    BOARDNAME=#{boardName},
 		BOARDCONTENTS=#{boardContents}
 		WHERE
 		BOARDNUM=#{boardNum}

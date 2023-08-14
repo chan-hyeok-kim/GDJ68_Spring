@@ -6,6 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<c:if test="${empty login}">
+    <script type="text/javascript">
+       alert("로그인하세요");
+       location.href="../member/login";
+    </script>
+
+</c:if>
+
 <c:import url="../temp/bootStrap.jsp"></c:import>
   <!-- include summernote css/js-->
      <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">

@@ -10,10 +10,14 @@
                                                <!-- 보통 클래스명을 alias(별칭)으로 둔다-->
         <typeAlias type="com.iu.main.bankBook.BankBookFileDTO" alias="BankBookFileDTO"/> 
         <typeAlias type="java.lang.Long" alias="Long"/>
-        <typeAlias type="com.iu.main.member.MemberDTO" alias="MemberDTO"/>
+      
         <typeAlias type="com.iu.main.board.notice.NoticeDTO" alias="NoticeDTO"/>
         <typeAlias type="com.iu.main.board.notice.NoticeFileDTO" alias="NoticeFileDTO"/>
+      
+        <typeAlias type="com.iu.main.member.MemberDTO" alias="MemberDTO"/>  
         <typeAlias type="com.iu.main.member.MemberFileDTO" alias="MemberFileDTO"/>
+        <typeAlias type="com.iu.main.member.RoleDTO" alias="RoleDTO"/>
+        
         <typeAlias type="java.util.List" alias="List"/>   
        
         <typeAlias type="com.iu.main.board.qna.QnaDTO" alias="QnaDTO"/>
@@ -22,6 +26,7 @@
         <typeAlias type="com.iu.main.util.Pager" alias="Pager"/>
         <typeAlias type="com.iu.main.bookAccount.BookAccountDTO" alias="BookAccountDTO"/>
         <typeAlias type="com.iu.main.bankBook.bankBookQna.BookQnaDTO" alias="BookQnaDTO"/>
+        
         <typeAlias type="java.util.Map" alias="Map"/>
 
 </typeAliases>

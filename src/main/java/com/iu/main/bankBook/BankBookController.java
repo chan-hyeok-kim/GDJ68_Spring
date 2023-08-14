@@ -74,7 +74,7 @@ public class BankBookController {
  	    bankBookDTO = bankBookService.getDetail(bankBookDTO);
 	    System.out.println(bankBookDTO.getBookName());
 	 
-	    mv.addObject("dto", bankBookDTO);
+	    mv.addObject("bto", bankBookDTO);
 	    mv.setViewName("bankbook/detail");
 	    return mv;
 	}
@@ -111,7 +111,7 @@ public class BankBookController {
 	@RequestMapping(value="update", method=RequestMethod.GET)
 	public void setUpdate(BankBookDTO bankBookDTO, Model model) throws Exception{
 		bankBookDTO = bankBookService.getDetail(bankBookDTO);
-		model.addAttribute("dto",bankBookDTO);
+		model.addAttribute("bto",bankBookDTO);
 	}
 	
 	//DB update

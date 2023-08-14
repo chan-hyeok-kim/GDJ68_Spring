@@ -1,6 +1,7 @@
 package com.iu.main.member;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,8 +17,17 @@ public class MemberDTO {
 	private String email;
 	private Date birth;
 	private MemberFileDTO memberFileDTO;
+	private List<RoleDTO> roles;
 	
 	
+	
+	
+	public List<RoleDTO> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<RoleDTO> roles) {
+		this.roles = roles;
+	}
 	public MemberFileDTO getMemberFileDTO() {
 		return memberFileDTO;
 	}

@@ -24,8 +24,67 @@
 	</beans:bean>
 	<!-- 경로 앞뒤에 위의 값들을 붙이란 얘기 -->
 	
+	<!-- Interceptor 설정 -->
+	
+	<beans:bean class="com.iu.main.interceptors.InterceptorTest1" id="interceptorTest1">
+	</beans:bean>
+	
+	<interceptors>
+	<!-- 1. 어노테이션 참조 
+	  <interceptor> 
+	        <mapping path="/notice/*"/>
+	        <exclude-mapping path="/notice/add"/>
+	        <beans:ref bean="interceptorTest1"/>
+	       
+	        어노테이션 지정으로 bean이름, 따로 지정하지 않으면 클래스명의 첫글자를 소문자로 
+	    </interceptor> -->
+	    
+	<!--  2. 여기서 객체 생성(어노테이션을 줄 수 없는 경우)
+	  <interceptor>
+	         <mapping path="/notice/*"/>
+	         <beans:bean class="com.iu.main.interceptors.InterceptorTest1"></beans:bean>
+	   </interceptor> -->
+
+	   
+	<!-- 3. XML내부에 빈 생성 후 참조-->
+	   <interceptor>
+	         <mapping path="/notice/*"/>
+	         <beans:ref bean="interceptorTest1"/>
+	   </interceptor>
+	        
+	   
+	   <interceptor>
+	         <mapping path="/bankbook/update"/>
+	         <mapping path="/bankbook/add"/>
+	         <mapping path="/qna/*"/>
+	         <mapping path="/member/*"/>
+	         <mapping path="/notice/*"/>
+	         <exclude-mapping path="/notice/list"/>
+	         <exclude-mapping path="/notice/detail"/>
+	         <exclude-mapping path="/member/join"/>
+	         <exclude-mapping path="/member/login"/>
+	         <exclude-mapping path="/member/logout"/>
+	         <exclude-mapping path="/qna/list"/>
+	         <beans:ref bean="loginInterceptor"/>  
+	   </interceptor>
+	   
+	   <interceptor>
+	        <mapping path="/notice/update"/>
+	        <mapping path="/qna/update"/>
+	        <beans:bean class="com.iu.main.interceptors.OwnerInterceptor"></beans:bean>
+	   </interceptor>
+	   
+	   <interceptor>
+	        <mapping path="/notice/add"/>
+	        <mapping path="/notice/update"/>
+	        <mapping path="/notice/delete"/>
+	        <beans:ref bean="adminInterceptor"/>
+	   </interceptor>
+	 
+	</interceptors>
+	
 	<context:component-scan base-package="com.iu.main" />
-	<!-- 이 위치의 어노테이션들 가져오란 뜻 -->
+	<!-- 이 위치의 어노테이션(실행과 설명이란 뜻)들 가져오란 뜻 -->
 	
 	
 </beans:beans>

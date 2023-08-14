@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.main.board.BoardDTO;
+import com.iu.main.member.MemberDTO;
 import com.iu.main.util.Pager;
 
 @Controller
@@ -97,7 +98,9 @@ public class QnaController {
 	
 	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public String setDelete(QnaDTO qnaDTO)throws Exception{
+	public String setDelete(QnaDTO qnaDTO, HttpSession session)throws Exception{
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("login");
+	 	qnaDTO.setWriter(memberDTO.getId());
 		qnaService.setDelete(qnaDTO);
 		return "redirect:./list";
 	}

@@ -15,7 +15,7 @@
 			<section>
 				<h1>Detail Page</h1>
 
-				<c:forEach items="${dto.fileDTOs}" var="d">
+				<c:forEach items="${bto.fileDTOs}" var="d">
 					<img alt="" src="../resources/upload/bankbook/${d.fileName}">
 				</c:forEach>
 
@@ -24,18 +24,18 @@
 				<!-- Getter 이름 : 메서드에서 get을 제외하고 첫번째 글자를 소문자로 바꾼 것 -->
 				<!-- Setter 이름 : 메서드에서 set을 제외하고 첫번째 글자를 소문자로 바꾼 것 -->
 				<div class="border border-primary-subtle col-sm-4 p-2 mb-2">
-					<h1>${requestScope.dto.bookName}</h1>
+					<h1>${requestScope.bto.bookName}</h1>
 				</div>
 				<div class="border border-primary-subtle col-sm-4 p-2 mb-2">
-					<h1>${dto.bookRate}</h1>
+					<h1>${bto.bookRate}</h1>
 				</div>
 				<div class="border border-primary-subtle col-sm-4 p-2 mb-2">
-					<h1>${dto.bookContents}</h1>
+					<h1>${bto.bookContents}</h1>
 				</div>
 
 				<div class="border border-primary-subtle col-sm-4 p-2 mb-2">
 					<c:choose>
-						<c:when test="${dto.bookSale eq 1}">
+						<c:when test="${bto.bookSale eq 1}">
 							<h1>판매중</h1>
 						</c:when>
 						<c:otherwise>
@@ -59,10 +59,10 @@
 
 					<button class="btn btn-dark" id="update">수정</button>
 
-					<button class="btn btn-dark" id="del" data-delete-num="${dto.bookNum}"
+					<button class="btn btn-dark" id="del" data-delete-num="${bto.bookNum}"
 						data-delete-name="bookNum">삭제</button>
 
-					<a class="btn btn-dark" href="../bookAccount/add?bookNum=${dto.bookNum}">상품 가입</a>
+					<a class="btn btn-dark" href="../bookAccount/add?bookNum=${bto.bookNum}">상품 가입</a>
 					<button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#accountModal">상품가입</button>
 
 					<!-- Modal -->
@@ -89,7 +89,7 @@
 									<button type="button" class="btn btn-secondary" id="close"
 										data-bs-dismiss="modal">Close</button>
 									<button type="button" id="add" class="btn btn-primary"
-										data-add-num="${dto.bookNum}">
+										data-add-num="${bto.bookNum}">
 										상품가입</button>
 								</div>
 							</div>

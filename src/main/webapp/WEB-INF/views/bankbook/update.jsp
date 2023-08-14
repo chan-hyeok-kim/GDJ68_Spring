@@ -12,21 +12,21 @@
     <c:import url="../temp/header.jsp"></c:import>
      <h1>Update Page</h1>
      <form action="./update" method="post">
-     <input type="hidden" name="bookNum" value="${dto.bookNum}">
+     <input type="hidden" name="bookNum" value="${bto.bookNum}">
      <!-- disabled, hidden, read only? -->
 		<div class="input-group mb-2">
 			<span class="input-group-text">상품명</span> <input type="text"
-				name="bookName" class="form-control" value="${dto.bookName}">
+				name="bookName" class="form-control" value="${bto.bookName}">
 		</div>
 		<br>
 		<div class="input-group mb-2">
 			<span class="input-group-text">내용</span>
-			<textarea rows="" cols="" name="bookContents">${dto.bookContents}</textarea>
+			<textarea rows="" cols="" name="bookContents">${bto.bookContents}</textarea>
 			<br>
 		</div>
 		
 		
-		이자율 <input type="text" name="bookRate" value="${dto.bookRate}"><br>
+		이자율 <input type="text" name="bookRate" value="${bto.bookRate}"><br>
 
 		<p>
 			판매가능 <input type="radio" value="1" checked name="bookSale"><br>

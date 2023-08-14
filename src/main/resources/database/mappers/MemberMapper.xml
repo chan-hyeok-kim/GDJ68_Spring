@@ -6,9 +6,11 @@
   <mapper namespace="com.iu.main.member.MemberDAO">
   <!-- 로그인 -->
      <select id="getLogin" resultMap="getLoginResult" parameterType="MemberDTO">
-         SELECT M.*, MF.*
+         SELECT M.*, MF.*, R.ROLENAME   
          FROM MEMBER M LEFT OUTER JOIN MEMBERFILE MF
-         ON M.ID = MF.ID
+         ON M.ID = MF.ID INNER JOIN MEMBERROLE MR 
+         ON M.ID = MR.ID INNER JOIN ROLE R
+         ON R.ROLENUM = MR.ROLENUM
          WHERE M.ID=#{id} AND M.PW=#{pw}
      </select>
      <!-- id만 확인한 경우에는 서비스에서 패스워드 확인시킴 -->
@@ -25,7 +27,13 @@
           <result column="FILENAME" property="fileName"/>
           <result column="ORIGINALNAME" property="originalName"/>  
       </association>
-<!-- 1:1 관계는 association사용 -->
+      
+      <collection property="roles" ofType="RoleDTO" javaType="List">
+          <id column="ROLENUM" property="roleNum"/>
+          <result column="ROLENAME" property="roleName"/>
+      </collection>
+<!-- 1:1 관계는 association사용 
+     collection과 순서바뀌면안됨-->
   </resultMap>
   
   

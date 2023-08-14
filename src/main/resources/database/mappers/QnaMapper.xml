@@ -107,15 +107,15 @@
 	<update id="setUpdate" parameterType="QnaDTO">
 		UPDATE QNABOARD
 		SET
-		WRITER=#{writer}, BOARDHIT=#{boardHit}, BOARDNAME=#{boardName},
+		BOARDNAME=#{boardName},
 		BOARDCONTENTS=#{boardContents}
-		WHERE BOARDNUM=#{boardNum}
+		WHERE BOARDNUM=#{boardNum} AND WRITER=#{writer}
 	</update>
 
 	<delete id="setDelete" parameterType="QnaDTO">
 		DELETE QNABOARD
 		WHERE
-		BOARDNUM=#{boardNum}
+		BOARDNUM=#{boardNum} AND WRITER=#{writer}
 	</delete>
 
 	<insert id="setFile" parameterType="BoardFileDTO">

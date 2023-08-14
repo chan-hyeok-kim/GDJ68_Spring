@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../temp/bootStrap.jsp"></c:import>
-
 </head>
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
@@ -46,7 +45,9 @@
 				<tr>
 					<td></td>
 					<td></td>
+					<c:if test="${not empty login}">
 					<td><a href="./add" class="btn btn-dark">글 작성</a></td>
+					</c:if>
 					<td></td>
 					<td></td>
 				</tr>

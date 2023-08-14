@@ -14,7 +14,7 @@
 <body>
 	<c:import url="../temp/header.jsp"></c:import>
 	<section class="container mt-5">
-		<h1 class="mb-2">NOTICE</h1>
+		<h1 class="mb-2">${board}</h1>
 		<form action="./update" method="post" enctype="multipart/form-data">
 		<table class="table mb-4text-center">
 			<thead>
