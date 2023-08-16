@@ -57,13 +57,13 @@
 	         <mapping path="/bankbook/update"/>
 	         <mapping path="/bankbook/add"/>
 	         <mapping path="/qna/*"/>
-	         <mapping path="/member/*"/>
+	         <mapping path="/member/memberUpdate"/>
+	         <mapping path="/member/myPage"/>
 	         <mapping path="/notice/*"/>
 	         <exclude-mapping path="/notice/list"/>
 	         <exclude-mapping path="/notice/detail"/>
-	         <exclude-mapping path="/member/join"/>
-	         <exclude-mapping path="/member/login"/>
-	         <exclude-mapping path="/member/logout"/>
+	      
+	         
 	         <exclude-mapping path="/qna/list"/>
 	         <beans:ref bean="loginInterceptor"/>  
 	   </interceptor>
