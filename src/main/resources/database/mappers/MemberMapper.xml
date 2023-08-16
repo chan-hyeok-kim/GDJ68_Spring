@@ -6,7 +6,7 @@
   <mapper namespace="com.iu.main.member.MemberDAO">
   <!-- 로그인 -->
      <select id="getLogin" resultMap="getLoginResult" parameterType="MemberDTO">
-         SELECT M.*, MF.*, R.ROLENAME   
+         SELECT M.*, MF.*, R.* 
          FROM MEMBER M LEFT OUTER JOIN MEMBERFILE MF
          ON M.ID = MF.ID INNER JOIN MEMBERROLE MR 
          ON M.ID = MR.ID INNER JOIN ROLE R
