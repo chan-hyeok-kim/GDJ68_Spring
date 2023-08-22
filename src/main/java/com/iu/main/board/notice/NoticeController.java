@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,8 +34,22 @@ public class NoticeController {
 
 	@ModelAttribute("board")
 	public String getBoardName() {
-		return "NOTICE";
+		return "notice";
 	}
+	
+	@GetMapping("fileDown")
+	public String getFileDown(NoticeFileDTO noticeFileDTO, Model model) throws Exception{
+		noticeFileDTO = noticeService.getFileDown(noticeFileDTO);
+		model.addAttribute("file", noticeFileDTO);
+		
+	    return "fileManager";
+//	    빈의 이름을 리턴
+	}	
+
+//	    다운로드 시에는 우리가 직접 바이너리코드로 바꿔서 클라이언트에게 보내줘야 함 
+		
+	 
+	
 
 	@PostMapping("setContentsImg")
 	public String setContentsImage(MultipartFile files, HttpSession session,Model model) throws Exception{
@@ -126,5 +141,21 @@ public class NoticeController {
 		   return "commons/ajaxResult";
 		   
 	}
+	
+	
+	//------------------- Exception
+	/*
+	 * @ExceptionHandler(NullPointerException.class) public String serverError()
+	 * throws Exception{ return "v";
+	 * 
+	 * }
+	 * 
+	 * @ExceptionHandler(Exception.class) public String serverError2(Exception
+	 * ex,Model model) throws Exception{ model.addAttribute("message",
+	 * ex.getMessage()); return ""; }
+	 */
+	
+	
+	
 
 }

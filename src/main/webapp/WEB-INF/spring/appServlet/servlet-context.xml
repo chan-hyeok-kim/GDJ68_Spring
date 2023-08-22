@@ -21,38 +21,45 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1"></beans:property>
 	</beans:bean>
 	<!-- 경로 앞뒤에 위의 값들을 붙이란 얘기 -->
+	
+	<!--  -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0"></beans:property>
+		<!-- 동일한 이름의 빈을 찾아서 실행해라 -->
+	</beans:bean>
 	
 	<!-- Interceptor 설정 -->
 	
 	<beans:bean class="com.iu.main.interceptors.InterceptorTest1" id="interceptorTest1">
 	</beans:bean>
 	
-	<interceptors>
-	<!-- 1. 어노테이션 참조 
+	<!--  <interceptors> 
+	 1. 어노테이션 참조 
 	  <interceptor> 
 	        <mapping path="/notice/*"/>
 	        <exclude-mapping path="/notice/add"/>
 	        <beans:ref bean="interceptorTest1"/>
 	       
 	        어노테이션 지정으로 bean이름, 따로 지정하지 않으면 클래스명의 첫글자를 소문자로 
-	    </interceptor> -->
+	    </interceptor>
 	    
-	<!--  2. 여기서 객체 생성(어노테이션을 줄 수 없는 경우)
+	 2. 여기서 객체 생성(어노테이션을 줄 수 없는 경우)
 	  <interceptor>
 	         <mapping path="/notice/*"/>
 	         <beans:bean class="com.iu.main.interceptors.InterceptorTest1"></beans:bean>
-	   </interceptor> -->
-
+	   </interceptor>
+ -->
 	   
-	<!-- 3. XML내부에 빈 생성 후 참조-->
-	   <interceptor>
+<!-- 	3. XML내부에 빈 생성 후 참조 -->
+	 <!--   <interceptor>
 	         <mapping path="/notice/*"/>
 	         <beans:ref bean="interceptorTest1"/>
-	   </interceptor>
+	   </interceptor> -->
 	        
-	   
+	   <!-- 
 	   <interceptor>
 	         <mapping path="/bankbook/update"/>
 	         <mapping path="/bankbook/add"/>
@@ -66,9 +73,9 @@
 	         
 	         <exclude-mapping path="/qna/list"/>
 	         <beans:ref bean="loginInterceptor"/>  
-	   </interceptor>
+	   </interceptor> -->
 	   
-	   <interceptor>
+	<!--    <interceptor>
 	        <mapping path="/notice/update"/>
 	        <mapping path="/qna/update"/>
 	        <beans:bean class="com.iu.main.interceptors.OwnerInterceptor"></beans:bean>
@@ -81,7 +88,7 @@
 	        <beans:ref bean="adminInterceptor"/>
 	   </interceptor>
 	 
-	</interceptors>
+	</interceptors>  -->
 	
 	<context:component-scan base-package="com.iu.main" />
 	<!-- 이 위치의 어노테이션(실행과 설명이란 뜻)들 가져오란 뜻 -->

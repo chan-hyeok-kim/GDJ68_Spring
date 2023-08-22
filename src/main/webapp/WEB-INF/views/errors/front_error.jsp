@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-      <h1>페이지가 없다</h1>
+      
+      <h1>죄송합니다. 요청하신 페이지를 찾을 수 없습니다.</h1>
 
 </body>
 </html>

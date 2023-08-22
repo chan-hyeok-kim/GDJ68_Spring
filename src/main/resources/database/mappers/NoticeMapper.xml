@@ -120,7 +120,7 @@
     </delete>
 
     <select id="getFileDetail" parameterType="NoticeFileDTO" resultType="NoticeFileDTO">
-       SELECT FILENUM, FILENAME
+       SELECT FILENUM, FILENAME, ORIGINALNAME
          FROM BOARDFILE
         WHERE FILENUM=#{fileNum}
     </select>

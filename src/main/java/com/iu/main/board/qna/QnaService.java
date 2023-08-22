@@ -36,6 +36,7 @@ public class QnaService implements BoardService {
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
+		pager=null;
 		pager.makeRowNum();
 		pager.makePageNum(qnaDAO.getTotal(pager));
 		return qnaDAO.getList(pager);
@@ -57,6 +58,7 @@ public class QnaService implements BoardService {
 		String path = "/resources/upload/board/";
 		for (MultipartFile file : files) {
 			if (!file.isEmpty()) {
+				
 				QnaFileDTO qnaFileDTO = new QnaFileDTO();
 				
 				 String fileName = fileManager.fileSave(path, file, session);

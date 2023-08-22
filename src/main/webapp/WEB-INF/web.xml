@@ -38,5 +38,17 @@
     <servlet-name>appServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+  
+<!--   <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/views/errors/front_error.jsp</location>
+  </error-page>
+  
+   <error-page>
+    <error-code>400</error-code>
+    <location>/error/front</location>
+  </error-page>
+   -->
+  
 
 </web-app>

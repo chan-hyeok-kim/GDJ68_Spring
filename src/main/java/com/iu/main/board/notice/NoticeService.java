@@ -48,6 +48,7 @@ public class NoticeService implements BoardService {
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		pager.makeRowNum();
 		pager.makePageNum(noticeDAO.getTotal(pager));
+		pager.setStartRow(null);
 		return noticeDAO.getList(pager);
 	}
 
@@ -126,6 +127,9 @@ public class NoticeService implements BoardService {
 		   return 0;
 	}
 	
+	public NoticeFileDTO getFileDown(NoticeFileDTO noticeFileDTO) throws Exception{
+		return noticeDAO.getFileDetail(noticeFileDTO);
+	}
 		/*
 		 * for (MultipartFile photo : photos) { String fileName =
 		 * fileManager.fileSave(path, photo, session);
